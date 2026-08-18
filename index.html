@@ -139,10 +139,10 @@
             <span>원내관리 <span id="adminHeaderBadge" class="hidden px-1.5 py-0.2 text-[10px] bg-rose-500 text-white rounded-full">0</span></span>
           </button>
 
-          <button onclick="openBookingModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-toss-black text-white text-xs font-bold hover:bg-slate-800 transition shadow-soft">
-            <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i>
-            <span>간편 예약</span>
-          </button>
+          <a href="https://m.place.naver.com/hospital/1758514142/booking" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-toss-naver text-white text-xs font-bold hover:opacity-90 transition shadow-soft">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+            <span>네이버 예약</span>
+          </a>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -167,10 +167,10 @@
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
             카카오톡 실시간 상담
           </a>
-          <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 bg-toss-black text-white font-bold rounded-2xl flex items-center justify-center gap-2 text-sm">
-            <i data-lucide="calendar" class="w-4 h-4 text-teal-400"></i>
-            온라인 간편 예약
-          </button>
+          <a href="https://m.place.naver.com/hospital/1758514142/booking" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-toss-naver text-white font-bold rounded-2xl flex items-center justify-center gap-2 text-sm shadow-soft-sm">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+            네이버 실시간 예약
+          </a>
           <button onclick="requestAdminAuth(); toggleMobileMenu();" class="w-full py-2.5 bg-slate-100 text-slate-600 font-semibold rounded-2xl flex items-center justify-center gap-2 text-xs">
             <i data-lucide="lock" class="w-4 h-4 text-slate-500"></i>
             원내 관리자 로그인 (예약 확인)
@@ -206,10 +206,10 @@
           </p>
 
           <div class="pt-4 flex flex-col sm:flex-row gap-3.5 justify-center items-center">
-            <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-white text-toss-black font-extrabold rounded-2xl text-sm hover:bg-slate-100 transition-all duration-300 hover:scale-[1.02] shadow-soft-lg flex items-center justify-center gap-2">
-              <span>1:1 맞춤 진료 예약하기</span>
-              <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
+            <a href="https://m.place.naver.com/hospital/1758514142/booking" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-toss-naver text-white font-extrabold rounded-2xl text-sm hover:opacity-95 transition-all duration-300 hover:scale-[1.02] shadow-soft-lg flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+              <span>네이버 1:1 맞춤 예약하기</span>
+            </a>
             <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 bg-toss-kakao hover:opacity-95 text-slate-950 font-bold rounded-2xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-soft-sm">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
               <span>카카오톡 안양점 상담</span>
@@ -989,10 +989,10 @@
       <i data-lucide="phone" class="w-3.5 h-3.5 text-teal-700"></i>
       전화상담
     </a>
-    <button onclick="openBookingModal()" class="flex-1 py-3 bg-toss-black text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-soft">
-      <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i>
-      간편예약
-    </button>
+    <a href="https://m.place.naver.com/hospital/1758514142/booking" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-toss-naver text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-soft">
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+      네이버예약
+    </a>
   </div>
 
   <!-- ==================== DISEASE INFOGRAPHIC MODAL ==================== -->
@@ -1464,9 +1464,10 @@ function initNaverMapScreen() {
           </div>
 
           <div class="pt-2 flex flex-col sm:flex-row gap-3">
-            <button onclick="closeDiseaseModal(); openBookingModal();" class="flex-1 py-3.5 bg-toss-black hover:bg-slate-800 text-white font-bold rounded-2xl text-xs sm:text-sm transition shadow-soft">
-              이 질환으로 진료 예약하기
-            </button>
+            <a href="https://m.place.naver.com/hospital/1758514142/booking" target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 bg-toss-naver hover:opacity-95 text-white font-bold rounded-2xl text-xs sm:text-sm transition shadow-soft flex items-center justify-center gap-2">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+              네이버 예약하기
+            </a>
             <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 bg-toss-kakao hover:opacity-95 text-slate-950 font-bold rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5">
               <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
               카톡 실시간 문의

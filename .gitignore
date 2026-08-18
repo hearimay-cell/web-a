@@ -2,12 +2,31 @@
 .DS_Store
 Thumbs.db
 desktop.ini
+*~
 
 # Logs & Scratch
 *.log
+npm-debug.log*
 scratch/
 
 # IDE & Editor
 .vscode/
 .idea/
 .agents/
+
+# Node.js
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Hugo Build Artifacts (if applicable)
+public/
+resources/
+.hugo_build.lock
+hugo_stats.json
+**/assets/jsconfig.json
+pagefind/
+static/pagefind/

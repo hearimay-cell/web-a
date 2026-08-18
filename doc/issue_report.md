@@ -19,7 +19,7 @@
 | **09** | 텍스트/디자인 | 인사말 상단 영문 배지를 '인사말'로 변경하고 크기 2배 확대 | 배지를 `인사말`로 변경 후 폰트를 2배(`text-xl font-black`)로 키우고, 최신 진료철학 문안으로 본문 교체 | **해결** |
 | **10** | 타이포그래피 | 원장 사진 하단 '한방내과 전문의·상담심리학 박사' 폰트 최대화 | 자격 태그를 `text-sm sm:text-[15px] font-extrabold`로 키우고 성명 폰트와 함께 묵직한 밸런스로 배치 | **해결** |
 | **11** | 환경/버전관리 | Git 경로 인식 및 이중 HTML 소스 파일 동기화 이슈 | `$env:Path`에 Git 경로 등록 스크립트 적용 및 `index.html`과 `ai_studio_code (10).html` 자동 동기화 체계 확립 | **해결** |
-| **12** | API 연동 | 네이버 지도 API Client ID (`qbyuhkbkb7`) 발급 및 연동 | `maps.js?ncpClientId=qbyuhkbkb7` 스크립트 적용으로 원내 위치 동적 지도 렌더링 활성화 | **해결** |
+| **12** | API 연동 | 네이버 지도 API Client ID (`ljyo3y5qrt`) 발급 및 연동 | `maps.js?ncpClientId=ljyo3y5qrt` 스크립트 적용으로 원내 위치 동적 지도 렌더링 활성화 | **해결** |
 
 ---
 

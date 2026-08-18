@@ -10,24 +10,24 @@ hugoblox:
   # IDENTITY
   # ────────────────────────────────────────────────────────────────────────────
   identity:
-    name: "HugoBlox Starter"
-    organization: ""
-    type: person # person | organization | local_business
-    tagline: ""
-    description: ""
-    social:
-      twitter: ""
+    name: "해아림한의원 안양점"
+    organization: "해아림한의원 안양점"
+    type: local_business
+    tagline: "자율신경 조절과 뇌신경·심리 치유의 통합 솔루션"
+    description: "한방내과 전문의 & 상담심리학 박사의 1:1 다각적 통합 치유 시스템 (체질 한약 + 심리상담 + 뇌기능 훈련)"
+    telephone: "031-382-8885"
+    address: "경기도 안양시 동안구 동안로 120, 올림픽스포츠센터 309호 (범계역 3번 출구 도보 1분)"
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
   # ────────────────────────────────────────────────────────────────────────────
   theme:
-    mode: system # light | dark | system
+    mode: light # light | dark | system
     pack: "default"
     colors:
-      primary: ""
-      secondary: ""
-      neutral: ""
+      primary: "#1E3A5F"
+      secondary: "#2E6F62"
+      neutral: "#F8FAF9"
 
   # ────────────────────────────────────────────────────────────────────────────
   # TYPOGRAPHY
@@ -39,32 +39,32 @@ hugoblox:
   # LAYOUT
   # ────────────────────────────────────────────────────────────────────────────
   layout:
-    radius: "md" # none | sm | md | lg | full
-    spacing: "spacious" # compact | comfortable | spacious
-    avatar_shape: circle # circle | square | rounded
+    radius: "lg"
+    spacing: "comfortable"
+    avatar_shape: rounded
 
   # ────────────────────────────────────────────────────────────────────────────
   # HEADER
   # ────────────────────────────────────────────────────────────────────────────
   header:
     enable: true
-    style: navbar # navbar | navbar-simple | minimal
+    style: navbar
     sticky: true
-    align: center # left | center | right
+    align: right
     search: false
-    theme_toggle: true
+    theme_toggle: false
 
   # ────────────────────────────────────────────────────────────────────────────
   # FOOTER
   # ────────────────────────────────────────────────────────────────────────────
   footer:
-    style: minimal # minimal | columns | centered
+    style: minimal
 
   # ────────────────────────────────────────────────────────────────────────────
   # COPYRIGHT
   # ────────────────────────────────────────────────────────────────────────────
   copyright:
-    notice: "© {year} {name}"
+    notice: "© {year} 해아림한의원 안양점. All rights reserved."
 
   # ────────────────────────────────────────────────────────────────────────────
   # CONTENT
@@ -73,19 +73,13 @@ hugoblox:
     math:
       enable: false
     toc:
-      enable: true
+      enable: false
     reading_time:
-      enable: true
-
-  # ────────────────────────────────────────────────────────────────────────────
-  # SEARCH
-  # ────────────────────────────────────────────────────────────────────────────
-  search:
-    enable: false
+      enable: false
 
   # ────────────────────────────────────────────────────────────────────────────
   # LOCALE
   # ────────────────────────────────────────────────────────────────────────────
   locale:
-    date_format: "Jan 2, 2006"
-    time_format: "3:04 PM"
+    date_format: "2006년 01월 02일"
+    time_format: "15:04"

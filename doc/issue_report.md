@@ -20,6 +20,7 @@
 | **10** | 타이포그래피 | 원장 사진 하단 '한방내과 전문의·상담심리학 박사' 폰트 최대화 | 자격 태그를 `text-sm sm:text-[15px] font-extrabold`로 키우고 성명 폰트와 함께 묵직한 밸런스로 배치 | **해결** |
 | **11** | 환경/버전관리 | Git 경로 인식 및 이중 HTML 소스 파일 동기화 이슈 | `$env:Path`에 Git 경로 등록 스크립트 적용 및 `index.html`과 `ai_studio_code (10).html` 자동 동기화 체계 확립 | **해결** |
 | **12** | API 연동 | 네이버 지도 API Client ID (`ljyo3y5qrt`) 발급 및 연동 | `maps.js?ncpClientId=ljyo3y5qrt` 스크립트 적용으로 원내 위치 동적 지도 렌더링 활성화 | **해결** |
+| **13** | 리포지터리 최적화 | 이전 HugoBlox 잔여 파일 및 실패 워크플로우(`.github/`) 정리 | 불필요한 빌드 스크립트 제거로 GitHub Actions 에러 방지 및 순수 웹 경량화 완료 | **해결** |
 
 ---
 

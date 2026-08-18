@@ -181,53 +181,67 @@
   </header>
 
   <main class="pt-20">
-    <!-- ==================== HERO SECTION ==================== -->
-    <section class="relative bg-toss-black text-white py-28 sm:py-36 overflow-hidden flex items-center">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[620px] bg-gradient-to-tr from-teal-500/20 via-cyan-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+    <!-- ==================== HERO SECTION (ORIENTAL INK WASH THEME) ==================== -->
+    <section class="relative bg-[#F7F5F0] text-stone-900 py-28 sm:py-36 overflow-hidden flex items-center border-b border-stone-200/80">
+      
+      <!-- Background Oriental Art -->
+      <div class="absolute inset-0 z-0 pointer-events-none">
+        <img 
+          src="assets/hero_oriental_clean_bg.jpg" 
+          alt="해아림 수묵화 배경" 
+          class="w-full h-full object-cover object-center opacity-90"
+        />
+        <div class="absolute inset-0 bg-gradient-to-b from-[#F7F5F0]/30 via-transparent to-[#F7F5F0]/50"></div>
+      </div>
 
       <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
-        <div class="max-w-3xl mx-auto text-center space-y-8">
+        <div class="max-w-3xl mx-auto text-center space-y-7">
           
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-xs font-semibold text-teal-300">
-            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span>
-            한방내과 전문의 & 상담심리학 박사 1:1 맞춤 진료
+          <!-- Sub-badge -->
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/85 backdrop-blur-md border border-stone-300/80 text-xs font-bold text-stone-800 shadow-soft-sm">
+            <span class="w-2 h-2 rounded-full bg-teal-700 animate-pulse"></span>
+            <span>스스로 회복하는 힘을 깨우는 지혜 · 해아림한의원 안양점</span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
-            "증상 너머의 삶,<br/>
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-teal-100 to-slate-200">
-              치유의 여정을 함께합니다"
-            </span>
-          </h1>
+          <!-- Main Title -->
+          <div class="space-y-3">
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.2] text-stone-900 drop-shadow-sm">
+              "증상 너머의 삶,<br/>
+              <span class="text-teal-800">
+                치유의 여정을 함께합니다"
+              </span>
+            </h1>
+            <p class="text-base sm:text-lg text-stone-700 leading-relaxed font-medium max-w-2xl mx-auto">
+              자율신경실조증, 공황·불안, 만성 불면증부터 소아청소년 틱장애·ADHD까지.<br class="hidden sm:inline" />
+              신체적 토대를 바로잡고 두뇌와 마음의 회복탄력성을 키워 근본적인 치유를 완성합니다.
+            </p>
+          </div>
 
-          <p class="text-base sm:text-lg text-slate-400 leading-relaxed font-normal max-w-2xl mx-auto">
-            자율신경실조증, 공황·불안, 만성 불면증부터 소아청소년 틱장애·ADHD까지.<br class="hidden sm:inline" />
-            몸의 신체적 토대를 바로잡고 두뇌와 마음의 회복탄력성을 키워 근본적인 자가 치유력을 완성합니다.
-          </p>
-
-          <div class="pt-4 flex flex-col sm:flex-row gap-3.5 justify-center items-center">
-            <a href="https://m.booking.naver.com/booking/13/bizes/1604663/items/7469539?area=ple&lang=ko&theme=place" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-toss-naver text-white font-extrabold rounded-2xl text-sm hover:opacity-95 transition-all duration-300 hover:scale-[1.02] shadow-soft-lg flex items-center justify-center gap-2">
+          <!-- Action Buttons -->
+          <div class="pt-3 flex flex-col sm:flex-row gap-3.5 justify-center items-center">
+            <a href="https://m.booking.naver.com/booking/13/bizes/1604663/items/7469539?area=ple&lang=ko&theme=place" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-8 py-4 bg-[#03C75A] hover:bg-[#02b351] text-white font-extrabold rounded-2xl text-sm transition-all duration-300 hover:scale-[1.02] shadow-soft-lg flex items-center justify-center gap-2">
               <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
               <span>네이버 1:1 맞춤 예약하기</span>
             </a>
-            <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 bg-toss-kakao hover:opacity-95 text-slate-950 font-bold rounded-2xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-soft-sm">
-              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+            <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 bg-[#FEE500] hover:opacity-95 text-stone-900 font-extrabold rounded-2xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-soft-sm">
+              <svg class="w-4 h-4 fill-[#391B1B]" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
               <span>카카오톡 안양점 상담</span>
             </a>
           </div>
 
-          <div class="pt-10 grid grid-cols-3 gap-4 border-t border-white/10 max-w-xl mx-auto text-left">
-            <div>
-              <div class="text-xl sm:text-2xl font-black text-white tracking-tight">전문의·박사</div>
-              <div class="text-xs text-slate-400 mt-0.5">내과전문의 & 심리학박사</div>
+          <!-- Indicators -->
+          <div class="pt-8 grid grid-cols-3 gap-3 sm:gap-4 border-t border-stone-300/80 max-w-xl mx-auto text-left">
+            <div class="bg-white/70 backdrop-blur-sm p-3.5 rounded-2xl border border-stone-200/80 shadow-soft-sm">
+              <div class="text-base sm:text-lg font-black text-stone-900 tracking-tight">전문의·박사</div>
+              <div class="text-xs text-stone-600 mt-0.5 font-medium">한방내과 & 심리학박사</div>
             </div>
-            <div>
-              <div class="text-xl sm:text-2xl font-black text-teal-400 tracking-tight">24년+</div>
-              <div class="text-xs text-slate-400 mt-0.5">임상 노하우</div>
+            <div class="bg-white/70 backdrop-blur-sm p-3.5 rounded-2xl border border-stone-200/80 shadow-soft-sm">
+              <div class="text-base sm:text-lg font-black text-teal-800 tracking-tight">24년+</div>
+              <div class="text-xs text-stone-600 mt-0.5 font-medium">풍부한 임상 노하우</div>
             </div>
-            <div>
-              <div class="text-xl sm:text-2xl font-black text-white tracking-tight">범계역</div>
-              <div class="text-xs text-slate-400 mt-0.5">3번 출구 앞 15미터 올림픽스포츠센터 3층</div>
+            <div class="bg-white/70 backdrop-blur-sm p-3.5 rounded-2xl border border-stone-200/80 shadow-soft-sm">
+              <div class="text-base sm:text-lg font-black text-stone-900 tracking-tight">범계역 3번출구</div>
+              <div class="text-xs text-stone-600 mt-0.5 font-medium">올림픽센터 3층</div>
             </div>
           </div>
 

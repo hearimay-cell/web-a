@@ -4,9 +4,16 @@
 
 ---
 
+## 📚 프로젝트 공식 문서 (Documentation)
+
+- 📖 **[제작 매뉴얼 (Development Manual)](doc/manual.md)** : 시스템 설계, 기술 스택, 디자인 시스템, 섹션별 컴포넌트 명세 및 유지보수 가이드
+- 🛠️ **[문제 보고서 및 트러블슈팅 일지 (Issue Report)](doc/issue_report.md)** : 개발 과정에서 해결된 이슈 내역, 세부 트러블슈팅 분석 및 품질 점검 체크리스트
+
+---
+
 ## 🚀 빠른 시작
 
-### 1. 로컬 서버 실행
+### 로컬 서버 실행
 
 ```bash
 # Python 내장 웹 서버 실행 (포트 3000)
@@ -23,12 +30,15 @@ npx serve .
 ## 📁 주요 파일 및 폴더 구조
 
 - `index.html` : 메인 홈페이지 프로덕션 파일
-- `ai_studio_code (10).html` : 원본 소스 HTML 파일
+- `ai_studio_code (10).html` : 원본 소스 HTML 파일 (항상 `index.html`과 100% 동기화)
+- `doc/` : 프로젝트 공식 기술 문서
+  - `manual.md` : 웹사이트 제작 매뉴얼
+  - `issue_report.md` : 문제 보고서 및 트러블슈팅 일지
 - `assets/` : 고화질 이미지 리소스
   - `director_yu.png` : 대표원장 유종민 프로필 인물 사진
   - `hero_bg.png` : 메인 첫 화면 수묵화 배경 이미지
 - `.gitignore` : Git 제외 설정 파일
-- `README.md` : 프로젝트 가이드 문서
+- `README.md` : 프로젝트 소개 및 진입점 문서
 
 ---
 

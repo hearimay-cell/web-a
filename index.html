@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="ko" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>해아림한의원 안양점 | 자율신경·뇌신경·심리·소아청소년 클리닉</title>
+  <meta name="description" content="마음까지 헤아리는 1:1 맞춤 뇌신경 클리닉 - 한방내과 전문의 & 상담심리학 박사 유종민 대표원장 진료">
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'system-ui', 'Roboto', 'sans-serif'],
+          },
+          letterSpacing: {
+            tighter: '-0.03em',
+            tight: '-0.02em',
+            normal: '-0.01em',
+          },
+          colors: {
+            toss: {
+              black: '#0B1120',
+              card: '#FFFFFF',
+              bg: '#F8FAFC',
+              subtle: '#F1F5F9',
+              primary: '#0F766E',
+              accent: '#0D9488',
+              tealLight: '#F0FDFA',
+              kakao: '#FEE500',
+              naver: '#03C75A'
+            }
+          },
+          boxShadow: {
+            'soft-sm': '0 2px 8px -2px rgba(11, 17, 32, 0.04), 0 1px 4px -1px rgba(11, 17, 32, 0.02)',
+            'soft': '0 12px 32px -4px rgba(11, 17, 32, 0.05), 0 4px 12px -2px rgba(11, 17, 32, 0.02)',
+            'soft-lg': '0 24px 48px -8px rgba(11, 17, 32, 0.08), 0 8px 24px -4px rgba(11, 17, 32, 0.03)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- NAVER Maps JavaScript API -->
+<script type="text/javascript"
+        src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpKeyId=여기에_네이버_API_KEY"></script>
+
+  <style>
+    body {
+      font-family: 'Pretendard', sans-serif;
+      word-break: keep-all;
+      letter-spacing: -0.02em;
+    }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+    .naver-custom-pin {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #03C75A;
+      color: white;
+      border: 3px solid white;
+      border-radius: 50%;
+      box-shadow: 0 8px 24px rgba(3, 199, 90, 0.4);
+      font-weight: 900;
+    }
+    .naver-custom-pin::after {
+      content: '';
+      position: absolute;
+      bottom: -7px;
+      border-width: 7px 6px 0;
+      border-style: solid;
+      border-color: #03C75A transparent transparent;
+      display: block;
+      width: 0;
+    }
+  </style>
+</head>
+<body class="bg-toss-bg text-slate-900 antialiased selection:bg-teal-600 selection:text-white">
+
+  <!-- ==================== HEADER / NAV ==================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-slate-100 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center gap-3.5 group">
+          <svg class="w-10 h-10 shrink-0 drop-shadow-sm transition-transform duration-300 group-hover:scale-105" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="healimGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#14B8A6" />
+                <stop offset="60%" stop-color="#0F766E" />
+                <stop offset="100%" stop-color="#0369A1" />
+              </linearGradient>
+            </defs>
+            <path d="M 38 65 C 20 62 18 36 44 26 C 74 15 104 32 101 64 C 98 88 72 102 56 94 C 47 89 48 76 59 74 C 70 72 82 66 81 53 C 80 40 64 34 50 40 C 37 45 36 58 48 64 C 54 67 52 75 44 75 C 40 75 35 70 38 65 Z" fill="url(#healimGrad)" />
+            <circle cx="61" cy="57" r="8.5" fill="#F59E0B" />
+          </svg>
+          
+          <div class="flex flex-col">
+            <span class="text-[11px] font-medium text-slate-400 tracking-tight leading-none mb-1">마음까지 헤아리는</span>
+            <div class="flex items-baseline gap-1.5">
+              <span class="text-xl font-black text-toss-black tracking-tight">해아림한의원</span>
+              <span class="text-[11px] font-bold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full border border-teal-100">안양점</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Desktop Menu -->
+        <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+          <a href="#doctor" class="hover:text-toss-black transition">의료진 소개</a>
+          <a href="#specialty" class="hover:text-toss-black transition">9대 특화진료</a>
+          <a href="#diagnosis" class="hover:text-toss-black transition">진단·검사안내</a>
+          <a href="#media" class="hover:text-toss-black transition">칼럼·영상</a>
+          <a href="#contact" class="hover:text-toss-black transition">진료시간·오시는길</a>
+        </nav>
+
+        <!-- Action Buttons -->
+        <div class="hidden lg:flex items-center gap-3">
+          <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-slate-900 bg-toss-kakao rounded-xl hover:opacity-90 transition shadow-soft-sm">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+            <span>카톡 1:1 상담</span>
+          </a>
+
+          <button onclick="requestAdminAuth()" class="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl transition" title="관리자 전용 예약 확인 (단축키: Ctrl+Shift+A)">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-slate-500"></i>
+            <span>원내관리 <span id="adminHeaderBadge" class="hidden px-1.5 py-0.2 text-[10px] bg-rose-500 text-white rounded-full">0</span></span>
+          </button>
+
+          <button onclick="openBookingModal()" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-toss-black text-white text-xs font-bold hover:bg-slate-800 transition shadow-soft">
+            <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i>
+            <span>간편 예약</span>
+          </button>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="p-2 rounded-xl text-slate-700 md:hidden hover:bg-slate-100 transition focus:outline-none" aria-label="메뉴 열기">
+          <i data-lucide="menu" id="menuOpenIcon" class="w-6 h-6"></i>
+          <i data-lucide="x" id="menuCloseIcon" class="w-6 h-6 hidden"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobileMenu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-100 px-6 py-6 shadow-soft-lg transition-all">
+      <div class="flex flex-col space-y-4">
+        <a href="#doctor" onclick="toggleMobileMenu()" class="text-base font-semibold text-slate-800 hover:text-teal-700">대표원장 유종민 소개</a>
+        <a href="#specialty" onclick="toggleMobileMenu()" class="text-base font-semibold text-slate-800 hover:text-teal-700">9대 중점 특화 진료 과목</a>
+        <a href="#diagnosis" onclick="toggleMobileMenu()" class="text-base font-semibold text-slate-800 hover:text-teal-700">6단계 정밀 진단·검사</a>
+        <a href="#media" onclick="toggleMobileMenu()" class="text-base font-semibold text-slate-800 hover:text-teal-700">미디어 & 칼럼</a>
+        <a href="#contact" onclick="toggleMobileMenu()" class="text-base font-semibold text-slate-800 hover:text-teal-700">진료시간 및 오시는 길</a>
+        <div class="pt-4 border-t border-slate-100 flex flex-col gap-2.5">
+          <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-toss-kakao text-slate-950 font-bold rounded-2xl flex items-center justify-center gap-2 text-sm shadow-soft-sm">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+            카카오톡 실시간 상담
+          </a>
+          <button onclick="openBookingModal(); toggleMobileMenu();" class="w-full py-3 bg-toss-black text-white font-bold rounded-2xl flex items-center justify-center gap-2 text-sm">
+            <i data-lucide="calendar" class="w-4 h-4 text-teal-400"></i>
+            온라인 간편 예약
+          </button>
+          <button onclick="requestAdminAuth(); toggleMobileMenu();" class="w-full py-2.5 bg-slate-100 text-slate-600 font-semibold rounded-2xl flex items-center justify-center gap-2 text-xs">
+            <i data-lucide="lock" class="w-4 h-4 text-slate-500"></i>
+            원내 관리자 로그인 (예약 확인)
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-20">
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative bg-toss-black text-white py-28 sm:py-36 overflow-hidden flex items-center">
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[620px] h-[620px] bg-gradient-to-tr from-teal-500/20 via-cyan-500/10 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 relative z-10 w-full">
+        <div class="max-w-3xl mx-auto text-center space-y-8">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/15 text-xs font-semibold text-teal-300">
+            <span class="w-1.5 h-1.5 rounded-full bg-teal-400 animate-ping"></span>
+            한방내과 전문의 & 상담심리학 박사 1:1 맞춤 진료
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.15] text-white">
+            "증상 너머의 삶,<br/>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-300 via-teal-100 to-slate-200">
+              치유의 여정을 함께합니다"
+            </span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-400 leading-relaxed font-normal max-w-2xl mx-auto">
+            자율신경실조증, 공황·불안, 만성 불면증부터 소아청소년 틱장애·ADHD까지.<br class="hidden sm:inline" />
+            몸의 신체적 토대를 바로잡고 두뇌와 마음의 회복탄력성을 키워 근본적인 자가 치유력을 완성합니다.
+          </p>
+
+          <div class="pt-4 flex flex-col sm:flex-row gap-3.5 justify-center items-center">
+            <button onclick="openBookingModal()" class="w-full sm:w-auto px-8 py-4 bg-white text-toss-black font-extrabold rounded-2xl text-sm hover:bg-slate-100 transition-all duration-300 hover:scale-[1.02] shadow-soft-lg flex items-center justify-center gap-2">
+              <span>1:1 맞춤 진료 예약하기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-7 py-4 bg-toss-kakao hover:opacity-95 text-slate-950 font-bold rounded-2xl text-sm transition-all duration-300 flex items-center justify-center gap-2 shadow-soft-sm">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+              <span>카카오톡 안양점 상담</span>
+            </a>
+          </div>
+
+          <div class="pt-10 grid grid-cols-3 gap-4 border-t border-white/10 max-w-xl mx-auto text-left">
+            <div>
+              <div class="text-xl sm:text-2xl font-black text-white tracking-tight">전문의·박사</div>
+              <div class="text-xs text-slate-400 mt-0.5">내과전문의 & 심리학박사</div>
+            </div>
+            <div>
+              <div class="text-xl sm:text-2xl font-black text-teal-400 tracking-tight">24년+</div>
+              <div class="text-xs text-slate-400 mt-0.5">임상 노하우</div>
+            </div>
+            <div>
+              <div class="text-xl sm:text-2xl font-black text-white tracking-tight">범계역</div>
+              <div class="text-xs text-slate-400 mt-0.5">3번 출구 앞 15미터 올림픽스포츠센터 3층</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== DOCTOR PROFILE & PHILOSOPHY ==================== -->
+    <section id="doctor" class="py-28 sm:py-36 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-5 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-teal-50 text-teal-800 text-xs font-bold">
+              <i data-lucide="award" class="w-4 h-4 text-teal-700"></i>
+              대표원장 약력 및 전문 자격
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-black text-toss-black tracking-tight leading-tight">
+              대표원장 <span class="text-teal-700">유 종 민</span>
+            </h2>
+
+            <p class="text-sm text-slate-500 font-medium leading-relaxed">
+              신경정신과 질환은 결코 마음만의 문제가 아닙니다. 마음이 편히 쉴 수 있는 견고한 <strong>'신체적 토대'</strong>와 <strong>'두뇌 조절력'</strong>을 함께 세워드립니다.
+            </p>
+
+            <div class="p-6 sm:p-7 rounded-3xl bg-toss-bg border border-slate-100 space-y-3.5 text-xs text-slate-700">
+              <div class="font-bold text-slate-900 border-b border-slate-200 pb-2 text-sm flex items-center gap-1.5">
+                <i data-lucide="check-circle" class="w-4 h-4 text-teal-700"></i>
+                학력 및 전문 자격
+              </div>
+              <ul class="space-y-1.5 leading-relaxed text-slate-600">
+                <li>• <strong>경희대학교 한의학과</strong> 졸업</li>
+                <li>• <strong>경희의료원 한방내과 전문의</strong> 수료</li>
+                <li>• <strong>한국상담대학원대학교 상담심리학 석사, 박사(Ph.D.)</strong></li>
+                <li>• <strong>임상심리사 1급</strong> </li>
+                <li>• <strong>청소년상담사 2급</strong> </li>
+                <li>• <strong>사회재활상담사</strong> </li>
+                <li>• 대한통합암치료 인정의 / 한국상담심리학회·한국상담학회 정회원</li>
+              </ul>
+              <div class="pt-2 border-t border-slate-200 text-slate-500 space-y-0.5">
+                <p>• 前) 자생한방병원 진료원장 / 튼튼마디한의원 인천점 대표원장</p>
+                <p>• 前) 장덕한방병원 진료원장 / 면역한방병원 진료원장</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 space-y-6">
+            <div class="bg-toss-bg rounded-3xl p-8 sm:p-10 border border-slate-100 shadow-soft space-y-6">
+              <h3 class="text-xl sm:text-2xl font-black text-toss-black leading-snug">
+                "몸의 균형이 잡혔을 때,<br/>비로소 온전한 마음의 변화가 시작됩니다"
+              </h3>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                틱장애, ADHD, 강박증, 불안장애, 불면증은 증상을 없애는 것에만 매몰되면 놓치는 것이 많습니다. 한방내과 전문의로서 뇌신경계, 자율신경, 척추 정렬의 상관관계를 면밀히 치료하여 신체적 기반을 마련하고, 상담심리학 박사이자 임상심리사로서 증상에 가려진 핵심 심리 조력을 병행합니다.
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                <div class="p-4 rounded-2xl bg-white border border-slate-100">
+                  <div class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                    검증된 논문 처방 공유
+                  </div>
+                  <p class="text-slate-500 text-xs">한방신경정신과 전문의·박사진의 지속적 연구와 뇌파(qEEG) 분석 기반 처방</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-100">
+                  <div class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                    안심 규격 한약재 (hGMP)
+                  </div>
+                  <p class="text-slate-500 text-xs">식약처 허가 중금속, 잔류농약, 잔류이산화황 불검출 시험성적 완료</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-100">
+                  <div class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                    재발을 낮추는 두뇌 훈련
+                  </div>
+                  <p class="text-slate-500 text-xs">치료 종료 후에도 스스로 안정적 뇌파와 자율신경을 유지하는 힘 강화</p>
+                </div>
+                <div class="p-4 rounded-2xl bg-white border border-slate-100">
+                  <div class="font-bold text-slate-900 text-sm mb-1 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-teal-600"></span>
+                    해아림의 전문 저서
+                  </div>
+                  <p class="text-slate-500 text-xs">해아림 원장단의 치료 노하우 《토닥토닥 틱장애 ADHD 지침서》</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 9 SPECIALTY CLINICS ==================== -->
+    <section id="specialty" class="py-28 sm:py-36 bg-toss-bg border-y border-slate-100">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+          <div class="space-y-3">
+            <span class="text-teal-700 font-bold tracking-tight text-xs uppercase bg-white px-3 py-1.5 rounded-lg border border-slate-200/60 shadow-soft-sm">Specialty Clinics</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-toss-black tracking-tight">해아림 9대 중점 특화 진료</h2>
+          </div>
+          <p class="text-slate-500 text-sm max-w-md">
+            원하시는 질환 카드를 클릭하시면 <strong>발병 기전, 한의학 변증, 자가 진단 및 맞춤 치료법</strong>을 상세히 확인하실 수 있습니다.
+          </p>
+        </div>
+
+        <!-- 9 Grid Cards -->
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- 1. 불안장애 -->
+          <div onclick="openDiseaseModal('anxiety')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="heart-pulse" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 01</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">불안장애 & 범불안장애</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                이유 없는 막연한 불안, 두뇌 과각성, 편도체 흥분, 지속적인 긴장과 근육통.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 2. 틱장애 -->
+          <div onclick="openDiseaseModal('tic')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="sparkles" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 02</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">틱장애 & 뚜렛증후군</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                눈깜빡임, 음음 소리, 기저핵 기능 이상, 단순/복합 운동틱 및 음성틱 조율.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 3. ADHD -->
+          <div onclick="openDiseaseModal('adhd')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 03</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">ADHD (주의력결핍/과잉행동)</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                조용한 ADHD, 충동성, 전두엽 미성숙, 소아청소년 및 성인 집중력 강화.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 4. 자율신경실조증 -->
+          <div onclick="openDiseaseModal('autonomic')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="zap" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 04</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">자율신경실조증 & 어지럼</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                교감·부교감 불균형, 상열하한, 핑 도는 어지럼, 가슴 두근거림, 만성 피로.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 5. 수면장애 / 불면증 -->
+          <div onclick="openDiseaseModal('insomnia')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="moon" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 05</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">만성 불면 & 수면장애</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                입면장애, 수면유지장애, 조기각성, 야간 뇌과각성 억제 및 수면제 의존 완화.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 6. 다한증 -->
+          <div onclick="openDiseaseModal('hyperhidrosis')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="droplets" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 06</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">다한증 (손·발·겨드랑이)</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                긴장성 땀 분비, 교감신경 흥분, 열성/한성 체질 변증 및 수술 부작용 없는 조절.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 7. 공황장애 -->
+          <div onclick="openDiseaseModal('panic')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="heart" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 07</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">공황장애 & 광장공포증</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                급작스러운 숨막힘, 과호흡, 질식감, 죽을 것 같은 공포감, 예기불안 진정.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 8. 미주신경성 실신 -->
+          <div onclick="openDiseaseModal('syncope')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="shield-alert" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 08</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">미주신경성 실신</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                밀폐 공간 식은땀, 시야 흐림, 심박수 급감, 뇌혈류 저하로 인한 실신 치료.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+          <!-- 9. 신경성 소화장애 / 담적병 -->
+          <div onclick="openDiseaseModal('digestion')" class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+            <div>
+              <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-700 flex items-center justify-center mb-6 group-hover:scale-110 transition duration-300">
+                <i data-lucide="activity" class="w-6 h-6"></i>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-wider">CLINIC 09</span>
+              <h3 class="text-xl font-bold text-toss-black mt-1 mb-2.5 group-hover:text-teal-700 transition">신경성 소화장애 & 담적병</h3>
+              <p class="text-slate-500 text-xs leading-relaxed mb-6">
+                신경성위염, 과민성대장증후군, 복부 팽만감, 명치 답답함, 장-뇌 축 조율.
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>상세 인포그래픽 보기</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== 6-STEP DIAGNOSIS & INSPECTION ==================== -->
+    <section id="diagnosis" class="py-28 sm:py-36 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-20 space-y-4">
+          <span class="text-teal-700 font-bold tracking-tight text-xs uppercase bg-teal-50 px-3 py-1.5 rounded-lg">Diagnosis & Tests</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-toss-black tracking-tight">내원에서 검사·진단까지 6단계</h2>
+          <p class="text-slate-500 text-sm sm:text-base">
+            대기 시간을 최소화하기 위해 예약제로 운영되며, 환자의 증상에 꼭 필요한 정밀 검사만을 선별 시행합니다.
+          </p>
+        </div>
+
+        <!-- 6 Steps Flow -->
+        <div class="grid grid-cols-2 md:grid-cols-6 gap-3 sm:gap-4 mb-16">
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 01</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="phone-call" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">전화 예약</h4>
+            <p class="text-[11px] text-slate-400 mt-1"> 예약제</p>
+          </div>
+
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 02</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="building-2" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">내원</h4>
+            <p class="text-[11px] text-slate-400 mt-1">안내 데스크 접수</p>
+          </div>
+
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 03</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="clipboard-edit" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">기초문항지 작성</h4>
+            <p class="text-[11px] text-slate-400 mt-1">약 10분 소요</p>
+          </div>
+
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 04</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="cpu" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">정밀 기능검사</h4>
+            <p class="text-[11px] text-slate-400 mt-1">약 30~70분</p>
+          </div>
+
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 05</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="file-text" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">설문지 작성</h4>
+            <p class="text-[11px] text-slate-400 mt-1">약 10분 소요</p>
+          </div>
+
+          <div class="bg-toss-bg p-5 rounded-2xl border border-slate-100 text-center">
+            <span class="text-xs font-bold text-teal-700 block mb-1">STEP 06</span>
+            <div class="w-10 h-10 rounded-xl bg-white flex items-center justify-center mx-auto mb-2 text-slate-700 shadow-soft-sm">
+              <i data-lucide="messages-square" class="w-5 h-5"></i>
+            </div>
+            <h4 class="font-bold text-sm text-toss-black">심층 상담진료</h4>
+            <p class="text-[11px] text-slate-400 mt-1">약 30분 집중</p>
+          </div>
+        </div>
+
+        <!-- 8 Core Inspection Programs Grid -->
+        <div class="bg-toss-bg rounded-3xl p-8 sm:p-10 border border-slate-100">
+          <h3 class="text-lg font-bold text-toss-black mb-6 flex items-center gap-2">
+            <i data-lucide="check-square" class="w-5 h-5 text-teal-700"></i>
+            해아림 보유 5대 정밀 검사 시스템
+          </h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/60">
+              <strong class="text-slate-900 block mb-1 text-sm">1. 한방진단검사</strong>
+              <p class="text-slate-500">체질별 오장육부 허실 및 경락 기혈 순환 상태 파악</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/60">
+              <strong class="text-slate-900 block mb-1 text-sm">2. 32채널 뇌파검사</strong>
+              <p class="text-slate-500">두뇌 영역별 뇌파 활성도 및 과각성/불균형 정밀 측정</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/60">
+              <strong class="text-slate-900 block mb-1 text-sm">3. 종합주의력검사(CAT)</strong>
+              <p class="text-slate-500">단순/선택/지속 주의력 및 충동 억제 능력 정량화</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/60">
+              <strong class="text-slate-900 block mb-1 text-sm">4. 심리검사 (SCL/CBCL)</strong>
+              <p class="text-slate-500">정서적 불안, 우울, 강박, 사회적 적응도 척도 검사</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-white border border-slate-200/60">
+              <strong class="text-slate-900 block mb-1 text-sm">5. 자율신경(HRV) 검사</strong>
+              <p class="text-slate-500">교감·부교감신경 활성도 및 신체 스트레스 저항도 측정</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== MEDIA BOARD (YOUTUBE & BLOG RSS) ==================== -->
+    <section id="media" class="py-28 sm:py-36 bg-toss-bg border-t border-slate-100">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div class="space-y-3">
+            <span class="text-teal-700 font-bold tracking-tight text-xs uppercase bg-white px-3 py-1.5 rounded-lg border border-slate-200/60 shadow-soft-sm">Media & Columns</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-toss-black tracking-tight">해아림 미디어 & 칼럼</h2>
+          </div>
+          
+          <div class="inline-flex p-1.5 bg-slate-200/80 rounded-2xl">
+            <button id="tabYoutubeBtn" onclick="switchMediaTab('youtube')" class="px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 bg-white text-toss-black shadow-soft-sm flex items-center gap-2">
+              <i data-lucide="youtube" class="w-4 h-4 text-red-500"></i>
+              <span>유튜브 영상</span>
+            </button>
+            <button id="tabBlogBtn" onclick="switchMediaTab('blog')" class="px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-2">
+              <i data-lucide="book-open" class="w-4 h-4 text-teal-700"></i>
+              <span>네이버 블로그 칼럼</span>
+            </button>
+          </div>
+        </div>
+
+        <div id="youtubePanel" class="transition-all duration-300">
+          <div id="youtubeLoading" class="py-20 text-center text-slate-400 flex flex-col items-center justify-center">
+            <i data-lucide="loader" class="w-8 h-8 animate-spin text-teal-700 mb-3"></i>
+            <span class="text-sm">해아림 공식 유튜브 영상을 불러오는 중입니다...</span>
+          </div>
+          <div id="youtubeGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden"></div>
+        </div>
+
+        <div id="blogPanel" class="hidden transition-all duration-300">
+          <div id="blogLoading" class="py-20 text-center text-slate-400 flex flex-col items-center justify-center">
+            <i data-lucide="loader" class="w-8 h-8 animate-spin text-teal-700 mb-3"></i>
+            <span class="text-sm">해아림 네이버 블로그 칼럼을 불러오는 중입니다...</span>
+          </div>
+          <div id="blogGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== LOCATION & REAL NAVER MAP ==================== -->
+    <section id="contact" class="py-28 sm:py-36 bg-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8">
+        
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+          <span class="text-emerald-700 font-bold tracking-tight text-xs uppercase bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-100">NAVER MAP & LOCATION</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-toss-black tracking-tight">진료시간 및 오시는 길</h2>
+          <p class="text-slate-500 text-sm sm:text-base">지하철 4호선 범계역 바로 앞! 아래 네이버 지도 화면에서 확대·축소 및 실시간 길찾기가 가능합니다.</p>
+        </div>
+
+        <!-- Integrated Map Canvas -->
+        <div class="mb-14 rounded-3xl overflow-hidden border border-slate-200/80 shadow-soft-lg bg-white">
+          
+          <div class="bg-[#03C75A] text-white px-6 py-3.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2.5">
+              <span class="w-6 h-6 rounded-md bg-white text-[#03C75A] font-black text-xs flex items-center justify-center shadow-sm">N</span>
+              <span class="font-extrabold text-sm tracking-tight">NAVER 지도</span>
+              <span class="text-xs text-emerald-100 font-medium hidden sm:inline">| 해아림한의원 안양점</span>
+            </div>
+            <a href="https://map.naver.com/p/entry/place/1758514142" target="_blank" rel="noopener noreferrer" class="px-3 py-1 bg-black/20 hover:bg-black/30 rounded-lg text-xs font-semibold transition flex items-center gap-1">
+              <span>네이버 지도 앱에서 열기</span>
+              <i data-lucide="external-link" class="w-3 h-3"></i>
+            </a>
+          </div>
+
+          <div class="grid lg:grid-cols-12 items-stretch">
+            
+            <div class="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between space-y-8 bg-toss-black text-white z-10">
+              <div>
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-bold mb-4">
+                  <i data-lucide="map-pin" class="w-3.5 h-3.5"></i>
+                  범계역 3번 출구 15미터 올림픽스포츠센터 3층
+                </div>
+                <h3 class="text-2xl font-black text-white leading-snug">
+                  해아림한의원 안양점
+                </h3>
+                <p class="text-slate-300 text-xs sm:text-sm mt-3 leading-relaxed">
+                  <strong>주소:</strong> 경기도 안양시 동안구 동안로 120<br/>
+                  (호계동 1051 올림픽스포츠센터 3층)<br/>
+                  <span class="text-emerald-400 font-bold mt-1.5 inline-block">4호선 범계역 3번출구 도보 1분 </span>
+                </p>
+              </div>
+
+              <div class="space-y-3 text-xs text-slate-300 border-t border-white/10 pt-5">
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="phone" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>대표전화: <strong>031-382-8885</strong></span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="car" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>건물 지하 자주식 주차장 (진료 시 1시간 무료)</span>
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <i data-lucide="clock" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+                  <span>화·금 저녁 7시까지 야간진료 / 공휴일 진료</span>
+                </div>
+              </div>
+
+              <div class="pt-2 flex flex-col gap-2.5">
+                <a href="https://map.naver.com/p/entry/place/1758514142" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 bg-[#03C75A] hover:bg-[#02b351] text-white font-bold rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-2 shadow-soft-sm">
+                  <span class="font-black text-base">N</span>
+                  <span>네이버 지도로 빠른 길찾기</span>
+                  <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                </a>
+                <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="w-full py-3 bg-toss-kakao hover:opacity-95 text-slate-900 font-bold rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-2">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+                  <span>카카오톡으로 위치·주차 문의</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 relative min-h-[460px] lg:min-h-full bg-slate-100">
+              <div id="naverMapScreen" class="w-full h-full min-h-[460px] z-0"></div>
+              
+              <div class="absolute bottom-4 left-4 z-10 bg-white/95 backdrop-blur px-3.5 py-2 rounded-2xl border border-slate-200 shadow-soft flex items-center gap-2 text-xs font-bold text-slate-800">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>해아림한의원 안양점 (범계역 3번 출구 앞)</span>
+              </div>
+
+              <div class="absolute bottom-4 right-4 z-10 bg-white/90 backdrop-blur px-3 py-1.5 rounded-xl border border-slate-200 text-[11px] text-slate-600 shadow-soft-sm pointer-events-none flex items-center gap-1.5">
+                <i data-lucide="mouse-pointer" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>마우스 휠/터치로 지도 확대·이동 가능</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Hours & Quick Consultation Grid -->
+        <div class="grid lg:grid-cols-12 gap-8 items-start">
+          
+          <!-- Exact Working Hours Card -->
+          <div class="lg:col-span-5 p-8 sm:p-10 rounded-3xl bg-toss-bg border border-slate-100 shadow-soft space-y-6">
+            <h3 class="font-extrabold text-toss-black text-xl flex items-center gap-2">
+              <i data-lucide="clock" class="w-5 h-5 text-teal-700"></i>
+              정밀 진료 시간표
+            </h3>
+            
+            <div class="overflow-x-auto">
+              <table class="w-full text-xs text-center border-collapse">
+                <thead>
+                  <tr class="bg-slate-200/70 text-slate-700 font-bold">
+                    <th class="py-2.5 px-1 border border-slate-200">구분</th>
+                    <th class="py-2.5 px-1 border border-slate-200">월·수·목</th>
+                    <th class="py-2.5 px-1 border border-slate-200 text-teal-800">화·금(야간)</th>
+                    <th class="py-2.5 px-1 border border-slate-200">토요일</th>
+                    <th class="py-2.5 px-1 border border-slate-200">공휴일</th>
+                    <th class="py-2.5 px-1 border border-slate-200 text-rose-500">일요일</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-600">
+                  <tr>
+                    <td class="py-2.5 font-bold bg-slate-50 border border-slate-200">오전</td>
+                    <td class="py-2.5 border border-slate-200">09:00~13:00</td>
+                    <td class="py-2.5 border border-slate-200">09:00~13:00</td>
+                    <td class="py-2.5 border border-slate-200">09:00~15:00</td>
+                    <td class="py-2.5 border border-slate-200">09:00~14:00</td>
+                    <td rowspan="3" class="py-2.5 bg-rose-50 text-rose-600 font-bold border border-slate-200">휴진</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2.5 font-bold bg-slate-50 border border-slate-200">오후</td>
+                    <td class="py-2.5 border border-slate-200">14:00~18:00</td>
+                    <td class="py-2.5 border border-slate-200 font-bold text-teal-700">14:00~19:00</td>
+                    <td class="py-2.5 border border-slate-200 font-bold">~15:00 마감</td>
+                    <td class="py-2.5 border border-slate-200 font-bold">~14:00 마감</td>
+                  </tr>
+                  <tr class="bg-slate-50/50 text-[11px] text-slate-500">
+                    <td class="py-2 font-bold border border-slate-200">점심</td>
+                    <td colspan="2" class="py-2 border border-slate-200">13:00 ~ 14:00</td>
+                    <td colspan="2" class="py-2 border border-slate-200 text-teal-700 font-medium">점심시간 없이 진료</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-teal-50 text-xs text-teal-900 leading-relaxed">
+              <strong>사전 예약제:</strong> 대기시간을 줄이고 충분한 1:1 상담을 위해 사전 예약제로 운영됩니다. (전화: 031-382-8885)
+            </div>
+          </div>
+
+          <!-- Quick Consultation Form -->
+          <div class="lg:col-span-7 bg-white border border-slate-100 rounded-3xl p-8 sm:p-10 shadow-soft">
+            <div class="mb-6 flex items-start justify-between">
+              <div>
+                <h3 class="text-2xl font-black text-toss-black">간편 진료 상담 & 예약</h3>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">문의를 남겨주시면 원내 전담 상담실에서 확인 후 신속하게 연락드립니다.</p>
+              </div>
+              <span class="text-[11px] font-bold text-teal-700 bg-teal-50 px-3 py-1 rounded-full shrink-0">실시간 접수</span>
+            </div>
+
+            <form id="consultForm" onsubmit="handleConsultSubmit(event)" class="space-y-4">
+              <div class="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">성함 <span class="text-rose-500">*</span></label>
+                  <input type="text" id="consultName" required placeholder="홍길동" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg text-sm">
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1.5">연락처 <span class="text-rose-500">*</span></label>
+                  <input type="tel" id="consultPhone" required placeholder="010-1234-5678" class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg text-sm">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">상담 희망 진료 과목 <span class="text-rose-500">*</span></label>
+                <select id="consultClinic" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg text-sm text-slate-800">
+                  <option value="">선택해 주세요</option>
+                  <option value="불안장애/범불안장애">불안장애 / 범불안장애</option>
+                  <option value="틱장애/뚜렛증후군">소아·성인 틱장애 / 뚜렛증후군</option>
+                  <option value="ADHD(주의력결핍)">ADHD / 조용한 ADHD</option>
+                  <option value="자율신경실조증/어지럼">자율신경실조증 / 기립성 어지럼</option>
+                  <option value="만성불면증/수면장애">만성 불면증 / 수면장애</option>
+                  <option value="다한증(손·발·겨드랑이)">다한증 (손·발·겨드랑이)</option>
+                  <option value="공황장애/과호흡">공황장애 / 광장공포증</option>
+                  <option value="미주신경성실신">미주신경성 실신 / 식은땀·어지럼</option>
+                  <option value="신경성소화장애/담적병">신경성 소화장애 / 담적병</option>
+                  <option value="기타 뇌신경계 질환">기타 뇌신경계 질환</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-slate-700 mb-1.5">상담 내용 (증상, 희망 방문일 등)</label>
+                <textarea id="consultMessage" rows="3" placeholder="불편하신 증상이나 원하시는 예약 날짜/시간대를 적어주세요." class="w-full px-4 py-3 rounded-2xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg text-sm"></textarea>
+              </div>
+
+              <div class="flex items-center gap-2 pt-1">
+                <input type="checkbox" id="privacyCheck" required class="rounded text-teal-600 focus:ring-teal-600 h-4 w-4">
+                <label for="privacyCheck" class="text-xs text-slate-500">개인정보 수집 및 상담 안내 목적 이용에 동의합니다.</label>
+              </div>
+
+              <button type="submit" class="w-full py-4 bg-toss-black hover:bg-slate-800 text-white font-extrabold rounded-2xl text-sm transition-all duration-300 hover:scale-[1.01] shadow-soft">
+                상담 및 진료 예약 접수하기
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="bg-toss-black text-slate-400 py-16 border-t border-white/10 text-xs">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 space-y-8">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 border-b border-white/10 pb-8">
+        
+        <div class="flex items-center gap-3">
+          <svg class="w-8 h-8 shrink-0" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 38 65 C 20 62 18 36 44 26 C 74 15 104 32 101 64 C 98 88 72 102 56 94 C 47 89 48 76 59 74 C 70 72 82 66 81 53 C 80 40 64 34 50 40 C 37 45 36 58 48 64 C 54 67 52 75 44 75 C 40 75 35 70 38 65 Z" fill="url(#healimGrad)" />
+            <circle cx="61" cy="57" r="8.5" fill="#F59E0B" />
+          </svg>
+          <div>
+            <div class="text-[10px] text-slate-400 leading-none">마음까지 헤아리는</div>
+            <div class="text-base font-extrabold text-white tracking-tight">해아림한의원 안양점</div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-5 text-slate-400 items-center">
+          <button onclick="requestAdminAuth()" class="text-emerald-400 font-bold hover:underline flex items-center gap-1">
+            <i data-lucide="lock" class="w-3.5 h-3.5"></i>
+            원내 예약관리 로그인
+          </button>
+          <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">카카오톡 채널</a>
+          <a href="#" class="hover:text-white transition">개인정보처리방침</a>
+          <a href="https://map.naver.com/p/entry/place/1758514142" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">네이버 플레이스</a>
+        </div>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-4 leading-relaxed">
+        <div>
+          <p>상호명: 해아림한의원 안양점 | 대표원장: 유종민</p>
+          <p>주소: 경기도 안양시 동안구 시민대로 171 (비산동 1108-1 금강벤처텔 3층)</p>
+          <p>의료기관 등록 및 사업자 정보는 원내 비치 기준을 준수합니다.</p>
+        </div>
+        <div class="md:text-right">
+          <p>대표전화: <strong>031-382-8885</strong></p>
+          <p>진료시간: 평일 09:00~19:00 (화·금 야간 ~20:00) / 토 09:00~15:00 / 공휴일 09:00~14:00</p>
+          <p class="mt-2 text-slate-500">© 2026 Healim Korean Medicine Clinic Anyang. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MOBILE FLOATING QUICK BAR ==================== -->
+  <div class="lg:hidden fixed bottom-0 left-0 right-0 z-40 glass-nav border-t border-slate-200/80 px-4 py-3 flex items-center gap-2.5 shadow-soft-lg">
+    <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 bg-toss-kakao text-slate-950 rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-soft-sm">
+      <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+      카톡상담
+    </a>
+    <a href="tel:031-382-8885" class="flex-1 py-3 bg-slate-100 text-slate-800 rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5">
+      <i data-lucide="phone" class="w-3.5 h-3.5 text-teal-700"></i>
+      전화상담
+    </a>
+    <button onclick="openBookingModal()" class="flex-1 py-3 bg-toss-black text-white rounded-2xl font-bold text-xs flex items-center justify-center gap-1.5 shadow-soft">
+      <i data-lucide="calendar" class="w-3.5 h-3.5 text-teal-400"></i>
+      간편예약
+    </button>
+  </div>
+
+  <!-- ==================== DISEASE INFOGRAPHIC MODAL ==================== -->
+  <div id="diseaseModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-2xl bg-white rounded-3xl p-6 sm:p-10 shadow-soft-lg my-8">
+      <button onclick="closeDiseaseModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800 p-2 transition">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div id="diseaseModalContent"></div>
+    </div>
+  </div>
+
+  <!-- ==================== YOUTUBE VIDEO MODAL ==================== -->
+  <div id="videoModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-4xl bg-black rounded-3xl overflow-hidden shadow-soft-lg">
+      <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 text-white/80 hover:text-white bg-black/50 hover:bg-black/80 p-2 rounded-full transition">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <div class="relative pt-[56.25%]">
+        <iframe id="videoIframe" class="absolute inset-0 w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== ONLINE BOOKING MODAL ==================== -->
+  <div id="bookingModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-lg bg-white rounded-3xl p-8 sm:p-10 shadow-soft-lg my-8">
+      <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-slate-400 hover:text-slate-800 p-2 transition">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      
+      <div class="mb-6">
+        <span class="text-xs font-bold text-teal-700 uppercase tracking-tight">Quick Reservation</span>
+        <h3 class="text-2xl font-black text-toss-black mt-1">해아림한의원 안양점 예약</h3>
+        <p class="text-xs text-slate-500 mt-1">희망하시는 일정을 남겨주시면 확인 후 신속히 연락드립니다.</p>
+      </div>
+
+      <form id="modalBookingForm" onsubmit="handleBookingModalSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">성함</label>
+          <input type="text" id="modalName" required placeholder="홍길동" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">연락처</label>
+          <input type="tel" id="modalPhone" required placeholder="010-0000-0000" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">희망 진료일</label>
+            <input type="date" id="modalDate" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">희망 시간대</label>
+            <select id="modalTime" required class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+              <option value="오전 (09:00 - 13:00)">오전 (09:00 - 13:00)</option>
+              <option value="오후 (14:00 - 18:00)">오후 (14:00 - 18:00)</option>
+              <option value="화·금 야간 (18:00 - 20:00)">화·금 야간 (18:00 - 20:00)</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">주요 고민 증상</label>
+          <input type="text" id="modalClinic" placeholder="예: 불안장애, 틱장애, ADHD, 불면, 자율신경 등" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+        </div>
+        <div class="pt-2">
+          <button type="submit" class="w-full py-4 bg-toss-black text-white font-bold rounded-2xl text-sm hover:bg-slate-800 transition">
+            예약 신청 완료
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== ADMIN AUTH MODAL ==================== -->
+  <div id="adminAuthModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="relative w-full max-w-sm bg-white rounded-3xl p-8 shadow-soft-lg text-center">
+      <button onclick="closeAdminAuthModal()" class="absolute top-5 right-5 text-slate-400 hover:text-slate-800 p-1">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="w-12 h-12 rounded-2xl bg-slate-900 text-white flex items-center justify-center mx-auto mb-4 shadow-soft-sm">
+        <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+      </div>
+
+      <h3 class="text-xl font-black text-toss-black">원내 관리자 보안 인증</h3>
+      <p class="text-xs text-slate-500 mt-1 mb-5">예약 데이터를 확인하려면 관리자 비밀번호를 입력하세요.<br><span class="text-[11px] text-slate-400">(초기 기본 비밀번호: <strong>1234</strong>)</span></p>
+
+      <form onsubmit="verifyAdminPassword(event)" class="space-y-3.5">
+        <div>
+          <input type="password" id="adminPasswordInput" required placeholder="비밀번호 입력" class="w-full px-4 py-3 rounded-2xl border border-slate-200 text-center font-bold tracking-widest text-base focus:outline-none focus:ring-2 focus:ring-teal-600 bg-toss-bg">
+        </div>
+        <p id="authErrorMsg" class="text-xs font-bold text-rose-500 hidden">비밀번호가 올바르지 않습니다.</p>
+        <button type="submit" class="w-full py-3.5 bg-toss-black hover:bg-slate-800 text-white font-bold rounded-2xl text-sm transition shadow-soft">
+          인증 및 대시보드 열기
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== ADMIN DASHBOARD MODAL ==================== -->
+  <div id="adminModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-5xl bg-white rounded-3xl p-6 sm:p-10 shadow-soft-lg my-8 max-h-[90vh] flex flex-col">
+      
+      <div class="flex items-center justify-between pb-5 border-b border-slate-100 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="p-2.5 bg-teal-50 text-teal-700 rounded-2xl">
+            <i data-lucide="database" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-xl font-black text-toss-black">원내 예약/상담 접수 관리 대시보드</h3>
+              <span class="text-[10px] font-extrabold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md">보안 접속중</span>
+            </div>
+            <p class="text-xs text-slate-500">홈페이지에서 접수된 고객 데이터를 실시간으로 확인하고 관리합니다.</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-800 p-2">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+      </div>
+
+      <div class="py-4 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-bold text-slate-600">총 접수 건수:</span>
+          <span id="adminTotalCount" class="text-sm font-black text-teal-700 px-3 py-1 bg-teal-50 rounded-full border border-teal-200">0건</span>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="exportToCSV()" class="px-4 py-2 bg-[#03C75A] hover:bg-[#02b351] text-white rounded-xl text-xs font-bold transition flex items-center gap-1.5 shadow-soft-sm">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>엑셀(CSV) 다운로드</span>
+          </button>
+          <button onclick="changeAdminPasswordPrompt()" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold transition flex items-center gap-1">
+            <i data-lucide="key" class="w-3.5 h-3.5"></i>
+            <span>비번 변경</span>
+          </button>
+          <button onclick="clearAllReservations()" class="px-3 py-2 bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-600 rounded-xl text-xs font-semibold transition flex items-center gap-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>전체 비우기</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="overflow-x-auto flex-1 border border-slate-100 rounded-2xl">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-50 text-slate-700 uppercase font-bold border-b border-slate-100">
+            <tr>
+              <th class="px-4 py-3.5">접수일시</th>
+              <th class="px-4 py-3.5">성함</th>
+              <th class="px-4 py-3.5">연락처</th>
+              <th class="px-4 py-3.5">진료과목 / 내용</th>
+              <th class="px-4 py-3.5">희망일정</th>
+              <th class="px-4 py-3.5">상태</th>
+              <th class="px-4 py-3.5 text-center">관리</th>
+            </tr>
+          </thead>
+          <tbody id="adminTableBody" class="divide-y divide-slate-100 text-slate-700"></tbody>
+        </table>
+      </div>
+
+      <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-400 flex justify-between items-center shrink-0">
+        <span>💡 환자가 홈페이지에서 상담/예약을 신청하면 여기에 실시간으로 기록됩니다.</span>
+        <button onclick="closeAdminModal()" class="px-5 py-2.5 bg-toss-black text-white font-bold rounded-xl text-xs">대시보드 닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT LOGIC ==================== -->
+  <script>
+    // 1. Lucide Icons 초기화
+    lucide.createIcons();
+
+    // 2. 모바일 메뉴 토글
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuOpenIcon = document.getElementById('menuOpenIcon');
+    const menuCloseIcon = document.getElementById('menuCloseIcon');
+
+    function toggleMobileMenu() {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) {
+        mobileMenu.classList.add('hidden');
+        menuOpenIcon.classList.remove('hidden');
+        menuCloseIcon.classList.add('hidden');
+      } else {
+        mobileMenu.classList.remove('hidden');
+        menuOpenIcon.classList.add('hidden');
+        menuCloseIcon.classList.remove('hidden');
+      }
+    }
+    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+    // 3. 네이버 지도 인터랙티브 화면 초기화
+function initNaverMapScreen() {
+  const clinicLat = 37.3895612;
+  const clinicLng = 126.9522482;
+
+  const clinicPosition = new naver.maps.LatLng(
+    clinicLat,
+    clinicLng
+  );
+
+  const map = new naver.maps.Map('naverMapScreen', {
+    center: clinicPosition,
+    zoom: 17,
+    zoomControl: true,
+    zoomControlOptions: {
+      position: naver.maps.Position.TOP_LEFT
+    },
+    scaleControl: true,
+    mapDataControl: true
+  });
+
+  // 한의원 위치 마커
+  const marker = new naver.maps.Marker({
+    position: clinicPosition,
+    map: map,
+    title: '해아림한의원 안양점'
+  });
+
+  // 한의원 정보창
+  const infoWindow = new naver.maps.InfoWindow({
+    content: `
+      <div style="
+        font-family: 'Pretendard', sans-serif;
+        padding: 12px 14px;
+        min-width: 190px;
+        line-height: 1.5;
+      ">
+        <div style="
+          display:inline-block;
+          font-size:10px;
+          font-weight:800;
+          color:#03C75A;
+          background:#E8F8EE;
+          padding:3px 7px;
+          border-radius:5px;
+          margin-bottom:5px;
+        ">
+          범계역 3번 출구 앞
+        </div>
+
+        <strong style="
+          color:#0B1120;
+          font-size:14px;
+          display:block;
+          margin-bottom:2px;
+        ">
+          해아림한의원 안양점
+        </strong>
+
+        <span style="
+          font-size:12px;
+          color:#64748B;
+        ">
+          올림픽스포츠센터 3층
+        </span>
+
+        <br>
+
+        <a
+          href="https://map.naver.com/p/entry/place/1758514142"
+          target="_blank"
+          style="
+            font-size:11px;
+            color:#03C75A;
+            font-weight:800;
+            text-decoration:underline;
+            display:inline-block;
+            margin-top:5px;
+          "
+        >
+          네이버 지도 길찾기 →
+        </a>
+      </div>
+    `,
+    borderWidth: 0,
+    backgroundColor: '#fff',
+    anchorSize: new naver.maps.Size(0, 0),
+    pixelOffset: new naver.maps.Point(0, -10)
+  });
+
+  // 페이지가 열리면 정보창 표시
+  infoWindow.open(map, marker);
+}
+
+
+    // 4. 9대 질환 상세 인포그래픽 데이터
+    const diseaseData = {
+      anxiety: {
+        title: "불안장애 & 범불안장애 클리닉",
+        subtitle: "Anxiety & Generalized Anxiety Disorder",
+        desc: "뚜렷한 이유가 없는데도 매 순간 지나친 걱정과 극심한 긴장으로 일상생활에 지장을 받는 뇌신경계 질환입니다. 두뇌 과각성과 신체 반응(두통, 어지럼, 두근거림)이 동반됩니다.",
+        causes: [
+          "두뇌 기능적 요인: 편도체와 해마의 기능 저하로 인한 공포·불안 조절 실패",
+          "신경학적 요인: 노르에피네프린, 세로토닌, 가바(GABA) 신경전달물질 불균형",
+          "심리사회적 요인: 과거 트라우마, 환경적 압박 및 과긴장 축적"
+        ],
+        mechanisms: "편도체(불안 흥분) → 시상하부(스트레스 호르몬/교감신경 과항진) → 해마(장기기억 저장) → 뇌간(과호흡 및 신체증상 유발)",
+        treatments: [
+          "뇌기능개선 맞춤 한약: 편도체 과민 진정 및 급박(急迫), 번조(煩燥) 해소",
+          "전침약침요법 & CST(두개천골요법): 뇌척수액 순환 촉진 및 긴장 이완",
+          "생기능자기조절(바이오피드백) & 인지행동치료: 자가 이완 조절력 함양"
+        ]
+      },
+      tic: {
+        title: "틱장애 & 뚜렛증후군 클리닉",
+        subtitle: "Tic Disorder & Tourette's Syndrome",
+        desc: "특별한 이유 없이 자신도 모르게 눈을 깜빡이거나 어깨를 들썩이고, 킁킁·음음 소리를 반복하는 불수의적 뇌신경 질환입니다. 방치 시 성인기 틱으로 고착화될 수 있습니다.",
+        causes: [
+          "두뇌 구조·기능 이상: 전두엽과 기저핵(움직임 조절 중추)의 성숙 지연 및 상호 억제력 불균형",
+          "유전 및 호르몬 요인 / 스마트폰 과사용 및 시각적 과흥분",
+          "한의학적 변증: 간기울결(肝氣鬱結), 심담허겁(心膽虛怯), 간심혈허(肝心血虛)"
+        ],
+        mechanisms: "전두엽(자극 수용) → 기저핵(운동신경 조절 필터링 실패) → 시상/소뇌 과도한 자극 전달 → 불수의적 근육/음성 틱 발현",
+        treatments: [
+          "기저핵 조율 맞춤 한약: 뇌 흥분 완화 및 성장 발달을 방해하지 않는 처방",
+          "소뇌기저핵훈련 & 시청각통합훈련: 뇌신경 필터링 기능 강화",
+          "동반질환(ADHD, 강박증, 불안) 통합 프로토콜 적용"
+        ]
+      },
+      adhd: {
+        title: "ADHD (주의력결핍 과잉행동장애)",
+        subtitle: "Attention Deficit Hyperactivity Disorder",
+        desc: "지속적인 주의집중력 저하, 산만함, 충동성을 특징으로 하며, 겉으로 드러나지 않는 '조용한 ADHD(주의력결핍우세형)'도 정확한 진단과 치료가 필요합니다.",
+        causes: [
+          "전두엽 및 측두엽의 기능적 활성 저하 / 도파민·노르에피네프린 대사 이상",
+          "선택적 주의집중과 행동 제어를 담당하는 뇌 영역의 미성숙",
+          "한의학적 변증: 번조형(煩燥型), 계형(悸型), 흉만형(胸滿型), 각성장애형(覺醒障碍型)"
+        ],
+        mechanisms: "전두엽 억제 제어력 저하 → 주의집중 유지 곤란 및 충동 조절 실패 → 학업·사회성 2차 스트레스 유발",
+        treatments: [
+          "두뇌기능 향상 맞춤 한약: 뇌 혈류 개선 및 뇌신경 항상성 안정",
+          "주의집중력 향상 훈련(생기능자기조절/좌우뇌균형훈련)",
+          "학습습관 및 정서 조절 전문 심리 코칭 병행"
+        ]
+      },
+      autonomic: {
+        title: "자율신경실조증 클리닉",
+        subtitle: "Autonomic Nervous System Dysfunction",
+        desc: "심장박동, 호흡, 체온, 소화 등을 무의식적으로 조율하는 교감신경과 부교감신경의 밸런스가 무너져 전신에 복합 증상이 나타나는 질환입니다.",
+        causes: [
+          "만성 스트레스, 번아웃, 과로로 인한 교감신경의 지속적 과항진",
+          "부교감신경(미주신경) 톤 저하로 인한 신체 이완 불가",
+          "상열하한(上熱下寒): 머리로는 열이 오르고 손발과 아랫배는 차가워짐"
+        ],
+        mechanisms: "스트레스 자극 → 교감신경 과도 흥분 → 혈관 수축, 빈맥, 소화정체, 어지럼 유발",
+        treatments: [
+          "자율신경 균형 맞춤 한약: 과열된 교감신경 진정 및 부교감신경 활성화",
+          "자율신경 조절 침구·약침요법 & 두경부 림프 순환 케어",
+          "스트레스 호르몬 수치 조율 및 생활 리듬 코칭"
+        ]
+      },
+      insomnia: {
+        title: "만성 불면증 & 수면장애 클리닉",
+        subtitle: "Chronic Insomnia & Sleep Disorders",
+        desc: "입면장애(잠들기 어려움), 수면유지장애(자주 깸), 조기각성 등으로 인해 낮 동안 심각한 피로감과 뇌 기능 저하를 초래합니다.",
+        causes: [
+          "야간 뇌파의 과각성(High-Beta 뇌파 지속 우세)",
+          "시교차상핵(일주기리듬 조절) 및 멜라토닌 분비 교란",
+          "한의학적 변증: 사결불수(思結不睡), 심담허겁(心膽虛怯), 음허내열(陰虛內熱)"
+        ],
+        mechanisms: "뇌간망상체 과흥분 → 대뇌피질 지속 각성 → 깊은 수면(서파 수면) 결핍",
+        treatments: [
+          "야간 뇌 과각성 억제 맞춤 처방: 수면제 의존 없는 자연 수면 유도",
+          "수면 생체 리듬 재정렬 침구 요법 & 이완 요법",
+          "수면 위생 및 서카디안 리듬 코칭"
+        ]
+      },
+      hyperhidrosis: {
+        title: "다한증 클리닉 (손·발·겨드랑이·얼굴)",
+        subtitle: "Hyperhidrosis Clinic",
+        desc: "온도 변화와 무관하게 감정적 자극이나 긴장 상태에서 자율신경계 과민반응으로 땀이 비정상적으로 과다 분비되는 질환입니다.",
+        causes: [
+          "교감신경계의 비정상적 과흥분으로 에크린 땀샘 과자극",
+          "열성체질(熱性): 간울과 위열로 인한 전신/손발 다한증",
+          "한성체질(寒性): 원기 부족과 기허(氣虛)로 인한 식은땀형 다한증"
+        ],
+        mechanisms: "정신적 긴장 → 두뇌 예민 반응 → 교감신경 흥분 전달 → 국소 부위 땀 폭발적 분비",
+        treatments: [
+          "체질 맞춤 한약: 교감신경 안정 및 체온·땀샘 분비 조절력 회복",
+          "보상성 다한증(수술 부작용) 우려 없는 비수술적 원인 치료",
+          "기혈순환 촉진 및 노폐물 배출 한방물리요법"
+        ]
+      },
+      panic: {
+        title: "공황장애 & 광장공포증 클리닉",
+        subtitle: "Panic Disorder & Agoraphobia",
+        desc: "특별한 외부 자극이 없음에도 심장이 터질 듯 뛰고, 숨이 차며 죽을 것 같은 극심한 공포가 밀려오는 뇌 경보 시스템 오작동 질환입니다.",
+        causes: [
+          "간뇌 청반핵 및 편도체(Amygdala)의 과민성 흥분",
+          "호흡 중추의 이산화탄소 과민 반응으로 인한 과호흡 유발",
+          "예기불안(언제 다시 발작이 올지 모른다는 2차 공포) 형성"
+        ],
+        mechanisms: "경보 시스템 오작동 → 노르에피네프린 폭발 분비 → 혈압 상승, 빈맥, 질식감 발현",
+        treatments: [
+          "편도체 과민 진정 맞춤 한약: 응급 공황발작 완화 및 예기불안 차단",
+          "호흡근 긴장 이완 전침·약침 치료",
+          "인지행동요법 & 점진적 탈감작 자율훈련법"
+        ]
+      },
+      syncope: {
+        title: "미주신경성 실신 클리닉",
+        subtitle: "Vasovagal Syncope Clinic",
+        desc: "극도의 긴장, 밀폐된 공간, 스트레스 상황에서 부교감신경(미주신경)이 과도하게 반응하여 심박수가 급감하고 뇌혈류가 부족해져 의식을 잃고 쓰러지는 질환입니다.",
+        causes: [
+          "교감신경 급항진에 대한 반작용으로 부교감신경이 지나치게 급격히 작동",
+          "심박수와 혈압의 급격한 동반 하강으로 뇌 허혈 발생",
+          "한의학적 원인: 기체(氣滯), 중기부족(中氣不足), 식체(食滯)"
+        ],
+        mechanisms: "과도한 긴장 → 교감신경 항진 → 급격한 부교감신경 반사 → 심박수 급감 → 뇌혈류 일시 중단 및 실신",
+        treatments: [
+          "미주신경 조율 한약: 사역산, 억간산, 보중익기탕 등 체질별 가감 처방",
+          "뇌혈류 개선 및 자율신경계 조절력 함양 침구치료",
+          "실신 전조증상(식은땀, 어지럼, 시야흐림) 대처 자가 프로토콜 교육"
+        ]
+      },
+      digestion: {
+        title: "신경성 소화장애 & 담적병 클리닉",
+        subtitle: "Functional Dyspepsia & Damjeok Syndrome",
+        desc: "위 내시경 검사상 뚜렷한 이상이 없으나 늘 속이 더부룩하고 명치가 꽉 막힌 듯 답답하며, 복부에 단단한 덩어리(담적)가 잡히는 만성 소화기 질환입니다.",
+        causes: [
+          "과도한 스트레스로 뇌-장 축(Gut-Brain Axis) 교란 및 위장 운동 저하",
+          "불규칙한 식습관 및 항생제/소염진통제 장기 복용으로 인한 위벽 손상",
+          "노폐물인 담(痰)이 위장 외벽 조직에 쌓여 굳어지는 담적병(痰積病)"
+        ],
+        mechanisms: "두뇌 스트레스 → 교감신경 흥분 → 위장 혈류 감소 및 연동운동 마비 → 소화불량 및 독소 축적",
+        treatments: [
+          "담적 제거 및 위장 운동 촉진 맞춤 한약 처방",
+          "복부 온열 뜸치료 & 위장관 신경총 이완 약침 치료",
+          "과민성대장증후군 및 신경성위염 동시 개선 프로그램"
+        ]
+      }
+    };
+
+    const diseaseModal = document.getElementById('diseaseModal');
+    const diseaseModalContent = document.getElementById('diseaseModalContent');
+
+    function openDiseaseModal(type) {
+      const data = diseaseData[type];
+      if (!data) return;
+
+      diseaseModalContent.innerHTML = `
+        <div class="space-y-6">
+          <div>
+            <span class="text-xs font-bold text-teal-700 uppercase tracking-tight">${data.subtitle}</span>
+            <h3 class="text-2xl sm:text-3xl font-black text-toss-black mt-1">${data.title}</h3>
+            <p class="text-slate-600 text-sm leading-relaxed mt-3">${data.desc}</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-toss-bg border border-slate-100 space-y-2">
+            <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
+              <i data-lucide="alert-circle" class="w-4 h-4 text-teal-700"></i>
+              주요 발병 원인 & 기전
+            </div>
+            <ul class="text-xs text-slate-600 space-y-1.5 pl-4 list-disc leading-relaxed">
+              ${data.causes.map(c => `<li>${c}</li>`).join('')}
+            </ul>
+            ${data.mechanisms ? `<div class="mt-2.5 pt-2.5 border-t border-slate-200 text-[11px] text-slate-500"><strong>뇌신경 전달 경로:</strong> ${data.mechanisms}</div>` : ''}
+          </div>
+
+          <div class="p-5 rounded-2xl bg-teal-50 border border-teal-100 space-y-2">
+            <div class="text-xs font-bold text-teal-900 flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-700"></i>
+              해아림 1:1 맞춤 치료 솔루션
+            </div>
+            <ul class="text-xs text-teal-800 space-y-1.5 pl-4 list-disc leading-relaxed">
+              ${data.treatments.map(t => `<li>${t}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="pt-2 flex flex-col sm:flex-row gap-3">
+            <button onclick="closeDiseaseModal(); openBookingModal();" class="flex-1 py-3.5 bg-toss-black hover:bg-slate-800 text-white font-bold rounded-2xl text-xs sm:text-sm transition shadow-soft">
+              이 질환으로 진료 예약하기
+            </button>
+            <a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="px-5 py-3.5 bg-toss-kakao hover:opacity-95 text-slate-950 font-bold rounded-2xl text-xs sm:text-sm transition flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 3c-5.523 0-10 3.582-10 8 0 2.828 1.83 5.304 4.605 6.696-.201.761-.737 2.766-.845 3.197-.133.535.195.527.41.385.17-.112 2.686-1.83 3.766-2.573.673.098 1.365.15 2.064.15 5.523 0 10-3.582 10-8s-4.477-8-10-8z"/></svg>
+              카톡 실시간 문의
+            </a>
+          </div>
+        </div>
+      `;
+
+      diseaseModal.classList.remove('hidden');
+      diseaseModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeDiseaseModal() {
+      diseaseModal.classList.add('hidden');
+      diseaseModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    // 5. 미디어 탭 전환
+    function switchMediaTab(tab) {
+      const youtubeBtn = document.getElementById('tabYoutubeBtn');
+      const blogBtn = document.getElementById('tabBlogBtn');
+      const youtubePanel = document.getElementById('youtubePanel');
+      const blogPanel = document.getElementById('blogPanel');
+
+      if (tab === 'youtube') {
+        youtubeBtn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 bg-white text-toss-black shadow-soft-sm flex items-center gap-2';
+        blogBtn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-2';
+        youtubePanel.classList.remove('hidden');
+        blogPanel.classList.add('hidden');
+      } else {
+        blogBtn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 bg-white text-toss-black shadow-soft-sm flex items-center gap-2';
+        youtubeBtn.className = 'px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-2';
+        blogPanel.classList.remove('hidden');
+        youtubePanel.classList.add('hidden');
+      }
+    }
+
+    // 6. 비디오 모달
+    const videoModal = document.getElementById('videoModal');
+    const videoIframe = document.getElementById('videoIframe');
+
+    function openVideoModal(videoId) {
+      videoIframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`;
+      videoModal.classList.remove('hidden');
+      videoModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeVideoModal() {
+      videoIframe.src = '';
+      videoModal.classList.add('hidden');
+      videoModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    // 7. 예약 모달
+    const bookingModal = document.getElementById('bookingModal');
+    function openBookingModal() {
+      bookingModal.classList.remove('hidden');
+      bookingModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeBookingModal() {
+      bookingModal.classList.add('hidden');
+      bookingModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    // 8. 예약 데이터 관리 (Local Storage 기반)
+    const STORAGE_KEY = 'healim_reservations_data';
+    const PWD_KEY = 'healim_admin_password';
+
+    if (!localStorage.getItem(PWD_KEY)) {
+      localStorage.setItem(PWD_KEY, '1234');
+    }
+
+    function getStoredReservations() {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    }
+
+    function saveReservation(newRecord) {
+      const list = getStoredReservations();
+      list.unshift(newRecord);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+      updateAdminBadge();
+    }
+
+    function updateAdminBadge() {
+      const list = getStoredReservations();
+      const pendingCount = list.filter(r => r.status === '접수대기').length;
+      const badge = document.getElementById('adminHeaderBadge');
+      if (pendingCount > 0) {
+        badge.textContent = pendingCount;
+        badge.classList.remove('hidden');
+      } else {
+        badge.classList.add('hidden');
+      }
+    }
+
+    function handleConsultSubmit(e) {
+      e.preventDefault();
+      const newRecord = {
+        id: Date.now(),
+        dateStr: new Date().toLocaleString('ko-KR'),
+        name: document.getElementById('consultName').value,
+        phone: document.getElementById('consultPhone').value,
+        clinic: document.getElementById('consultClinic').value,
+        details: document.getElementById('consultMessage').value || '기본 상담 요청',
+        schedule: '상담 후 일정 조율',
+        status: '접수대기'
+      };
+
+      saveReservation(newRecord);
+      alert('해아림한의원 안양점 간편 상담 신청이 완료되었습니다.\n원내 전담 상담실에 정상 접수되었습니다.');
+      e.target.reset();
+    }
+
+    function handleBookingModalSubmit(e) {
+      e.preventDefault();
+      const targetDate = document.getElementById('modalDate').value;
+      const targetTime = document.getElementById('modalTime').value;
+
+      const newRecord = {
+        id: Date.now(),
+        dateStr: new Date().toLocaleString('ko-KR'),
+        name: document.getElementById('modalName').value,
+        phone: document.getElementById('modalPhone').value,
+        clinic: document.getElementById('modalClinic').value || '자율신경/심리/소아청소년 진료',
+        details: '온라인 빠른 예약 접수',
+        schedule: `${targetDate} (${targetTime})`,
+        status: '접수대기'
+      };
+
+      saveReservation(newRecord);
+      alert('해아림한의원 안양점 진료 예약 신청이 완료되었습니다.\n원내 시스템에 정상 접수되었습니다.');
+      closeBookingModal();
+      e.target.reset();
+    }
+
+    // 9. 관리자 보안 인증 & 대시보드
+    const adminAuthModal = document.getElementById('adminAuthModal');
+    const adminModal = document.getElementById('adminModal');
+
+    function requestAdminAuth() {
+      document.getElementById('authErrorMsg').classList.add('hidden');
+      document.getElementById('adminPasswordInput').value = '';
+      adminAuthModal.classList.remove('hidden');
+      adminAuthModal.classList.add('flex');
+      document.getElementById('adminPasswordInput').focus();
+    }
+
+    function closeAdminAuthModal() {
+      adminAuthModal.classList.add('hidden');
+      adminAuthModal.classList.remove('flex');
+    }
+
+    function verifyAdminPassword(e) {
+      e.preventDefault();
+      const inputPwd = document.getElementById('adminPasswordInput').value;
+      const currentPwd = localStorage.getItem(PWD_KEY) || '1234';
+
+      if (inputPwd === currentPwd) {
+        closeAdminAuthModal();
+        openAdminModalDirect();
+      } else {
+        document.getElementById('authErrorMsg').classList.remove('hidden');
+        document.getElementById('adminPasswordInput').select();
+      }
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+        e.preventDefault();
+        requestAdminAuth();
+      }
+    });
+
+    function openAdminModalDirect() {
+      renderAdminTable();
+      adminModal.classList.remove('hidden');
+      adminModal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeAdminModal() {
+      adminModal.classList.add('hidden');
+      adminModal.classList.remove('flex');
+      document.body.style.overflow = 'auto';
+    }
+
+    function changeAdminPasswordPrompt() {
+      const currentPwd = localStorage.getItem(PWD_KEY) || '1234';
+      const checkCurrent = prompt('현재 관리자 비밀번호를 입력하세요:');
+      if (checkCurrent === null) return;
+      if (checkCurrent !== currentPwd) {
+        alert('현재 비밀번호가 일치하지 않습니다.');
+        return;
+      }
+      const newPwd = prompt('새로운 관리자 비밀번호를 입력하세요 (4자리 이상 권장):');
+      if (newPwd && newPwd.trim().length > 0) {
+        localStorage.setItem(PWD_KEY, newPwd.trim());
+        alert('관리자 비밀번호가 성공적으로 변경되었습니다.');
+      }
+    }
+
+    function renderAdminTable() {
+      const list = getStoredReservations();
+      const tbody = document.getElementById('adminTableBody');
+      const totalCount = document.getElementById('adminTotalCount');
+
+      totalCount.textContent = `${list.length}건`;
+
+      if (list.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="text-center py-12 text-slate-400">
+              <i data-lucide="inbox" class="w-8 h-8 mx-auto mb-2 opacity-50"></i>
+              접수된 상담/예약 내역이 없습니다.
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = list.map(item => {
+        let badgeColor = 'bg-amber-50 text-amber-700 border-amber-200';
+        if (item.status === '상담완료') badgeColor = 'bg-blue-50 text-blue-700 border-blue-200';
+        if (item.status === '예약확정') badgeColor = 'bg-emerald-50 text-emerald-700 border-emerald-200';
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition">
+            <td class="px-4 py-3.5 font-medium text-slate-500 text-[11px] whitespace-nowrap">${item.dateStr}</td>
+            <td class="px-4 py-3.5 font-bold text-slate-900 whitespace-nowrap">${item.name}</td>
+            <td class="px-4 py-3.5 font-semibold text-teal-700 whitespace-nowrap">
+              <a href="tel:${item.phone}" class="hover:underline flex items-center gap-1">
+                <i data-lucide="phone" class="w-3 h-3"></i> ${item.phone}
+              </a>
+            </td>
+            <td class="px-4 py-3.5 max-w-xs">
+              <span class="font-bold text-slate-800">[${item.clinic}]</span>
+              <p class="text-slate-500 text-[11px] truncate">${item.details}</p>
+            </td>
+            <td class="px-4 py-3.5 font-medium text-slate-700 whitespace-nowrap">${item.schedule}</td>
+            <td class="px-4 py-3.5 whitespace-nowrap">
+              <select onchange="updateStatus(${item.id}, this.value)" class="text-xs font-bold px-2.5 py-1 rounded-lg border ${badgeColor} focus:outline-none">
+                <option value="접수대기" ${item.status === '접수대기' ? 'selected' : ''}>접수대기</option>
+                <option value="상담완료" ${item.status === '상담완료' ? 'selected' : ''}>전화상담완료</option>
+                <option value="예약확정" ${item.status === '예약확정' ? 'selected' : ''}>예약확정</option>
+              </select>
+            </td>
+            <td class="px-4 py-3.5 text-center whitespace-nowrap">
+              <button onclick="deleteReservation(${item.id})" class="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-rose-50 transition" title="삭제">
+                <i data-lucide="trash-2" class="w-4 h-4"></i>
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function updateStatus(id, newStatus) {
+      const list = getStoredReservations();
+      const updated = list.map(item => item.id === id ? { ...item, status: newStatus } : item);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      updateAdminBadge();
+      renderAdminTable();
+    }
+
+    function deleteReservation(id) {
+      if (!confirm('이 접수 내역을 삭제하시겠습니까?')) return;
+      const list = getStoredReservations();
+      const filtered = list.filter(item => item.id !== id);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(filtered));
+      updateAdminBadge();
+      renderAdminTable();
+    }
+
+    function clearAllReservations() {
+      if (!confirm('모든 접수 목록을 초기화하시겠습니까?')) return;
+      localStorage.removeItem(STORAGE_KEY);
+      updateAdminBadge();
+      renderAdminTable();
+    }
+
+    function exportToCSV() {
+      const list = getStoredReservations();
+      if (list.length === 0) {
+        alert('저장할 접수 데이터가 없습니다.');
+        return;
+      }
+
+      let csvContent = '\uFEFF접수일시,성함,연락처,진료과목,내용,희망일정,처리상태\n';
+      list.forEach(item => {
+        csvContent += `"${item.dateStr}","${item.name}","${item.phone}","${item.clinic}","${item.details.replace(/"/g, '""')}","${item.schedule}","${item.status}"\n`;
+      });
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.setAttribute('href', url);
+      link.setAttribute('download', `해아림한의원_안양점_예약접수_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    // 10. RSS 데이터 비동기 로드
+    const YOUTUBE_CHANNEL_ID = 'UCAW0RqLUlt7OUr6p1FLfDvg';
+    const YOUTUBE_RSS_URL = `https://www.youtube.com/feeds/videos.xml?channel_id=${YOUTUBE_CHANNEL_ID}`;
+    const BLOG_RSS_URL = `https://rss.blog.naver.com/hear-im.xml`;
+
+    async function loadYouTubeMedia() {
+      const loading = document.getElementById('youtubeLoading');
+      const grid = document.getElementById('youtubeGrid');
+      
+      try {
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(YOUTUBE_RSS_URL)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+          renderYouTubeCards(data.items.slice(0, 6));
+        } else {
+          renderFallbackYouTube();
+        }
+      } catch (err) {
+        renderFallbackYouTube();
+      } finally {
+        loading.classList.add('hidden');
+        grid.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    }
+
+    function renderYouTubeCards(items) {
+      const grid = document.getElementById('youtubeGrid');
+      grid.innerHTML = items.map(item => {
+        let videoId = '';
+        if (item.guid && item.guid.includes('video:')) {
+          videoId = item.guid.split('video:')[1];
+        } else if (item.link && item.link.includes('v=')) {
+          videoId = item.link.split('v=')[1].split('&')[0];
+        } else {
+          videoId = 'dQw4w9WgXcQ';
+        }
+
+        const thumbnail = item.thumbnail || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`;
+        const pubDate = item.pubDate ? item.pubDate.split(' ')[0] : '해아림 공식 영상';
+
+        return `
+          <div class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openVideoModal('${videoId}')">
+            <div>
+              <div class="relative aspect-video bg-slate-900 overflow-hidden">
+                <img src="${thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" loading="lazy">
+                <div class="absolute inset-0 bg-black/20 flex items-center justify-center group-hover:bg-black/10 transition">
+                  <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-soft-lg group-hover:scale-110 transition">
+                    <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="p-6">
+                <span class="text-[11px] font-bold text-teal-700 uppercase tracking-tight mb-1.5 block">${pubDate}</span>
+                <h4 class="font-bold text-toss-black text-sm sm:text-base line-clamp-2 leading-snug group-hover:text-teal-700 transition">
+                  ${item.title}
+                </h4>
+              </div>
+            </div>
+            <div class="px-6 pb-6 pt-0 flex items-center text-xs font-bold text-slate-400 group-hover:text-teal-700 gap-1.5 transition">
+              <span>영상 시청하기</span>
+              <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderFallbackYouTube() {
+      const fallbackList = [
+        {
+          title: "해아림한의원 | 틱장애와 ADHD 자가진단 및 한방신경정신과 치료 원리",
+          videoId: "7wZt7cW8QyY",
+          pubDate: "해아림 공식 영상",
+          thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=640&q=80"
+        },
+        {
+          title: "공황장애·불안장애 극복을 위한 호흡법 및 편도체 안정화 가이드",
+          videoId: "8mG1P9UvXgA",
+          pubDate: "해아림 닥터 칼럼",
+          thumbnail: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=640&q=80"
+        },
+        {
+          title: "만성 수면장애와 불면증 치료, 뇌신경 밸런스로 회복하기",
+          videoId: "4kL2V4N8YtE",
+          pubDate: "해아림 건강 정보",
+          thumbnail: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=640&q=80"
+        }
+      ];
+
+      const grid = document.getElementById('youtubeGrid');
+      grid.innerHTML = fallbackList.map(item => `
+        <div class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer" onclick="openVideoModal('${item.videoId}')">
+          <div>
+            <div class="relative aspect-video bg-slate-900 overflow-hidden">
+              <img src="${item.thumbnail}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/25 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-full bg-red-600 text-white flex items-center justify-center shadow-soft-lg">
+                  <i data-lucide="play" class="w-5 h-5 fill-current"></i>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <span class="text-[11px] font-bold text-teal-700 uppercase tracking-tight mb-1.5 block">${item.pubDate}</span>
+              <h4 class="font-bold text-toss-black text-sm sm:text-base line-clamp-2 leading-snug group-hover:text-teal-700 transition">
+                ${item.title}
+              </h4>
+            </div>
+          </div>
+          <div class="px-6 pb-6 pt-0 flex items-center text-xs font-bold text-slate-400 group-hover:text-teal-700 gap-1.5 transition">
+            <span>영상 시청하기</span>
+            <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function loadBlogMedia() {
+      const loading = document.getElementById('blogLoading');
+      const grid = document.getElementById('blogGrid');
+
+      try {
+        const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(BLOG_RSS_URL)}`;
+        const res = await fetch(apiUrl);
+        const data = await res.json();
+
+        if (data.status === 'ok' && data.items && data.items.length > 0) {
+          renderBlogCards(data.items.slice(0, 6));
+        } else {
+          renderFallbackBlog();
+        }
+      } catch (err) {
+        renderFallbackBlog();
+      } finally {
+        loading.classList.add('hidden');
+        grid.classList.remove('hidden');
+        lucide.createIcons();
+      }
+    }
+
+    function stripHtml(html) {
+      const tmp = document.createElement('DIV');
+      tmp.innerHTML = html;
+      return tmp.textContent || tmp.innerText || '';
+    }
+
+    function renderBlogCards(items) {
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = items.map(item => {
+        const snippet = stripHtml(item.description || item.content || '').substring(0, 105) + '...';
+        const pubDate = item.pubDate ? item.pubDate.split(' ')[0] : '해아림 칼럼';
+
+        return `
+          <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-slate-400 mb-4">
+                <span class="font-bold text-teal-700 tracking-tight">해아림 공식 칼럼</span>
+                <span>${pubDate}</span>
+              </div>
+              <h4 class="font-bold text-toss-black text-base leading-snug group-hover:text-teal-700 transition mb-3 line-clamp-2">
+                ${item.title}
+              </h4>
+              <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3 mb-6">
+                ${snippet}
+              </p>
+            </div>
+            <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+              <span>네이버 블로그 원문 보기</span>
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </div>
+          </a>
+        `;
+      }).join('');
+    }
+
+    function renderFallbackBlog() {
+      const fallbackList = [
+        {
+          title: "심장이 뛰고 가슴이 답답한 자율신경실조증, 내과 검사는 정상일 때",
+          snippet: "심장이나 폐의 기질적 질환이 없는데도 나타나는 공황발작과 기립성 빈맥의 실제 원인은 자율신경계 조절 기능 저하에 있습니다...",
+          link: "https://blog.naver.com/hear-im",
+          pubDate: "2026.02.15"
+        },
+        {
+          title: "만성 불면증 극복을 위한 수면 위생과 뇌파 안정화 요법",
+          snippet: "밤마다 잠들지 못하고 뇌가 각성 상태를 유지하는 이유는 교감신경의 과긴장에 기인합니다. 체질 맞춤 이완 프로그램의 핵심을 짚어드립니다...",
+          link: "https://blog.naver.com/hear-im",
+          pubDate: "2026.02.10"
+        },
+        {
+          title: "목에 뭔가 걸린 듯한 이물감, 스트레스성 매핵기(梅核氣)와 담적병",
+          snippet: "역류성 식도염 치료제를 복용해도 사라지지 않는 목 이물감은 한의학에서 말하는 기체증(氣滯證) 및 담적과 깊은 연관이 있습니다...",
+          link: "https://blog.naver.com/hear-im",
+          pubDate: "2026.02.05"
+        }
+      ];
+
+      const grid = document.getElementById('blogGrid');
+      grid.innerHTML = fallbackList.map(item => `
+        <a href="${item.link}" target="_blank" rel="noopener noreferrer" class="group bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between text-xs text-slate-400 mb-4">
+              <span class="font-bold text-teal-700 tracking-tight">해아림 공식 칼럼</span>
+              <span>${item.pubDate}</span>
+            </div>
+            <h4 class="font-bold text-toss-black text-base leading-snug group-hover:text-teal-700 transition mb-3 line-clamp-2">
+              ${item.title}
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-500 leading-relaxed line-clamp-3 mb-6">
+              ${item.snippet}
+            </p>
+          </div>
+          <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-teal-700">
+            <span>네이버 블로그 원문 보기</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // 초기 실행
+    window.addEventListener('DOMContentLoaded', () => {
+      initNaverMapScreen();
+      updateAdminBadge();
+      loadYouTubeMedia();
+      loadBlogMedia();
+    });
+  </script>
+</body>
+</html>

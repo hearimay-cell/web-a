@@ -21,6 +21,7 @@
 | **11** | 환경/버전관리 | Git 경로 인식 및 이중 HTML 소스 파일 동기화 이슈 | `$env:Path`에 Git 경로 등록 스크립트 적용 및 `index.html`과 `ai_studio_code (10).html` 자동 동기화 체계 확립 | **해결** |
 | **12** | API 연동 | 네이버 지도 API Client ID (`ljyo3y5qrt`) 발급 및 연동 | `maps.js?ncpClientId=ljyo3y5qrt` 스크립트 적용으로 원내 위치 동적 지도 렌더링 활성화 | **해결** |
 | **13** | 리포지터리 최적화 | 이전 HugoBlox 잔여 파일 및 실패 워크플로우(`.github/`) 정리 | 불필요한 빌드 스크립트 제거로 GitHub Actions 에러 방지 및 순수 웹 경량화 완료 | **해결** |
+| **14** | 지도/안내 | 오시는 길 영역을 고화질 지도 그래픽(`assets/map_location.png`)으로 전환 | API 인증 에러 없이 100% 안정적인 지도 표시 및 네이버 지도 길찾기 원클릭 연동 완료 | **해결** |
 
 ---
 

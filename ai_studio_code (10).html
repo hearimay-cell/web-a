@@ -916,8 +916,39 @@
             </div>
           </div>
 
-          <!-- News Grid (10 cards) -->
-          <div id="newsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+          <!-- News Grid (Initially 6 cards rendered) -->
+          <div id="newsGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300"></div>
+
+          <!-- Pagination & '더 보기' Controls (1/2 or Load More) -->
+          <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-soft-sm">
+            <div class="text-xs sm:text-sm text-slate-500 font-medium flex items-center gap-2">
+              <i data-lucide="file-text" class="w-4 h-4 text-teal-700"></i>
+              <span>총 <strong class="text-teal-800 font-extrabold">10편</strong>의 언론 칼럼 중 <strong id="newsRangeText" class="text-toss-black font-extrabold">1~6편</strong> 표시</span>
+            </div>
+
+            <!-- Center: Pagination (1 / 2) Buttons -->
+            <div class="flex items-center gap-1.5 bg-slate-100 p-1.5 rounded-xl border border-slate-200/60">
+              <button id="newsPage1Btn" onclick="setNewsPage(1)"
+                class="px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 bg-teal-700 text-white shadow-soft-sm flex items-center gap-1" title="1페이지 보기 (1~6번 칼럼)">
+                <span>1</span>
+              </button>
+              <button id="newsPage2Btn" onclick="setNewsPage(2)"
+                class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1" title="2페이지 보기 (7~10번 칼럼)">
+                <span>2</span>
+              </button>
+              <span class="text-slate-300 text-xs mx-1">|</span>
+              <span id="newsPageIndicator" class="text-xs font-bold text-slate-600 px-2">1 / 2 페이지</span>
+            </div>
+
+            <!-- Right: '더 보기' / '접기' Toggle Button -->
+            <div>
+              <button id="newsToggleMoreBtn" onclick="toggleNewsShowAll()"
+                class="px-4 py-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs transition border border-teal-200/80 flex items-center gap-1.5 shadow-soft-sm">
+                <span id="newsToggleMoreText">칼럼 4개 더 보기</span>
+                <i id="newsToggleMoreIcon" data-lucide="chevron-down" class="w-4 h-4 text-teal-700"></i>
+              </button>
+            </div>
+          </div>
         </div>
 
         <!-- 2. YOUTUBE PANEL -->
@@ -2254,11 +2285,65 @@
       }
     ];
 
+    let currentNewsViewMode = 1; // 1: 1페이지 (1~6번), 2: 2페이지 (7~10번), 'all': 전체 10편
+
+    function setNewsPage(page) {
+      currentNewsViewMode = page;
+      renderNewsArticles();
+    }
+
+    function toggleNewsShowAll() {
+      if (currentNewsViewMode === 'all') {
+        currentNewsViewMode = 1;
+      } else {
+        currentNewsViewMode = 'all';
+      }
+      renderNewsArticles();
+    }
+
     function renderNewsArticles() {
       const grid = document.getElementById('newsGrid');
+      const rangeText = document.getElementById('newsRangeText');
+      const page1Btn = document.getElementById('newsPage1Btn');
+      const page2Btn = document.getElementById('newsPage2Btn');
+      const pageIndicator = document.getElementById('newsPageIndicator');
+      const toggleMoreText = document.getElementById('newsToggleMoreText');
+      const toggleMoreIcon = document.getElementById('newsToggleMoreIcon');
+      const toggleMoreBtn = document.getElementById('newsToggleMoreBtn');
+
       if (!grid) return;
 
-      grid.innerHTML = NEWS_ARTICLES.map(item => `
+      let displayList = [];
+      if (currentNewsViewMode === 1) {
+        displayList = NEWS_ARTICLES.slice(0, 6);
+        if (rangeText) rangeText.textContent = '1~6편';
+        if (pageIndicator) pageIndicator.textContent = '1 / 2 페이지';
+        if (page1Btn) page1Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 bg-teal-700 text-white shadow-soft-sm flex items-center gap-1';
+        if (page2Btn) page2Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1';
+        if (toggleMoreText) toggleMoreText.textContent = '칼럼 4개 더 보기';
+        if (toggleMoreIcon) toggleMoreIcon.setAttribute('data-lucide', 'chevron-down');
+        if (toggleMoreBtn) toggleMoreBtn.className = 'px-4 py-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs transition border border-teal-200/80 flex items-center gap-1.5 shadow-soft-sm';
+      } else if (currentNewsViewMode === 2) {
+        displayList = NEWS_ARTICLES.slice(6, 10);
+        if (rangeText) rangeText.textContent = '7~10편';
+        if (pageIndicator) pageIndicator.textContent = '2 / 2 페이지';
+        if (page1Btn) page1Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1';
+        if (page2Btn) page2Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-extrabold transition-all duration-200 bg-teal-700 text-white shadow-soft-sm flex items-center gap-1';
+        if (toggleMoreText) toggleMoreText.textContent = '전체 10편 한눈에 보기';
+        if (toggleMoreIcon) toggleMoreIcon.setAttribute('data-lucide', 'chevrons-down');
+        if (toggleMoreBtn) toggleMoreBtn.className = 'px-4 py-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs transition border border-teal-200/80 flex items-center gap-1.5 shadow-soft-sm';
+      } else if (currentNewsViewMode === 'all') {
+        displayList = NEWS_ARTICLES;
+        if (rangeText) rangeText.textContent = '전체 10편 모두';
+        if (pageIndicator) pageIndicator.textContent = '1-2 / 2 (전체)';
+        if (page1Btn) page1Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1';
+        if (page2Btn) page2Btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1';
+        if (toggleMoreText) toggleMoreText.textContent = '접기 (6개만 보기)';
+        if (toggleMoreIcon) toggleMoreIcon.setAttribute('data-lucide', 'chevron-up');
+        if (toggleMoreBtn) toggleMoreBtn.className = 'px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition border border-slate-300 flex items-center gap-1.5 shadow-soft-sm';
+      }
+
+      grid.innerHTML = displayList.map(item => `
         <a href="${item.url}" target="_blank" rel="noopener noreferrer"
           class="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between cursor-pointer"
           title="${item.title}">
@@ -2311,6 +2396,8 @@
           </div>
         </a>
       `).join('');
+
+      lucide.createIcons();
     }
 
     // 11. RSS 데이터 비동기 로드

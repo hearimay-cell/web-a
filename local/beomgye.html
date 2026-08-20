@@ -120,6 +120,28 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
     }
+
+    /* Marquee Animation for PC */
+    @keyframes regionalMarquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-regional-marquee {
+      display: flex;
+      width: max-content;
+      animation: regionalMarquee 32s linear infinite;
+    }
+    .regional-marquee-wrapper:hover .animate-regional-marquee {
+      animation-play-state: paused;
+    }
+    /* Hide scrollbar for mobile swipe */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 
@@ -662,23 +684,372 @@
     </section>
 
     <!-- ==================== INTER-REGIONAL LINKS BAR ==================== -->
-    <section class="py-16 bg-slate-50 border-t border-slate-200/80">
-      <div class="max-w-7xl mx-auto px-5 sm:px-8">
-        <div class="text-center mb-10 space-y-2.5">
-          <span class="text-teal-700 font-extrabold tracking-tight text-xs sm:text-sm uppercase bg-teal-100/70 px-3.5 py-1.5 rounded-full border border-teal-200">
-            LOCAL CLINIC NETWORK
-          </span>
-          <h3 class="text-2xl sm:text-3xl font-black text-slate-900">지역별 안내</h3>
-          <p class="text-sm sm:text-base text-slate-600">해아림한의원 안양점은 안양·군포·의왕·과천·시흥 전역에서 편리하게 방문하실 수 있습니다.</p>
+    <section class="py-16 sm:py-20 bg-slate-50 border-t border-slate-200/80 overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 mb-10 text-center space-y-2.5">
+        <span class="text-teal-700 font-extrabold tracking-tight text-xs sm:text-sm uppercase bg-teal-100/70 px-3.5 py-1.5 rounded-full border border-teal-200">
+          LOCAL CLINIC NETWORK
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-black text-slate-900">지역별 안내</h3>
+        <p class="text-sm sm:text-base text-slate-600">해아림한의원 안양점은 안양·군포·의왕·과천·시흥 전역에서 편리하게 방문하실 수 있습니다.</p>
+      </div>
+
+      <!-- 1. PC: 무한 자동 롤링 (Marquee Slider, Hover 시 일시정지) -->
+      <div class="hidden lg:block relative w-full overflow-hidden regional-marquee-wrapper py-2">
+        <!-- Left & Right Fade Gradient Masks -->
+        <div class="pointer-events-none absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
+        <div class="pointer-events-none absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+
+        <!-- Rolling Track (2 Sets of 7 Cards for Seamless Loop) -->
+        <div class="animate-regional-marquee gap-6 px-3">
+          <!-- Card 1: 안양 -->
+          <a href="anyang.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                만안·동안·안양역
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                안양
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>대중교통 10분대</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 2: 평촌 -->
+          <a href="pyeongchon.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                인덕원·귀인·비산
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                평촌
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>지하철 1정거장</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 3: 범계 (ACTIVE) -->
+          <a href="beomgye.html" class="w-[320px] py-7 px-6 rounded-3xl bg-teal-700 text-white border border-teal-600 shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center shrink-0 ring-4 ring-teal-700/20">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-900 bg-teal-100 px-3.5 py-1.5 rounded-xl">
+                3번 출구 15m (현재)
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                범계
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-white/20 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-teal-100">
+              <span>도보 1분 초역세권</span>
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-200"></i>
+            </div>
+          </a>
+
+          <!-- Card 4: 군포 -->
+          <a href="gunpo.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                산본·금정·당동
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                군포
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>4호선 1~2정거장</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 5: 의왕 -->
+          <a href="uiwang.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                포일·내손·오전
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                의왕
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>버스 직통 10분대</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 6: 과천 -->
+          <a href="gwacheon.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                청사·별양·지정타
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                과천
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>4호선 직통 10분</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 7: 시흥 -->
+          <a href="siheung.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                목감·은계·배곧·정왕
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                시흥
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>직통·자차 15~20분</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- REPEAT SET (For Infinite Seamless Loop) -->
+          <!-- Card 1: 안양 -->
+          <a href="anyang.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                만안·동안·안양역
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                안양
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>대중교통 10분대</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 2: 평촌 -->
+          <a href="pyeongchon.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                인덕원·귀인·비산
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                평촌
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>지하철 1정거장</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 3: 범계 (ACTIVE) -->
+          <a href="beomgye.html" class="w-[320px] py-7 px-6 rounded-3xl bg-teal-700 text-white border border-teal-600 shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center shrink-0 ring-4 ring-teal-700/20">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-900 bg-teal-100 px-3.5 py-1.5 rounded-xl">
+                3번 출구 15m (현재)
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                범계
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-white/20 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-teal-100">
+              <span>도보 1분 초역세권</span>
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-teal-200"></i>
+            </div>
+          </a>
+
+          <!-- Card 4: 군포 -->
+          <a href="gunpo.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                산본·금정·당동
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                군포
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>4호선 1~2정거장</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 5: 의왕 -->
+          <a href="uiwang.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                포일·내손·오전
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                의왕
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>버스 직통 10분대</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 6: 과천 -->
+          <a href="gwacheon.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                청사·별양·지정타
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                과천
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>4호선 직통 10분</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+
+          <!-- Card 7: 시흥 -->
+          <a href="siheung.html" class="w-[320px] py-7 px-6 rounded-3xl bg-white hover:bg-teal-50/50 text-slate-800 hover:text-teal-900 border border-slate-200/90 hover:border-teal-400 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 flex flex-col items-center justify-between text-center group shrink-0">
+            <div class="space-y-3 w-full flex flex-col items-center">
+              <span class="text-xs sm:text-sm font-extrabold text-teal-800 bg-teal-50 group-hover:bg-teal-100/90 px-3.5 py-1.5 rounded-xl border border-teal-100/80 transition-colors">
+                목감·은계·배곧·정왕
+              </span>
+              <h4 class="text-2xl sm:text-3xl font-black text-slate-900 group-hover:text-teal-700 transition-colors tracking-tight">
+                시흥
+              </h4>
+            </div>
+            <div class="mt-4 pt-3.5 border-t border-slate-100 w-full flex items-center justify-center gap-1.5 text-xs sm:text-sm font-bold text-slate-600 group-hover:text-teal-800 transition-colors">
+              <span>직통·자차 15~20분</span>
+              <i data-lucide="arrow-right" class="w-4 h-4 text-teal-600 group-hover:translate-x-1 transition-transform"></i>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. 모바일 & 태블릿: 손가락 스와이프 터치 횡스크롤 (Scroll Snap) -->
+      <div class="lg:hidden">
+        <div class="flex overflow-x-auto snap-x snap-mandatory gap-4 px-5 pb-4 no-scrollbar">
+          <!-- Card 1: 안양 -->
+          <a href="anyang.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                만안·동안·안양역
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                안양
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>대중교통 10분대</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
+
+          <!-- Card 2: 평촌 -->
+          <a href="pyeongchon.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                인덕원·귀인·비산
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                평촌
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>지하철 1정거장</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
+
+          <!-- Card 3: 범계 (ACTIVE) -->
+          <a href="beomgye.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-teal-700 text-white border border-teal-600 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center ring-2 ring-teal-600/30">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-900 bg-teal-100 px-3 py-1 rounded-lg">
+                3번 출구 15m (현재)
+              </span>
+              <h4 class="text-xl font-black text-white tracking-tight">
+                범계
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-white/20 w-full flex items-center justify-center gap-1 text-xs font-bold text-teal-100">
+              <span>도보 1분 초역세권</span>
+              <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-teal-200"></i>
+            </div>
+          </a>
+
+          <!-- Card 4: 군포 -->
+          <a href="gunpo.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                산본·금정·당동
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                군포
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>4호선 1~2정거장</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
+
+          <!-- Card 5: 의왕 -->
+          <a href="uiwang.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                포일·내손·오전
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                의왕
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>버스 직통 10분대</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
+
+          <!-- Card 6: 과천 -->
+          <a href="gwacheon.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                청사·별양·지정타
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                과천
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>4호선 직통 10분</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
+
+          <!-- Card 7: 시흥 -->
+          <a href="siheung.html" class="w-[74vw] max-w-[290px] py-6 px-5 rounded-3xl bg-white text-slate-800 border border-slate-200/90 shadow-soft snap-center shrink-0 flex flex-col items-center justify-between text-center">
+            <div class="space-y-2.5 w-full flex flex-col items-center">
+              <span class="text-xs font-extrabold text-teal-800 bg-teal-50 px-3 py-1 rounded-lg border border-teal-100">
+                목감·은계·배곧·정왕
+              </span>
+              <h4 class="text-xl font-black text-slate-900 tracking-tight">
+                시흥
+              </h4>
+            </div>
+            <div class="mt-3.5 pt-3 border-t border-slate-100 w-full flex items-center justify-center gap-1 text-xs font-bold text-slate-600">
+              <span>직통·자차 15~20분</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5 text-teal-600"></i>
+            </div>
+          </a>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-3.5 sm:gap-4">
-          <a href="anyang.html" class="p-5 sm:p-6 rounded-2xl bg-white hover:bg-teal-50/40 text-slate-800 hover:text-teal-800 border border-slate-200/90 hover:border-teal-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 group text-center">
-            <span class="text-xs sm:text-[13px] font-bold text-teal-800 bg-teal-50 group-hover:bg-teal-100/80 px-2.5 py-1 rounded-md border border-teal-100 transition-colors">만안·동안·안양역</span>
-            <span class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-teal-700 transition-colors">안양</span>
-            <span class="text-xs sm:text-[13px] font-medium text-slate-600">대중교통 10분대</span>
-          </a>
-          <a href="pyeongchon.html" class="p-5 sm:p-6 rounded-2xl bg-white hover:bg-teal-50/40 text-slate-800 hover:text-teal-800 border border-slate-200/90 hover:border-teal-300 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 group text-center">
+        <p class="text-center text-xs text-slate-400 mt-2 flex items-center justify-center gap-1">
+          <i data-lucide="move-horizontal" class="w-3.5 h-3.5"></i>
+          <span>좌우로 밀어서 7개 지역별 안내를 확인하세요</span>
+        </p>
+      </div>
+    </section>oft-lg hover:-translate-y-1 transition-all duration-200 flex flex-col items-center justify-center gap-2 group text-center">
             <span class="text-xs sm:text-[13px] font-bold text-teal-800 bg-teal-50 group-hover:bg-teal-100/80 px-2.5 py-1 rounded-md border border-teal-100 transition-colors">인덕원·귀인·비산</span>
             <span class="text-lg sm:text-xl font-black text-slate-900 group-hover:text-teal-700 transition-colors">평촌</span>
             <span class="text-xs sm:text-[13px] font-medium text-slate-600">지하철 1정거장</span>

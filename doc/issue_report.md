@@ -40,6 +40,7 @@
 | **30** | 사이트맵/연동 | 사이트맵 '진료 질환' 항목 9대 특화진료 원내 연결 & 기타 질환 전국네트워크 공식 페이지 연동 | 9대 특화질환은 원내 상세 모달 및 특화 섹션으로 연결, 그 외 질환(하지불안, 우울, 강박, 화병 등 16종)은 해아림 공식 네트워크(`healim.com`) 질환 페이지로 새 탭 연동 | **해결** |
 | **31** | 링크/외부연동 | 메인 9대 특화카드, 6개 로컬 페이지 카드 및 푸터 '자율신경실조증' 특화사이트(`healim-autonomic.com`) 연동 | 메인 9대 특화진료(Clinic 04), 6개 로컬 페이지 자율신경실조증 증상 카드, 상세 모달 및 전체 푸터 진료 질환의 '자율신경실조증' 클릭 시 `https://healim-autonomic.com/`으로 새 창 이동 연결 | **해결** |
 | **32** | 링크/외부연동 | 메인 9대 특화카드, 6개 로컬 페이지 카드 및 푸터 '공황장애' 특화사이트(`healim-panic.com`) 연동 | 메인 9대 특화진료(Clinic 07), 6개 로컬 페이지 공황장애 증상 카드, 상세 모달 및 전체 푸터 진료 질환의 '공황장애' 클릭 시 `https://healim-panic.com/`으로 새 창 이동 연결 | **해결** |
+| **33** | SEO/웹마스터 | 구글 서치콘솔 'Sitemap이 HTML입니다' 오류 해결 및 검색로봇 수집 최적화 | 루트 정적 `sitemap.xml`(8개 페이지 표준 XML 0.9 규격), `robots.txt`, Cloudflare Pages 전용 `_headers` 배포 및 메인 canonical 태그 적용 | **해결** |
 
 ---
 
@@ -69,6 +70,15 @@
 ### 2.6 [Issue #30] 사이트맵 진료 질환 이원화 라우팅 설계
 - **문제**: 사이트맵에 나열된 수많은 질환명 중 안양점의 9대 핵심 특화진료와 기타 진료 항목의 연결 대상이 모호했던 문제.
 - **해결**: 안양점 9대 특화진료(틱장애, 공황장애, 자율신경실조증, 불면증, ADHD, 불안장애, 다한증, 미주신경성실신, 담적병)는 원내 상세 인포그래픽 모달 및 특화 섹션으로 직접 연결하고, 그 외 질환(하지불안증후군, 우울증, 강박장애, 사회공포증, 화병, 어지럼증, 두통, 야뇨증, 만성피로, 과민성대장증후군, 거식/폭식증, 건망증/치매, 분노조절장애, PTSD, PMS 등)은 해아림 전국네트워크 공식 사이트(`https://www.healim.com/...`)의 질환별 정밀 안내 페이지로 `target="_blank"` 새 창 연결하도록 체계화.
+
+### 2.7 [Issue #33] 구글 서치 콘솔 'Sitemap이 HTML입니다' 오류 해결
+- **문제**: Google Search Console에 `https://hearimay.com/sitemap.xml` 제출 시 `"Sitemap이 HTML입니다(2행 태그: html)"` 오류 발생.
+- **원인**: 배포 루트에 실제 `sitemap.xml` 파일이 존재하지 않아 Cloudflare Pages의 SPA 라우팅/404 폴백 메커니즘에 의해 `index.html`이 대신 응답됨 (1행 `<!DOCTYPE html>`, 2행 `<html>` 태그로 인해 서치콘솔 파서 에러).
+- **해결**:
+  1. 배포 루트에 표준 sitemap 0.9 규격의 순수 정적 `sitemap.xml` 생성 (메인 및 7개 권역별 페이지 총 8개 URL 등록, `<?xml version="1.0" encoding="UTF-8"?>` 선언 포함).
+  2. 크롤러 진입 안내를 위한 `robots.txt` 파일 생성 (`Allow: /`, `Sitemap: https://hearimay.com/sitemap.xml`).
+  3. Cloudflare Pages 배포 시 올바른 MIME 타입을 보장하기 위해 `_headers` 설정 파일 추가 (`/sitemap.xml` -> `Content-Type: application/xml; charset=utf-8`).
+  4. `index.html` 내 표준 캐노니컬 태그(`<link rel="canonical" href="https://hearimay.com/">`) 반영.
 
 ---
 

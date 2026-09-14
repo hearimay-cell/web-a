@@ -665,14 +665,18 @@
             </div>
           </div>
 
-          <!-- 7. 공황장애 -->
-          <div onclick="openDiseaseModal('panic')"
-            class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
+          <!-- 7. 공황장애 (질환별 전문홈페이지 링크) -->
+          <a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer"
+            class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between block">
             <div>
-              <div class="mb-4">
+              <div class="mb-4 flex items-center justify-between">
                 <span
                   class="text-xs font-extrabold text-teal-700 uppercase tracking-wider bg-teal-50 px-3 py-1.5 rounded-lg inline-block">CLINIC
                   07</span>
+                <span class="text-[11px] font-bold text-teal-600 flex items-center gap-1">
+                  <span>전문 사이트</span>
+                  <i data-lucide="external-link" class="w-3 h-3"></i>
+                </span>
               </div>
               <h3 class="text-2xl font-bold text-toss-black tracking-tight mb-3 group-hover:text-teal-700 transition">
                 공황장애 & 광장공포증</h3>
@@ -682,10 +686,10 @@
             </div>
             <div
               class="pt-5 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-teal-700 group-hover:text-teal-800">
-              <span>상세 인포그래픽 보기</span>
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
+              <span>공황장애 전문홈페이지 바로가기</span>
+              <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
             </div>
-          </div>
+          </a>
 
           <!-- 8. 미주신경성 실신 -->
           <div onclick="openDiseaseModal('syncope')"
@@ -1636,7 +1640,7 @@
             </h4>
             <ul class="space-y-2 text-slate-600">
               <li><a href="https://healim-tic.com" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>틱장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
-              <li><a href="javascript:void(0)" onclick="openDiseaseModal('panic')" class="hover:text-teal-700 transition block font-medium text-slate-800">공황장애</a></li>
+              <li><a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>공황장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
               <li><a href="https://healim-autonomic.com/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>자율신경실조증</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
               <li><a href="javascript:void(0)" onclick="openDiseaseModal('insomnia')" class="hover:text-teal-700 transition block font-medium text-slate-800">불면증</a></li>
               <li><a href="javascript:void(0)" onclick="openDiseaseModal('adhd')" class="hover:text-teal-700 transition block font-medium text-slate-800">ADHD</a></li>
@@ -2193,6 +2197,13 @@
           ${type === 'autonomic' ? `
           <a href="https://healim-autonomic.com/" target="_blank" rel="noopener noreferrer" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
             <span>자율신경특화 공식홈페이지 바로가기</span>
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+          </a>
+          ` : ''}
+
+          ${type === 'panic' ? `
+          <a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
+            <span>공황장애특화 공식홈페이지 바로가기</span>
             <i data-lucide="external-link" class="w-4 h-4"></i>
           </a>
           ` : ''}

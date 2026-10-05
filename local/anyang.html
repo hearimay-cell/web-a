@@ -1091,12 +1091,24 @@
   <section class="bg-[#F8FAFC] py-14 sm:py-20 border-t border-slate-200/70">
     <div class="max-w-7xl mx-auto px-5 sm:px-8">
 
-      <!-- 1. Nationwide Network Button (Redesigned without bulky outer box) -->
+      <!-- 1. Nationwide Network Button (Brand Logo Design) -->
       <div class="text-center">
         <a href="https://healim.com" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center justify-center gap-3 px-8 py-4 sm:px-12 sm:py-5 bg-[#0C3E3B] hover:bg-[#105652] text-white font-black text-base sm:text-xl rounded-2xl shadow-soft-lg hover:shadow-soft-xl hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 group border border-teal-800/40">
-          <span>해아림한의원 전국네트워크 홈페이지 바로가기</span>
-          <i data-lucide="arrow-right" class="w-5 h-5 sm:w-6 sm:h-6 text-teal-300 group-hover:translate-x-1.5 group-hover:text-white transition-all"></i>
+          title="해아림한의원 전국네트워크 공식 홈페이지 바로가기"
+          aria-label="해아림한의원 전국네트워크 공식 홈페이지 바로가기"
+          class="inline-flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-5 px-6 py-4 sm:px-10 sm:py-5 bg-white hover:bg-slate-50/90 rounded-2xl border border-slate-200/90 shadow-soft-md hover:shadow-soft-xl hover:border-teal-400/60 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 group">
+          <picture class="shrink-0 flex items-center">
+            <source srcset="../assets/healim_network_logo.webp" type="image/webp">
+            <img src="../assets/healim_network_logo.png" alt="마음까지 헤아리는 해아림한의원" class="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]">
+          </picture>
+          <div class="flex items-center gap-2 pl-0 sm:pl-5 sm:border-l sm:border-slate-200">
+            <span class="text-xs sm:text-sm font-black text-slate-800 group-hover:text-teal-700 transition-colors">
+              전국네트워크 홈페이지 바로가기
+            </span>
+            <div class="w-6 h-6 rounded-full bg-teal-50 group-hover:bg-teal-700 flex items-center justify-center transition-colors">
+              <i data-lucide="arrow-up-right" class="w-3.5 h-3.5 text-teal-700 group-hover:text-white transition-colors"></i>
+            </div>
+          </div>
         </a>
       </div>
 

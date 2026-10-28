@@ -9,6 +9,7 @@ desktop.ini
 npm-debug.log*
 scratch/
 index.html.html
+__pycache__/
 
 # IDE & Editor
 .vscode/

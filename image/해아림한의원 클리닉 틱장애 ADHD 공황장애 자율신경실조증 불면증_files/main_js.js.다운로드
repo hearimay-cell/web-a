@@ -1,0 +1,723 @@
+﻿function bt(id,after){ 
+$('#'+id+'').fadeOut(150,function() {
+ document.getElementById(id).src = after;
+$('#'+id+'').fadeIn(0);
+  });
+}
+
+
+function Request(valuename)    //javascript로 구현한 Request
+{
+    var rtnval;
+    var nowAddress = unescape(location.href);
+//    var nowAddress = location.href;
+
+    var parameters = new Array();
+    parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+    for(var i = 0 ; i < parameters.length ; i++){
+        if(parameters[i].indexOf(valuename) != -1){
+//            rtnval = parameters[i].split("=")[1];
+            rtnval = unescape(parameters[i].split("=")[1]);
+
+        }
+    }
+
+    if(rtnval == undefined || rtnval == null){
+                rtnval = "";
+    }
+    return rtnval;
+}
+
+
+
+
+function OnSubmitLogin(ThisForm){
+
+		 if (ThisForm.strLoginID.value.length == 0) {
+		    alert('ID를 입력해 주세요.');
+		    ThisForm.strLoginID.focus();
+		    return false;
+		  }
+		  if (ThisForm.strLoginPwd.value.length == 0) {
+		    alert('비밀번호를 입력해 주세요.');
+		    ThisForm.strLoginPwd.focus();
+		    return false;
+		  }
+		ThisForm.action = "/sub.asp?maincode=-501&exec=login_ok";
+                return true;
+	}
+
+	function OnLoginLogout(){
+		location.href = "/sub.asp?maincode=-501&exec=logout";
+	}
+
+	function OnLoginJoin(){
+		location.href = "/sub.asp?maincode=-501&exec=join";
+	}
+
+	function OnLoginEdit(){
+		location.href = "/sub.asp?maincode=-501&exec=edit";
+	}
+
+	function OnLoginFindID(){
+		MM_openBrWindow('/magicboard/Library/findMemberID.asp?EXEC=ID','find_id','width=350');
+	}
+	
+
+function MM_openBrWindow(theURL,winName,features) { //v2.0
+  window.open(theURL,winName,features);
+}
+function setlogin(value)
+{
+	if (value=='1')
+	{
+		document.getElementById('logionmessage').style.display = 'none';
+	}
+	else
+	{
+		document.getElementById('logionmessage').style.display = '';
+	}
+	document.setloginfrm.hlogin.value=value;
+}
+
+
+
+
+ 
+ /////////////// 로그인창 체크.. 
+ function login_check()
+ {
+  var form = document.login;
+   if(!form.id.value) {
+    alert("아이디를 입력하세요!");
+    form.id.focus();
+    return false;
+   }
+   if(!form.pwd.value) {
+    alert("패스워드를 입력하세요!");
+    form.pwd.focus();
+    return false;
+   }
+  }
+
+function isNumObj2(obj) {
+
+ if(/^[0-9]/.test(String.fromCharCode(event.keyCode))) { }
+ else  event.returnValue = false;
+}
+
+////////////// 기본설정 좌측 세부설정 버튼 클릭시 보여지는 테이블 변경시키기..
+function ViewBaseDetail(frm_no)
+{
+	var Detailfrm = document.getElementsByTagName('TABLE');
+	for(i = 3; i < Detailfrm.length; i++)
+	{
+		if (frm_no == i)
+		{
+			Detailfrm[i].style.display='block';
+		}
+		else
+		{
+			Detailfrm[i].style.display='none';
+		}
+	}
+}
+
+////////////// temp에 value 넣기
+
+function InsertHiddenValue(temp,value)
+{
+	temp.value = value;
+}
+
+////////////// 템플릿 사용 유무
+function IsUseTemp(temp)
+{	
+	opener.document.getElementById(temp).style.display='none';
+	self.close();
+}
+
+////////////// 템플릿 사용 유무에 따른 프레임 감추기
+function IsUseTempView(value,frm,temp1,temp2,btn)
+{
+	frm.value=value;
+	
+	if(frm.value == '1')
+	{
+		document.getElementById(temp1).style.display='block';
+		opener.document.getElementById(temp2).style.display='block';
+		btn.style.display='none';
+	}
+	else
+	{
+		document.getElementById(temp1).style.display='none';
+		btn.style.display='block';
+	}
+}
+
+
+////////////인터페이스에 대한 풍선도움말을 띄운다.
+//***************************************************************
+
+function Main_Helpmessage(frm,event,temp)
+{
+	frm.style.color = 'red';
+	frm.style.bordercolor = 'red';
+//	showTooltip('dHTMLToolTip',event, temp, '#FFFEE6','#555555','#000000','5000');
+}
+
+function hideTooltip(object,frm)
+{
+/* 
+if (document.all)
+{
+   locateObject(object).style.visibility="hidden"
+    locateObject(object).style.left = 1;
+    locateObject(object).style.top = 1;
+	frm.style.color= '#594d75';
+	return false;
+}
+else if (document.layers)
+{
+    locateObject(object).visibility="hide"
+    locateObject(object).left = 1;
+    locateObject(object).top = 1;
+	frm.style.color= '#594d75';
+    return false;
+}
+else
+	frm.style.color= '#594d75';
+    return true;
+*/
+}
+
+function hideTooltip1(object)
+{
+if (document.all)
+{
+    locateObject(object).style.visibility="hidden"
+    locateObject(object).style.left = 1;
+    locateObject(object).style.top = 1;
+	return false;
+}
+else if (document.layers)
+{
+    locateObject(object).visibility="hide"
+    locateObject(object).left = 1;
+    locateObject(object).top = 1;
+    return false;
+}
+else
+    return true;
+}
+
+function locateObject(n, d) { //v3.0
+  var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+    d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
+  if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
+  for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=locateObject(n,d.layers[i].document); return x;
+}
+
+function showTooltip(object,e, tipContent, backcolor, bordercolor, textcolor, displaytime)
+{
+    //window.clearTimeout(tipTimer)
+    
+    if (document.all)
+        {
+            locateObject(object).style.top=Math.max(parseInt(document.documentElement.scrollTop),parseInt(document.body.scrollTop))+event.clientY+20
+            
+            locateObject(object).innerHTML='<table style="font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px; border: '+bordercolor+'; border-style: solid; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; background-color: '+backcolor+'" width="10" border="0" cellspacing="1" cellpadding="1"><tr><td nowrap><font style="font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px; color: '+textcolor+'">'+unescape(tipContent)+'</font></td></tr></table> '
+
+            if ((e.x + locateObject(object).clientWidth) > (document.body.clientWidth + Math.max(parseInt(document.documentElement.scrollLeft),parseInt(document.body.scrollLeft))))
+                {    
+                    locateObject(object).style.left = (document.body.clientWidth + Math.max(parseInt(document.documentElement.scrollLeft),parseInt(document.body.scrollLeft))) - locateObject(object).clientWidth-10;
+                }
+            else
+            {
+            locateObject(object).style.left=Math.max(parseInt(document.documentElement.scrollLeft),parseInt(document.body.scrollLeft))+event.clientX
+            }
+        locateObject(object).style.visibility="visible"
+        //tipTimer=window.setTimeout("hideTooltip1('"+object+"')", displaytime);
+        //window.setTimeout("hideTooltip1('"+object+"')", displaytime);
+        }
+    else if (document.layers)
+        {
+        locateObject(object).document.write('<table width="10" border="0" cellspacing="1" cellpadding="1"><tr bgcolor="'+bordercolor+'"><td><table width="10" border="0" cellspacing="0" cellpadding="2"><tr bgcolor="'+backcolor+'"><td nowrap><font style="font-family: Tahoma, Arial, Helvetica, sans-serif; font-size: 11px; color: '+textcolor+'">'+unescape(tipContent)+'</font></td></tr></table><td></tr></table>')
+        locateObject(object).document.close()
+        locateObject(object).top=e.y+20
+
+        if ((e.x + locateObject(object).clip.width) > (window.pageXOffset + window.innerWidth))
+            {
+                locateObject(object).left = window.innerWidth - locateObject(object).clip.width-10;
+            }
+        else
+            {
+            locateObject(object).left=e.x;
+            }
+        locateObject(object).visibility="show"
+        //tipTimer=window.setTimeout("hideTooltip1('"+object+"')", displaytime);
+        //window.setTimeout("hideTooltip1('"+object+"')", displaytime);
+    }
+    else
+    {
+        return true;
+    }
+}
+//**************************************************************************************************************************************
+
+
+
+/////////////// 서브페이지관리...호출
+function Main_Sub_Go()
+{
+	location.href='/sub.asp?maincode='+INCLUDECODE;//MM_openBrWindow('/setting/main/main_sub_go.asp','','scrollbars=yes,resizable=no,width=550,height=500');
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+/////////////////////// SUBMENU //////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+function SUB_SET_Submit(Sub_Set_Numer,maincode,sub_sequence,sub_sub_sequence,code1,code2,code3)
+{
+	var temp = "<form name='SETsubmenu' method='post' action='/sub.asp?maincode="+maincode+"&sub_sequence="+sub_sequence+"&sub_sub_sequence="+sub_sub_sequence+"&code1="+code1+"&code2="+code2+"&code3="+code3+"'><input type='hidden' value='"+Sub_Set_Numer+"' name='Sub_Set_Numer'>";
+	document.getElementById('SUB_SET_DIV').innerHTML = document.getElementById('SUB_SET_DIV').innerHTML + temp;
+	document.SETsubmenu.submit();
+}
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+///////////////////////   SUBMENU END  ///////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
+
+/////////////// 새창 열기
+function MM_openBrWindow(theURL,winName,features)
+{
+	window.open(theURL,winName,features);
+}
+
+/////////////// 이미지 클릭시 프레임 배경으로 설정.
+function clickimg(frm,img,order)
+{	
+	var img1 = new Image();
+	img1.src = img;
+	var hei_1 = opener.document.getElementById(frm).height;
+	opener.document.getElementById(frm).height=img1.height;
+	var hei_2 = opener.document.getElementById(frm).height;
+	var hei_ = hei_2 - hei_1;
+
+	opener.document.getElementById(frm).background=img;
+	LPosition(hei_,order);
+	self.close();
+}
+function clickimg1(frm,img,order)
+{	
+	var img1 = new Image();
+	img1.src = img;
+	var temp = opener.document.getElementById(frm);
+	temp.innerHTML ="<table border='0' cellpadding='0' cellspacing='0' width='198'><form method='post' name='login' action='../member/login_process.asp' onsubmit='JavaScript:return(login_check());'><tr><td width='198' height='26'><IMG height=25 src='../img/login_subject.gif' width=200></td></tr><tr><td width='198' height='45'><TABLE cellSpacing=0 cellPadding=0 width=200 border=0><TR><TD height=5></TD><td></td><td></td></TR><TR><TD width=40><TABLE cellSpacing=0 cellPadding=0 width=100 border=0><TR><TD width=40 height=25><IMG height=9 src='../img/login_id.gif' width=39></TD><TD><INPUT class=loginbox size=12 name=id></TD></TR><TR><TD height=25><IMG height=9 src='../img/login_pass.gif' width=39></TD><TD><INPUT class=loginbox type=password size=12 name=pwd></TD></TR></TABLE></TD><TD align=middle width=50><INPUT type=image height=46 width=45 src='/img/login_btn.gif'></TD><td></td></TR><TR align=middle><td></td><td></td><td></td></tr></table><TABLE height=25 cellSpacing=0 cellPadding=0 width='168' border=0 align='center'><TR><TD class=chon11px ><IMG height=7 src='../img/login_blit.gif' width=7 border=0><FONT color=#000000><a href='../member/join.asp'>회원가입</a></FONT></TD><TD class=chon11px ><IMG height=7 src='../img/login_blit.gif' width=7 border=0><FONT color=#000000><a href='../member/idpass_search.asp'>ID/비밀번호 찾기</a></FONT></TD></TR></TABLE></TD></TR></form></table>"
+	temp.innerHTML = "<img style='z-index:0' src='"+img1.src+"'>";
+	opener.document.getElementById(frm).height=img1.height;
+	self.close();
+}
+/////////////// 레이어 위치 결정
+function LPosition(hei_,order)
+{
+	var divitem = opener.document.getElementsByTagName('DIV');
+//	alert(divitem.length);
+	for(var i=order;i<divitem.length;i++)
+	{
+//		alert(i+'///'+Number(divitem[i].style.top.substring(0,divitem[i].style.top.indexOf('p')))+hei_+'px///'+ Number(divitem[i].style.top.substring(0,divitem[i].style.top.indexOf('p')))+'/////'+hei_);
+		if( 10 < order && order < 17 )
+		{
+			if ( 16 < order && order < 20)
+			{
+				if ( 19 < i && i < 23)
+				{
+					divitem[i].style.top=Number(divitem[i].style.top.substring(0,divitem[i].style.top.indexOf('p')))-hei_+'px';
+				}				
+			}
+			else 
+			{
+				if( 16 < i && i < 23)
+				{
+					divitem[i].style.top=Number(divitem[i].style.top.substring(0,divitem[i].style.top.indexOf('p')))-hei_+'px';
+				}
+			}
+		}
+		divitem[i].style.top=Number(divitem[i].style.top.substring(0,divitem[i].style.top.indexOf('p')))+hei_+'px';
+	}
+}
+
+/////////////// 그림 파일1 미리보기
+
+function view1(url)
+{
+var doc,tmr
+doc=document.all
+
+if(url != "")
+	{
+		f = url.split('.');
+		etc = f.length - 1;
+		if(f[etc] != 'jpg' && f[etc] != 'gif')
+		{
+			alert("현재 jpg와 gif만 지원합니다.")
+			return false;
+		}
+	}
+
+ if(!ImgOk(url)){
+  view1(url)
+ }else{
+  if(ImgOk(url)>1000){
+   doc.icon1.width = 1000;//미리보기시 사이즈 제한한다 설정치보다 크면 자동으로 작아지고 이하면 원본크기 그대로 적용된다
+   doc.icon1.src=url;
+   doc.icon1.style.visibility='visible';
+   return;
+  }else{
+   doc.icon1.src=url;
+   doc.icon1.style.visibility='visible';
+   return;
+  }
+ }
+}
+
+function ImgOk(src){
+ img = new Image();
+ img.src=src;
+ if(!img.complete){
+  return false;
+ }else{
+  clearTimeout(1000);
+  return img.width;
+ }
+}
+
+
+///////////////// 모서리가 둥근 테이블
+
+function roundTable(objID) {
+   var obj = document.getElementById(objID);
+   var Parent, objTmp, Table, TBody, TR, TD;
+   var bdcolor, bgcolor, Space;
+   var trIDX, tdIDX, MAX;
+   var styleWidth, styleHeight;
+
+   Parent = obj.parentNode;
+   objTmp = document.createElement('SPAN');
+   Parent.insertBefore(objTmp, obj);
+   Parent.removeChild(obj);
+
+   bdcolor = obj.getAttribute('rborder');
+   bgcolor = obj.getAttribute('rbgcolor');
+   radius = parseInt(obj.getAttribute('radius'));
+   if (radius == null || radius < 1) radius = 1;
+   else if (radius > 6) radius = 6;
+
+   MAX = radius * 2 + 1;
+
+   Table = document.createElement('TABLE');
+   TBody = document.createElement('TBODY');
+
+   Table.cellSpacing = 0;
+   Table.cellPadding = 0;
+
+   for (trIDX=0; trIDX < MAX; trIDX++) {
+          TR = document.createElement('TR');
+          Space = Math.abs(trIDX - parseInt(radius));
+          for (tdIDX=0; tdIDX < MAX; tdIDX++) {
+                 TD = document.createElement('TD');
+                 
+                 styleWidth = '1px'; styleHeight = '1px';
+                 if (tdIDX == 0 || tdIDX == MAX - 1) styleHeight = null;
+                 else if (trIDX == 0 || trIDX == MAX - 1) styleWidth = null;
+                 else if (radius > 2) {
+                        if (Math.abs(tdIDX - radius) == 1) styleWidth = '2px';
+                        if (Math.abs(trIDX - radius) == 1) styleHeight = '2px';
+                 }
+
+                 if (styleWidth != null) TD.style.width = styleWidth;
+                 if (styleHeight != null) TD.style.height = styleHeight;
+
+                 if (Space == tdIDX || Space == MAX - tdIDX - 1) TD.style.backgroundColor = bdcolor;
+                 else if (tdIDX > Space && Space < MAX - tdIDX - 1)  TD.style.backgroundColor = bgcolor;
+                 
+                 if (Space == 0 && tdIDX == radius) TD.appendChild(obj);
+                 TR.appendChild(TD);
+          }
+          TBody.appendChild(TR);
+   }
+   Table.appendChild(TBody);
+   Parent.insertBefore(Table, objTmp);
+}
+
+//
+
+function move_box(an, box) {
+//링크된 위치에서 부터의 설정값 지정
+  var cleft = -400;  //왼쪽마진  
+  var ctop = -10;  //상단마진
+  var obj = an;
+  while (obj.offsetParent) {
+    cleft += obj.offsetLeft;
+    ctop += obj.offsetTop;
+    obj = obj.offsetParent;
+  }
+  box.style.left = cleft + 'px';
+  ctop += an.offsetHeight + 8;
+  if (document.body.currentStyle &&
+    document.body.currentStyle['marginTop']) {
+    ctop += parseInt(
+      document.body.currentStyle['marginTop']);
+  }
+  box.style.top = ctop + 'px';
+}
+
+function show_hide_box(an, width, height, borderStyle, divseq) {
+  var href = an.href;
+  var boxdiv = document.getElementById('div'+divseq);
+
+  if (boxdiv != null) {
+    if (boxdiv.style.display=='none') {
+      move_box(an, boxdiv);
+      boxdiv.style.display='block';
+    } else
+      boxdiv.style.display='none';
+    return false;
+  }
+
+  boxdiv = document.createElement('div');
+  boxdiv.setAttribute('id', 'div'+divseq);
+  boxdiv.style.display = 'block';
+  boxdiv.style.position = 'absolute';
+  boxdiv.style.width = width + 'px';
+  boxdiv.style.height = height + 'px';
+  boxdiv.style.border = borderStyle;
+  boxdiv.style.backgroundColor = '#fff';
+
+  var contents = document.createElement('iframe');
+  contents.scrolling = 'no';
+  contents.frameBorder = '0';
+  contents.style.width = width + 'px';
+  contents.style.height = height + 'px';
+  contents.src = href;
+
+  boxdiv.appendChild(contents);
+  document.body.appendChild(boxdiv);
+  move_box(an, boxdiv);
+
+  return false;
+}
+
+
+//
+
+function move_box1(an, box) {
+//링크된 위치에서 부터의 설정값 지정
+  var cleft = -300;  //왼쪽마진  
+  var ctop = -10;  //상단마진
+  var obj = an;
+  while (obj.offsetParent) {
+    cleft += obj.offsetLeft;
+    ctop += obj.offsetTop;
+    obj = obj.offsetParent;
+  }
+  box.style.left = cleft + 'px';
+  ctop += an.offsetHeight + 8;
+  if (document.body.currentStyle &&
+    document.body.currentStyle['marginTop']) {
+    ctop += parseInt(
+      document.body.currentStyle['marginTop']);
+  }
+  box.style.top = 156; //ctop + 'px';
+  box.style.left = 158;
+}
+
+function show_hide_box1(an, width, height, borderStyle, divseq) {
+  var href = an.href;
+  var boxdiv = document.getElementById('div'+divseq);
+
+  if (boxdiv != null) {
+    if (boxdiv.style.display=='none') {
+      move_box1(an, boxdiv);
+      boxdiv.style.display='block';
+    } else
+      boxdiv.style.display='none';
+    return false;
+  }
+
+  boxdiv = document.createElement('div');
+  boxdiv.setAttribute('id', 'div'+divseq);
+  boxdiv.style.display = 'block';
+  boxdiv.style.position = 'absolute';
+  boxdiv.style.width = width + 'px';
+  boxdiv.style.height = height + 'px';
+  boxdiv.style.border = borderStyle;
+  boxdiv.style.backgroundColor = '#ff0';
+
+  var contents = document.createElement('iframe');
+  contents.scrolling = 'no';
+  contents.frameBorder = '0';
+  contents.style.width = width + 'px';
+  contents.style.height = height + 'px';
+  contents.src = href;
+
+  boxdiv.appendChild(contents);
+  document.body.appendChild(boxdiv);
+  move_box1(an, boxdiv);
+
+  return false;
+}
+
+
+function NextBack(frm1,frm2)
+{
+	document.getElementById(frm1).style.display = 'none';
+	document.getElementById(frm2).style.display = '';
+}
+
+function last_step(temp)
+{
+	if (temp.content.value=="")
+	{
+		alert('컨텐츠를 선택해주세요');
+		return false;
+	}
+	if (temp.content.value=="9")
+	{
+		if (temp.hlink.value=="")
+		{
+			alert('링크 할 주소를 입력해 주세요.');
+			return false;
+		}
+		else
+		{
+			temp.hlink.value = "http://" + temp.hlink.value;
+		}
+	}
+}
+
+///////// 배경이미지 Y사이즈 *2 로 만들어야 함.
+
+var posint = 0;
+var timerID = 0;
+function back_changer(temp)
+{
+		if (posint==200){posint=0;}
+
+		if (temp)
+		{
+			document.getElementById(temp).background = '/img/click1.gif';
+			document.getElementById(temp).style.backgroundPosition = '50% '+posint+'%' ; 
+			posint+=100;
+		}
+		
+		clearTimeout(timerID);
+		timerID = setTimeout("back_changer('"+temp+"')", 300);
+}
+
+function back_changer_cancel(temp)
+{
+	if(timerID)
+	{
+		clearTimeout(timerID);
+		timerID = 0;
+	}
+	document.getElementById(temp).background = '';
+}
+
+
+function back_changer_cancel_main(temp)
+{
+	if(timerID)
+	{
+		clearTimeout(timerID);
+		timerID = 0;
+	}
+	document.getElementById(temp).background = '';
+}
+
+
+/////// IFRAM 내용에 따라 크기 조절..
+
+var iframeids=["Editor"]
+var iframehide="yes"
+
+var getFFVersion=navigator.userAgent.substring(navigator.userAgent.indexOf("Firefox")).split("/")[1]
+var FFextraHeight=getFFVersion>=0.1? 16 : 0 //extra height in px to add to iframe in FireFox 1.0+ browsers
+
+function resizeCaller() {
+    var dyniframe=new Array()
+    for (i=0; i<iframeids.length; i++){
+    if (document.getElementById)
+        resizeIframe(iframeids[i])
+    if ((document.all || document.getElementById) && iframehide=="no"){
+    var tempobj=document.all? document.all[iframeids[i]] : document.getElementById(iframeids[i])
+        tempobj.style.display="block"
+        }
+    }
+}
+
+function resizeIframe(frameid){
+    var currentfr=document.getElementById(frameid)
+    if (currentfr && !window.opera){
+        currentfr.style.display="block"
+    if (currentfr.contentDocument && currentfr.contentDocument.body.offsetHeight) //ns6 syntax
+        currentfr.height = currentfr.contentDocument.body.offsetHeight+FFextraHeight; 
+    else if (currentfr.Document && currentfr.Document.body.scrollHeight) //ie5+ syntax
+        currentfr.height = currentfr.Document.body.scrollHeight;
+    if (currentfr.addEventListener)
+        currentfr.addEventListener("load", readjustIframe, false)
+    else if (currentfr.attachEvent){
+        currentfr.detachEvent("onload", readjustIframe) // Bug fix line
+        currentfr.attachEvent("onload", readjustIframe)
+        }
+    }
+}
+
+function readjustIframe(loadevt) {
+    var crossevt=(window.event)? event : loadevt
+    var iframeroot=(crossevt.currentTarget)? crossevt.currentTarget : crossevt.srcElement
+    if (iframeroot)
+        resizeIframe(iframeroot.id);
+}
+
+function loadintoIframe(iframeid, url)
+{
+    if (document.getElementById)
+        document.getElementById(iframeid).src=url
+}
+
+function isTouch() {  //모바일 체크
+    try {  
+        document.createEvent("TouchEvent");  
+        return true;  
+    } catch (e) {  
+        return false;  
+    }  
+}    
+
+function hideBoxContents(blocks, offset,effectclass, isuphide) {
+                
+  blocks.each(function(){
+	  if(isuphide){
+      ( $(this).offset().top > $(window).scrollTop()+$(window).height()*offset ) && $(this).removeClass(effectclass).addClass('is-hidden-content');
+    }else{
+	    ( $(this).offset().top > $(window).scrollTop()+$(window).height()*offset ) && $(this).find('.historyline-panel').addClass('is-hidden-content');
+	  }
+  });
+
+}
+
+function showBoxContents(blocks, offset,effectclass) {
+  blocks.each(function(){
+    ( $(this).offset().top <= $(window).scrollTop()+$(window).height()*offset && $(this).hasClass('is-hidden-content') ) && $(this).removeClass('is-hidden-content').addClass(effectclass);
+  });
+}

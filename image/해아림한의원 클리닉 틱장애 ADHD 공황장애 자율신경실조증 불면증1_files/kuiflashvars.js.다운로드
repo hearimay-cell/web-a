@@ -1,0 +1,28 @@
+﻿function cfShowEmbedObject(elementId){
+ document.write(elementId.text);
+ // 동일한 ID를 사용하기 위해 다시 elementID 를 초기화
+ elementId.id = "";
+}
+
+function kuiflash(FURL, mParams, wid, hei,fmode) {
+document.write("<object classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0' width='"+wid+"' height='"+hei+"'>");
+document.write("<param name='movie' value='"+FURL+"' />");
+document.write("<param name='quality' value='high' />");
+document.write("<param name='wmode' value='"+fmode+"' />");
+document.write("<param name='FlashVars' value='" + mParams + "' />");
+document.write("<embed src='" + FURL + "' FlashVars='" + mParams + "' quality='high' wmode='" + fmode+ "'  width='" + wid + "' height='" + hei + "'  type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />");
+document.write("</object>");
+}
+
+function kuiflash_scale(mfid,FURL, mParams, wid, hei,fmode,mfscale,mfsalign) {
+document.write("<object id='" + mfid + "' classid='clsid:d27cdb6e-ae6d-11cf-96b8-444553540000' codebase='http://fpdownload.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=8,0,0,0' width='"+wid+"' height='"+hei+"'>");
+document.write("<param name='allowScriptAccess' value='always' />");
+document.write("<param name='movie' value='"+FURL+"' />");
+document.write("<param name='quality' value='high' />");
+document.write("<param name='wmode' value='"+fmode+"' />");
+document.write("<param name='FlashVars' value='" + mParams + "' />");
+document.write("<param name='salign' value='" + mfsalign + "' />");
+document.write("<param name='scale' value='"+ mfscale +"' />");
+document.write("<embed src='" + FURL + "' salign='" + mfsalign + "' scale='" + mfscale + "' FlashVars='" + mParams + "' quality='high' wmode='" + fmode+ "'  width='" + wid + "' height='" + hei + "'  type='application/x-shockwave-flash' pluginspage='http://www.macromedia.com/go/getflashplayer' />");
+document.write("</object>");
+}

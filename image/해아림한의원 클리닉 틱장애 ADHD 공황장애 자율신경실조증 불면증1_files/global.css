@@ -1,0 +1,21 @@
+﻿@charset "utf-8";
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+/*General CSS*/
+html { width:100%; height:auto; font-family:'Nanum Gothic', Dotum, Arial; }
+html, body, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike,  sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { /*margin:0px; padding:0px; font-size:12px;*/font-family:'Nanum Gothic', Dotum, Arial; }
+fieldset { border:0}
+body { font-size:12px; font-family:Dotum, Arial; color:#444444; line-height:150% }
+table, fieldset, /*th, td, */img { border:none }
+
+a { text-decoration:none; }
+
+
+img {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    background:transparent;
+vertical-align:middle;
+}

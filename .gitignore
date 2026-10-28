@@ -8,6 +8,7 @@ desktop.ini
 *.log
 npm-debug.log*
 scratch/
+index.html.html
 
 # IDE & Editor
 .vscode/

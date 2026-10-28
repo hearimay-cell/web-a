@@ -1,0 +1,16 @@
+﻿function hide(c) { 
+ if (document.getElementById && document.getElementById(c)!= null) 
+ node = document.getElementById(c).style.display='none'; 
+ else if (document.layers && document.layers[c]!= null) 
+ document.layers[c].display = 'none'; 
+ else if (document.all) 
+ document.all[c].style.display = 'none'; 
+}
+function show(c) { 
+ if (document.getElementById && document.getElementById(c)!= null) 
+ node = document.getElementById(c).style.display=''; 
+ else if (document.layers && document.layers[c]!= null) 
+ document.layers[c].display = ''; 
+ else if (document.all) 
+ document.all[c].style.display = ''; 
+} 

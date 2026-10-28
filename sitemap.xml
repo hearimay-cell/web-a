@@ -2,12 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- ==================== MAIN HOMEPAGE ==================== -->
   <url>
     <loc>https://hearimay.com/</loc>
     <lastmod>2026-10-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- ==================== SPECIALTY CLINIC PAGES ==================== -->
   <url>
     <loc>https://hearimay.com/tic-disorder/</loc>
     <lastmod>2026-10-28</lastmod>
@@ -44,6 +48,52 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
+
+  <!-- ==================== /local/ REGIONAL LANDING PAGES ==================== -->
+  <url>
+    <loc>https://hearimay.com/local/anyang.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/beomgye.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/gunpo.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/gwacheon.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/pyeongchon.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/siheung.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://hearimay.com/local/uiwang.html</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ==================== TIC DISORDER REGIONAL SECRET PAGES (1~10) ==================== -->
   <url>
     <loc>https://hearimay.com/tic-disorder/pyeongchon/</loc>
     <lastmod>2026-10-28</lastmod>
@@ -104,6 +154,8 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- ==================== ADHD REGIONAL SECRET PAGES (1~10) ==================== -->
   <url>
     <loc>https://hearimay.com/adhd/pyeongchon/</loc>
     <lastmod>2026-10-28</lastmod>
@@ -164,4 +216,5 @@
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
+
 </urlset>

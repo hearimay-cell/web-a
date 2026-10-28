@@ -213,7 +213,7 @@
       </div>
     </div>
 
-    <!-- 9대 특화진료 바로가기 탭 바 (클릭 시 메인 9대 중점 특화 진료 설명 위치로 이동) -->
+    <!-- 질환연결 탭 바: 9대 특화진료(메인 #specialty) + 핵심 클리닉 개별 페이지 바로가기 -->
     <div class="border-t border-slate-100 bg-white/95 backdrop-blur-md shadow-sm">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 py-2">
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5">
@@ -221,41 +221,25 @@
             <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-700"></i>
             <span>9대 특화진료</span>
           </a>
-          <a href="#specialty" onclick="openDiseaseModal('anxiety')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
-            <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-teal-600 group-hover:scale-110 transition-transform"></i>
-            <span>불안장애</span>
-          </a>
-          <a href="#specialty" onclick="openDiseaseModal('tic')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
+          <a href="/tic-disorder/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
             <i data-lucide="brain" class="w-3.5 h-3.5 text-amber-600 group-hover:scale-110 transition-transform"></i>
             <span>틱장애</span>
           </a>
-          <a href="#specialty" onclick="openDiseaseModal('adhd')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
+          <a href="/tic-disorder/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
             <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-500 group-hover:scale-110 transition-transform"></i>
             <span>ADHD</span>
           </a>
-          <a href="#specialty" onclick="openDiseaseModal('autonomic')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
+          <a href="/dysautonomia/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
             <i data-lucide="scale" class="w-3.5 h-3.5 text-emerald-600 group-hover:scale-110 transition-transform"></i>
             <span>자율신경실조증</span>
           </a>
-          <a href="#specialty" onclick="openDiseaseModal('insomnia')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
+          <a href="/dizziness/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
+            <i data-lucide="rotate-cw" class="w-3.5 h-3.5 text-teal-600 group-hover:rotate-45 transition-transform"></i>
+            <span>어지럼증</span>
+          </a>
+          <a href="/insomnia/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
             <i data-lucide="moon" class="w-3.5 h-3.5 text-indigo-600 group-hover:scale-110 transition-transform"></i>
             <span>불면증</span>
-          </a>
-          <a href="#specialty" onclick="openDiseaseModal('hyperhidrosis')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
-            <i data-lucide="droplets" class="w-3.5 h-3.5 text-cyan-600 group-hover:scale-110 transition-transform"></i>
-            <span>다한증</span>
-          </a>
-          <a href="#specialty" onclick="openDiseaseModal('panic')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
-            <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-blue-600 group-hover:scale-110 transition-transform"></i>
-            <span>공황장애</span>
-          </a>
-          <a href="#specialty" onclick="openDiseaseModal('syncope')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
-            <i data-lucide="activity" class="w-3.5 h-3.5 text-purple-600 group-hover:scale-110 transition-transform"></i>
-            <span>미주신경성실신</span>
-          </a>
-          <a href="#specialty" onclick="openDiseaseModal('digestion')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:text-teal-800 hover:bg-teal-50 transition flex items-center gap-1.5 shrink-0 bg-slate-50 border border-slate-200/60 shadow-soft-sm group">
-            <i data-lucide="shield-plus" class="w-3.5 h-3.5 text-teal-600 group-hover:scale-110 transition-transform"></i>
-            <span>신경성소화장애·담적병</span>
           </a>
         </div>
       </div>
@@ -266,22 +250,31 @@
     <div id="mobileMenu"
       class="hidden md:hidden bg-white/95 backdrop-blur-xl border-b border-slate-100 px-6 py-6 shadow-soft-lg transition-all">
       <div class="flex flex-col space-y-4">
-        <!-- 9대 특화진료 빠른 이동 -->
+        <!-- 특화진료 빠른 이동 -->
         <div class="p-3.5 bg-slate-50 rounded-2xl border border-slate-200/70 mb-2">
           <a href="#specialty" onclick="toggleMobileMenu()" class="text-xs font-black text-teal-800 flex items-center justify-between mb-2.5 hover:underline">
-            <span>9대 중점 특화진료 바로가기</span>
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-600"></i>
+              9대 중점 특화진료 바로가기
+            </span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </a>
-          <div class="grid grid-cols-3 gap-1.5 text-xs font-bold text-slate-700 text-center">
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('anxiety')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">불안장애</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('tic')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">틱장애</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('adhd')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">ADHD</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('autonomic')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">자율신경</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('insomnia')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">불면증</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('hyperhidrosis')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">다한증</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('panic')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">공황장애</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('syncope')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">실신</a>
-            <a href="#specialty" onclick="toggleMobileMenu(); openDiseaseModal('digestion')" class="p-2 rounded-xl bg-white border border-slate-100 hover:text-teal-700">소화장애</a>
+          <div class="grid grid-cols-2 gap-1.5 text-xs font-bold text-slate-700">
+            <a href="/tic-disorder/" class="p-2 rounded-xl bg-white border border-slate-100 flex items-center gap-1.5 hover:text-teal-700">
+              <i data-lucide="brain" class="w-3.5 h-3.5 text-amber-600"></i> 틱장애
+            </a>
+            <a href="/tic-disorder/" class="p-2 rounded-xl bg-white border border-slate-100 flex items-center gap-1.5 hover:text-teal-700">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-amber-500"></i> ADHD
+            </a>
+            <a href="/dysautonomia/" class="p-2 rounded-xl bg-white border border-slate-100 flex items-center gap-1.5 hover:text-teal-700">
+              <i data-lucide="scale" class="w-3.5 h-3.5 text-emerald-600"></i> 자율신경실조증
+            </a>
+            <a href="/dizziness/" class="p-2 rounded-xl bg-white border border-slate-100 flex items-center gap-1.5 hover:text-teal-700">
+              <i data-lucide="rotate-cw" class="w-3.5 h-3.5 text-teal-600"></i> 어지럼증
+            </a>
+            <a href="/insomnia/" class="p-2 rounded-xl bg-white border border-slate-100 col-span-2 flex items-center justify-center gap-1.5 hover:text-teal-700">
+              <i data-lucide="moon" class="w-3.5 h-3.5 text-indigo-600"></i> 불면증 클리닉
+            </a>
           </div>
         </div>
         <a href="#greeting" onclick="toggleMobileMenu()"
@@ -646,7 +639,7 @@
           </div>
 
           <!-- 2. 틱장애 (질환별 전문홈페이지 링크) -->
-          <a href="/tic-disorder/"
+          <a href="https://healim-tic.com" target="_blank" rel="noopener noreferrer"
             class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between block">
             <div>
               <div class="mb-4 flex items-center justify-between">
@@ -666,7 +659,7 @@
             </div>
             <div
               class="pt-5 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-teal-700 group-hover:text-teal-800">
-              <span>소아청소년 틱·ADHD 클리닉</span>
+              <span>틱장애 전문홈페이지 바로가기</span>
               <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -694,7 +687,7 @@
           </div>
 
           <!-- 4. 자율신경실조증 (질환별 전문홈페이지 링크) -->
-          <a href="/dysautonomia/"
+          <a href="https://healim-autonomic.com/" target="_blank" rel="noopener noreferrer"
             class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between block">
             <div>
               <div class="mb-4 flex items-center justify-between">
@@ -714,35 +707,34 @@
             </div>
             <div
               class="pt-5 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-teal-700 group-hover:text-teal-800">
-              <span>자율신경실조증 클리닉 바로가기</span>
+              <span>자율신경 전문홈페이지 바로가기</span>
               <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
             </div>
           </a>
 
           <!-- 5. 수면장애 / 불면증 -->
-          <a href="/insomnia/"
-            class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between block">
+          <div onclick="openDiseaseModal('insomnia')"
+            class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
             <div>
-              <div class="mb-4 flex items-center justify-between">
+              <div class="mb-4">
                 <span
-                  class="text-xs font-extrabold text-teal-700 uppercase tracking-wider bg-teal-50 px-3 py-1.5 rounded-lg inline-block">CLINIC 05</span>
-                <span class="text-[11px] font-bold text-teal-600 flex items-center gap-1">
-                  <span>상세 페이지</span>
-                  <i data-lucide="arrow-right" class="w-3 h-3"></i>
-                </span>
+                  class="text-xs font-extrabold text-teal-700 uppercase tracking-wider bg-teal-50 px-3 py-1.5 rounded-lg inline-block">CLINIC
+                  05</span>
               </div>
-              <h3 class="text-2xl font-bold text-toss-black tracking-tight mb-3 group-hover:text-teal-700 transition">만성 불면 & 수면장애</h3>
+              <h3 class="text-2xl font-bold text-toss-black tracking-tight mb-3 group-hover:text-teal-700 transition">만성
+                불면 & 수면장애</h3>
               <p class="text-slate-600 text-[15px] leading-relaxed mb-6">
                 입면장애, 수면유지장애, 조기각성, 야간 뇌과각성 억제 및 수면제 의존 완화.
               </p>
             </div>
             <div
               class="pt-5 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-teal-700 group-hover:text-teal-800">
-              <span>불면증·수면장애 클리닉 바로가기</span>
+              <span>상세 인포그래픽 보기</span>
               <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
             </div>
-          </a>
-<!-- 6. 다한증 -->
+          </div>
+
+          <!-- 6. 다한증 -->
           <div onclick="openDiseaseModal('hyperhidrosis')"
             class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between">
             <div>
@@ -765,7 +757,7 @@
           </div>
 
           <!-- 7. 공황장애 (질환별 전문홈페이지 링크) -->
-          <a href="/panic-disorder/"
+          <a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer"
             class="bg-white rounded-3xl p-8 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1.5 transition-all duration-300 cursor-pointer group flex flex-col justify-between block">
             <div>
               <div class="mb-4 flex items-center justify-between">
@@ -785,7 +777,7 @@
             </div>
             <div
               class="pt-5 border-t border-slate-100 flex items-center justify-between text-sm font-bold text-teal-700 group-hover:text-teal-800">
-              <span>공황장애 클리닉 바로가기</span>
+              <span>공황장애 전문홈페이지 바로가기</span>
               <i data-lucide="external-link" class="w-4 h-4 group-hover:translate-x-1 transition"></i>
             </div>
           </a>
@@ -1753,9 +1745,9 @@
               진료 질환
             </h4>
             <ul class="space-y-2 text-slate-600">
-              <li><a href="/tic-disorder/" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>틱장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
-              <li><a href="/panic-disorder/" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>공황장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
-              <li><a href="/dysautonomia/" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>자율신경실조증</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+              <li><a href="https://healim-tic.com" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>틱장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+              <li><a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>공황장애</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
+              <li><a href="https://healim-autonomic.com/" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-teal-700 flex items-center gap-1"><span>자율신경실조증</span><i data-lucide="external-link" class="w-3 h-3"></i></a></li>
               <li><a href="javascript:void(0)" onclick="openDiseaseModal('insomnia')" class="hover:text-teal-700 transition block font-medium text-slate-800">불면증</a></li>
               <li><a href="javascript:void(0)" onclick="openDiseaseModal('adhd')" class="hover:text-teal-700 transition block font-medium text-slate-800">ADHD</a></li>
               <li><a href="javascript:void(0)" onclick="openDiseaseModal('anxiety')" class="hover:text-teal-700 transition block font-medium text-slate-800">불안장애</a></li>
@@ -2309,14 +2301,14 @@
           </div>
 
           ${type === 'autonomic' ? `
-          <a href="/dysautonomia/" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
+          <a href="https://healim-autonomic.com/" target="_blank" rel="noopener noreferrer" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
             <span>자율신경특화 공식홈페이지 바로가기</span>
             <i data-lucide="external-link" class="w-4 h-4"></i>
           </a>
           ` : ''}
 
           ${type === 'panic' ? `
-          <a href="/panic-disorder/" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
+          <a href="https://healim-panic.com/" target="_blank" rel="noopener noreferrer" class="py-3 px-4 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-2xl text-xs sm:text-sm transition border border-teal-200 flex items-center justify-center gap-2">
             <span>공황장애특화 공식홈페이지 바로가기</span>
             <i data-lucide="external-link" class="w-4 h-4"></i>
           </a>

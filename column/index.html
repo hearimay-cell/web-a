@@ -151,6 +151,172 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* ==================== EDITORIAL COLUMN GRID & CARD ==================== */
+    .column-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .column-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .column-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1.75rem;
+      }
+    }
+
+    .column-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      background-color: #FFFFFF;
+      border-radius: 16px;
+      border: 1px solid #E2E8F0;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px -4px rgba(11, 17, 32, 0.05), 0 1px 4px -1px rgba(11, 17, 32, 0.02);
+      transition: transform 0.28s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.28s ease, border-color 0.28s ease;
+      overflow: hidden;
+    }
+
+    .column-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0F766E 0%, #14B8A6 100%);
+      opacity: 0;
+      transition: opacity 0.28s ease;
+    }
+
+    .column-card:hover {
+      transform: translateY(-6px);
+      border-color: #99F6E4;
+      box-shadow: 0 22px 42px -12px rgba(15, 118, 110, 0.14), 0 6px 16px -4px rgba(11, 17, 32, 0.04);
+    }
+
+    .column-card:hover::before {
+      opacity: 1;
+    }
+
+    .column-card .category {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 9999px;
+      background-color: #F0FDFA;
+      border: 1px solid #CCFBF1;
+      color: #0F766E;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .column-card h3 {
+      margin: 0 0 0.75rem 0;
+      font-size: 1.1875rem;
+      font-weight: 800;
+      line-height: 1.44;
+      letter-spacing: -0.025em;
+      color: #0B1120;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .column-card h3 a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .column-card:hover h3 a {
+      color: #0F766E;
+    }
+
+    .column-card p {
+      margin: 0 0 1.5rem 0;
+      flex: 1;
+      font-size: 0.9125rem;
+      line-height: 1.68;
+      color: #475569;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .column-card .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid #F1F5F9;
+    }
+
+    .column-card time {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #94A3B8;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .column-card .card-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      color: #0F766E;
+      text-decoration: none;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+
+    .column-card:hover .card-more {
+      color: #115E59;
+      transform: translateX(3px);
+    }
+
+    /* 해시태그 필터 버튼 */
+    .filter-tag-btn {
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      background-color: rgba(255, 255, 255, 0.92);
+      border: 1px solid #CBD5E1;
+      color: #334155;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 8px -2px rgba(11, 17, 32, 0.04);
+    }
+
+    .filter-tag-btn:hover {
+      background-color: #F0FDFA;
+      border-color: #5EEAD4;
+      color: #0F766E;
+    }
+
+    .filter-tag-btn.is-active {
+      background-color: #0F766E;
+      border-color: #0F766E;
+      color: #FFFFFF;
+      box-shadow: 0 8px 20px -6px rgba(15, 118, 110, 0.45);
+    }
   </style>
 </head>
 
@@ -365,14 +531,15 @@
             임상 경험과 의학적 근거를 바탕으로 증상의 원인과 근본적인 회복 방향을 알기 쉽게 정리합니다.
           </p>
 
-          <!-- Quick Category Links -->
-          <div class="pt-2 flex flex-wrap items-center justify-center gap-2">
-            <a href="/dysautonomia/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#자율신경실조증</a>
-            <a href="/panic-disorder/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#공황·불안장애</a>
-            <a href="/insomnia/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#불면증</a>
-            <a href="/dizziness/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#어지럼증</a>
-            <a href="/tic-disorder/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#틱장애</a>
-            <a href="/adhd/" class="px-3.5 py-1.5 rounded-full bg-white/90 hover:bg-teal-50 border border-slate-200 text-xs font-bold text-slate-700 hover:text-teal-800 transition shadow-soft-sm">#ADHD</a>
+          <!-- Interactive Category Filter Hashtags -->
+          <div id="columnFilterBar" class="pt-3 flex flex-wrap items-center justify-center gap-2" role="group" aria-label="카테고리 필터">
+            <button type="button" class="filter-tag-btn is-active" data-filter="all" aria-pressed="true">#전체</button>
+            <button type="button" class="filter-tag-btn" data-filter="자율신경,자율신경실조증" aria-pressed="false">#자율신경실조증</button>
+            <button type="button" class="filter-tag-btn" data-filter="공황,불안" aria-pressed="false">#공황·불안장애</button>
+            <button type="button" class="filter-tag-btn" data-filter="불면,수면" aria-pressed="false">#불면증</button>
+            <button type="button" class="filter-tag-btn" data-filter="어지럼,두통" aria-pressed="false">#어지럼증</button>
+            <button type="button" class="filter-tag-btn" data-filter="틱" aria-pressed="false">#틱장애</button>
+            <button type="button" class="filter-tag-btn" data-filter="adhd,주의력" aria-pressed="false">#ADHD</button>
           </div>
 
         </div>
@@ -413,17 +580,20 @@
         </div>
 
         <!-- Column Cards Grid (파이썬 자동화 스크립트 자동 삽입 영역) -->
-        <div id="columnListGrid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div id="columnListGrid" class="column-grid">
           <!-- COLUMN_LIST_START -->
-
-    <article class="column-card">
-      <span class="category">공황·불안</span>
-      <h3><a href="/column/2026-11-23-anyang-child-panic-disorder-guide.html">안양 어린이 공황장애, 밤마다 반복되는 복통과 불안의 원인</a></h3>
-      <p>아이의 야간 불안과 신체 증상은 단순한 투정이 아닌 자율신경계 불균형의 신호일 수 있습니다. 해아림한의원 유종민 원장이 전하는 소아 공황장애의 원인과 해결책.</p>
-      <time>2026-11-23</time>
-    </article>
-
           <!-- COLUMN_LIST_END -->
+        </div>
+
+        <!-- Filtered Empty State (선택한 카테고리에 해당하는 카드가 없을 때) -->
+        <div id="columnFilterEmpty"
+          class="hidden bg-white rounded-3xl p-10 sm:p-14 border border-slate-200/80 shadow-soft text-center max-w-xl mx-auto mt-6">
+          <p class="text-base sm:text-lg font-extrabold text-toss-black mb-2">선택하신 주제의 칼럼이 아직 등록되지 않았습니다</p>
+          <p class="text-sm text-slate-500 mb-6">전체 보기를 눌러 발행된 다른 치료칼럼을 확인해 보세요.</p>
+          <button type="button" onclick="applyColumnFilter('all')"
+            class="px-5 py-2.5 rounded-xl bg-teal-700 hover:bg-teal-800 text-white font-bold text-xs sm:text-sm transition shadow-soft-sm">
+            전체 칼럼 보기
+          </button>
         </div>
 
         <!-- Empty State (칼럼 카드가 없을 때만 자동 표시, 카드가 삽입되면 JS로 자동 숨김) -->
@@ -703,13 +873,94 @@
     }
     if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', toggleMobileMenu);
 
-    // 칼럼 카드 유무에 따라 빈 상태 안내 자동 토글
-    window.addEventListener('DOMContentLoaded', () => {
-      const grid = document.getElementById('columnListGrid');
+    // 1) 파이썬이 삽입한 .column-card 하단에 '작성일 + 자세히 보기 →' 푸터 자동 정렬
+    function enhanceColumnCards() {
+      const cards = document.querySelectorAll('#columnListGrid .column-card');
+      cards.forEach((card) => {
+        const link = card.querySelector('h3 a');
+        const href = link ? link.getAttribute('href') : '#';
+
+        if (!card.querySelector('.card-footer')) {
+          const timeEl = card.querySelector('time');
+          const footer = document.createElement('div');
+          footer.className = 'card-footer';
+
+          if (timeEl) {
+            footer.appendChild(timeEl);
+          } else {
+            const placeholderTime = document.createElement('time');
+            footer.appendChild(placeholderTime);
+          }
+
+          let moreLink = card.querySelector('.card-more');
+          if (!moreLink) {
+            moreLink = document.createElement('a');
+            moreLink.className = 'card-more';
+            moreLink.href = href;
+            moreLink.textContent = '자세히 보기 →';
+          }
+          footer.appendChild(moreLink);
+          card.appendChild(footer);
+        }
+      });
+    }
+
+    // 2) 해시태그 필터링 로직
+    function applyColumnFilter(filterValue) {
+      const buttons = document.querySelectorAll('#columnFilterBar .filter-tag-btn');
+      const cards = document.querySelectorAll('#columnListGrid .column-card');
       const emptyState = document.getElementById('columnEmptyState');
-      if (grid && emptyState && grid.children.length === 0) {
-        emptyState.classList.remove('hidden');
+      const filterEmpty = document.getElementById('columnFilterEmpty');
+
+      buttons.forEach((btn) => {
+        const isActive = btn.getAttribute('data-filter') === filterValue;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-pressed', String(isActive));
+      });
+
+      if (cards.length === 0) {
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (filterEmpty) filterEmpty.classList.add('hidden');
+        return;
       }
+
+      if (emptyState) emptyState.classList.add('hidden');
+
+      const keywords = filterValue === 'all'
+        ? []
+        : filterValue.split(',').map((k) => k.trim().toLowerCase()).filter(Boolean);
+
+      let visibleCount = 0;
+      cards.forEach((card) => {
+        const catText = (card.querySelector('.category')?.textContent || '').toLowerCase();
+        const titleText = (card.querySelector('h3')?.textContent || '').toLowerCase();
+        const matched = keywords.length === 0 || keywords.some((kw) => catText.includes(kw) || titleText.includes(kw));
+
+        card.style.display = matched ? '' : 'none';
+        if (matched) visibleCount += 1;
+      });
+
+      if (filterEmpty) {
+        filterEmpty.classList.toggle('hidden', visibleCount > 0);
+      }
+    }
+
+    // 초기화
+    window.addEventListener('DOMContentLoaded', () => {
+      enhanceColumnCards();
+
+      const buttons = document.querySelectorAll('#columnFilterBar .filter-tag-btn');
+      buttons.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          applyColumnFilter(btn.getAttribute('data-filter') || 'all');
+          const listSection = document.getElementById('column-list');
+          if (listSection && document.querySelectorAll('#columnListGrid .column-card').length > 0) {
+            listSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        });
+      });
+
+      applyColumnFilter('all');
       lucide.createIcons();
     });
   </script>

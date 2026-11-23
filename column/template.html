@@ -106,50 +106,62 @@
       scrollbar-width: none;
     }
 
-    /* 칼럼 본문 가독성 타이포그래피 스타일 */
+    /* ==================== 에디토리얼 의학 매거진 본문 스타일 ==================== */
+    .editorial-container {
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     .column-content {
-      color: #334155;
-      font-size: 1.0625rem;
+      color: #273449;
+      font-size: 17px;
       line-height: 1.85;
+      letter-spacing: -0.015em;
+      word-break: keep-all;
+    }
+
+    .column-content > *:first-child {
+      margin-top: 0;
     }
 
     .column-content h2 {
-      font-size: 1.5rem;
+      font-size: 1.55rem;
       font-weight: 800;
       color: #0B1120;
-      margin-top: 2.5rem;
-      margin-bottom: 1rem;
-      padding-bottom: 0.625rem;
-      border-bottom: 2px solid #F1F5F9;
-      letter-spacing: -0.025em;
-      line-height: 1.35;
+      margin-top: 3rem;
+      margin-bottom: 1.15rem;
+      padding-bottom: 0.7rem;
+      border-bottom: 2px solid #E2E8F0;
+      letter-spacing: -0.03em;
+      line-height: 1.38;
     }
 
     .column-content h3 {
-      font-size: 1.2rem;
+      font-size: 1.22rem;
       font-weight: 800;
       color: #0F766E;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
+      margin-top: 2.25rem;
+      margin-bottom: 0.85rem;
       letter-spacing: -0.02em;
-      line-height: 1.4;
+      line-height: 1.42;
     }
 
     .column-content p {
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.55rem;
     }
 
     .column-content strong {
-      color: #0F172A;
+      color: #0B1120;
       font-weight: 700;
     }
 
     .column-content blockquote {
-      margin: 1.75rem 0;
-      padding: 1.25rem 1.5rem;
+      margin: 2rem 0;
+      padding: 1.35rem 1.6rem;
       background-color: #F0FDFA;
       border-left: 4px solid #0F766E;
-      border-radius: 0 1rem 1rem 0;
+      border-radius: 0 14px 14px 0;
       color: #134E4A;
       font-weight: 600;
     }
@@ -160,7 +172,7 @@
 
     .column-content ul,
     .column-content ol {
-      margin: 1.25rem 0 1.5rem 0;
+      margin: 1.4rem 0 1.75rem 0;
       padding-left: 1.5rem;
     }
 
@@ -173,24 +185,24 @@
     }
 
     .column-content li {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.65rem;
     }
 
     .column-content img {
       max-width: 100%;
       height: auto;
-      border-radius: 1rem;
-      margin: 1.75rem auto;
+      border-radius: 16px;
+      margin: 2rem auto;
       box-shadow: 0 12px 32px -4px rgba(11, 17, 32, 0.08);
     }
 
     .column-content table {
       width: 100%;
       border-collapse: collapse;
-      margin: 1.75rem 0;
-      font-size: 0.9375rem;
+      margin: 2rem 0;
+      font-size: 0.95rem;
       overflow: hidden;
-      border-radius: 0.75rem;
+      border-radius: 12px;
       border: 1px solid #E2E8F0;
     }
 
@@ -198,13 +210,13 @@
       background-color: #F8FAFC;
       color: #0F172A;
       font-weight: 800;
-      padding: 0.875rem 1rem;
+      padding: 0.9rem 1rem;
       border: 1px solid #E2E8F0;
       text-align: left;
     }
 
     .column-content td {
-      padding: 0.875rem 1rem;
+      padding: 0.9rem 1rem;
       border: 1px solid #E2E8F0;
     }
 
@@ -216,8 +228,314 @@
     }
 
     .column-content hr {
-      margin: 2.25rem 0;
+      margin: 2.5rem 0;
       border-color: #E2E8F0;
+    }
+
+    /* ==================== 6대 에디토리얼 전용 컴포넌트 ==================== */
+
+    /* 1) .summary-box : AEO 두괄식 핵심 요약 박스 */
+    .column-content .summary-box {
+      margin: 0 0 2.4rem 0;
+      padding: 1.6rem 1.75rem;
+      background: linear-gradient(135deg, #ECFDF5 0%, #F0FDFA 100%);
+      border: 1px solid #A7F3D0;
+      border-left: 5px solid #059669;
+      border-radius: 6px 16px 16px 6px;
+      color: #064E3B;
+      box-shadow: 0 8px 24px -10px rgba(5, 150, 105, 0.14);
+    }
+
+    .column-content .summary-box h2,
+    .column-content .summary-box h3,
+    .column-content .summary-box h4,
+    .column-content .summary-box .summary-title {
+      margin: 0 0 0.7rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #047857;
+      letter-spacing: -0.015em;
+    }
+
+    .column-content .summary-box p {
+      margin-bottom: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.8;
+      color: #065F46;
+    }
+
+    .column-content .summary-box p:last-child,
+    .column-content .summary-box ul:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 2) .callout-empathy : 진료실 환자 공감 인용 박스 */
+    .column-content .callout-empathy {
+      position: relative;
+      margin: 2.2rem 0;
+      padding: 1.65rem 1.8rem 1.65rem 2.1rem;
+      background-color: #F7F5F0;
+      border: 1px solid #E6E0D5;
+      border-left: 4px solid #A89A84;
+      border-radius: 6px 16px 16px 6px;
+      color: #3D3730;
+    }
+
+    .column-content .callout-empathy::before {
+      content: '“';
+      position: absolute;
+      top: 0.45rem;
+      left: 0.7rem;
+      font-family: Georgia, serif;
+      font-size: 2.6rem;
+      line-height: 1;
+      color: #C7BDAE;
+      pointer-events: none;
+    }
+
+    .column-content .callout-empathy p {
+      margin-bottom: 0.7rem;
+      font-size: 1.03rem;
+      line-height: 1.82;
+      font-weight: 500;
+      color: #3D3730;
+    }
+
+    .column-content .callout-empathy p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 3) .mechanism-grid / .mechanism-card : 자율신경·뇌신경·심리 기전 정리 카드 */
+    .column-content .mechanism-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin: 2.2rem 0;
+    }
+
+    @media (min-width: 640px) {
+      .column-content .mechanism-grid {
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 1.15rem;
+      }
+    }
+
+    .column-content .mechanism-card {
+      background-color: #F8FAFC;
+      border: 1px solid #E2E8F0;
+      border-top: 3px solid #0F766E;
+      border-radius: 14px;
+      padding: 1.35rem 1.3rem;
+      box-shadow: 0 4px 16px -6px rgba(11, 17, 32, 0.06);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+    }
+
+    .column-content .mechanism-card:hover {
+      transform: translateY(-3px);
+      border-color: #99F6E4;
+      box-shadow: 0 12px 26px -10px rgba(15, 118, 110, 0.14);
+    }
+
+    .column-content .mechanism-card h3,
+    .column-content .mechanism-card h4 {
+      margin: 0 0 0.6rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1.04rem;
+      font-weight: 800;
+      color: #0F766E;
+      line-height: 1.4;
+    }
+
+    .column-content .mechanism-card p {
+      margin: 0;
+      font-size: 0.9375rem;
+      line-height: 1.68;
+      color: #475569;
+    }
+
+    /* 4) .checklist-box : 증상 자가점검 체크리스트 박스 */
+    .column-content .checklist-box {
+      margin: 2.25rem 0;
+      padding: 1.65rem 1.8rem;
+      background-color: #F8FAFC;
+      border: 1px solid #CBD5E1;
+      border-radius: 16px;
+      box-shadow: 0 4px 18px -6px rgba(11, 17, 32, 0.05);
+    }
+
+    .column-content .checklist-box h3,
+    .column-content .checklist-box h4 {
+      margin: 0 0 1rem 0;
+      padding: 0 0 0.7rem 0;
+      border-bottom: 1px solid #E2E8F0;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #0B1120;
+    }
+
+    .column-content .checklist-box ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .column-content .checklist-box li {
+      position: relative;
+      padding-left: 2rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #334155;
+    }
+
+    .column-content .checklist-box li:last-child {
+      margin-bottom: 0;
+    }
+
+    .column-content .checklist-box li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 6px;
+      background-color: #CCFBF1;
+      border: 1px solid #5EEAD4;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F766E' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 0.8rem 0.8rem;
+    }
+
+    /* 5) .doctor-note : 유종민 원장의 임상 노트 강조 박스 */
+    .column-content .doctor-note {
+      margin: 2.5rem 0;
+      padding: 1.75rem 1.85rem;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F0FDFA 100%);
+      border: 1.5px solid #99F6E4;
+      border-radius: 18px;
+      box-shadow: 0 12px 30px -10px rgba(15, 118, 110, 0.12);
+    }
+
+    .column-content .doctor-note::before {
+      content: '유종민 원장의 임상 노트  ·  한방내과 전문의 · 상담심리학 박사';
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #0F766E;
+      letter-spacing: -0.015em;
+      padding-bottom: 0.8rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid #CCFBF1;
+    }
+
+    .column-content .doctor-note h3,
+    .column-content .doctor-note h4 {
+      margin: 0 0 0.65rem 0;
+      padding: 0;
+      border: none;
+      font-size: 1.08rem;
+      font-weight: 800;
+      color: #0B1120;
+    }
+
+    .column-content .doctor-note p {
+      margin-bottom: 0.9rem;
+      font-size: 1rem;
+      line-height: 1.82;
+      color: #1E293B;
+    }
+
+    .column-content .doctor-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 6) .faq-item : 자주 묻는 질문(Q&A) 접고 펼치는 아코디언 */
+    .column-content details.faq-item,
+    .column-content .faq-item details {
+      margin: 0 0 0.9rem 0;
+      background-color: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .column-content details.faq-item[open],
+    .column-content .faq-item details[open] {
+      border-color: #5EEAD4;
+      box-shadow: 0 10px 24px -10px rgba(15, 118, 110, 0.14);
+    }
+
+    .column-content details.faq-item summary,
+    .column-content .faq-item details summary {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1.15rem 1.35rem;
+      font-size: 1.02rem;
+      font-weight: 800;
+      color: #0B1120;
+      line-height: 1.5;
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .column-content details.faq-item summary::-webkit-details-marker,
+    .column-content .faq-item details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .column-content details.faq-item summary:hover,
+    .column-content .faq-item details summary:hover {
+      background-color: #F8FAFC;
+      color: #0F766E;
+    }
+
+    .column-content details.faq-item summary::after,
+    .column-content .faq-item details summary::after {
+      content: '+';
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 9999px;
+      background-color: #F0FDFA;
+      border: 1px solid #CCFBF1;
+      color: #0F766E;
+      font-size: 1.15rem;
+      font-weight: 700;
+      line-height: 1;
+      transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .column-content details.faq-item[open] summary::after,
+    .column-content .faq-item details[open] summary::after {
+      content: '−';
+      background-color: #0F766E;
+      border-color: #0F766E;
+      color: #FFFFFF;
+    }
+
+    .column-content details.faq-item > :not(summary),
+    .column-content .faq-item details > :not(summary) {
+      margin: 0;
+      padding: 1.15rem 1.35rem 1.3rem 1.35rem;
+      background-color: #F8FAFC;
+      border-top: 1px solid #F1F5F9;
+      font-size: 0.975rem;
+      line-height: 1.8;
+      color: #334155;
     }
   </style>
 </head>
@@ -394,8 +712,8 @@
 
   <main class="pt-32 sm:pt-36 pb-20">
     <!-- ==================== ARTICLE HEADER ==================== -->
-    <section class="bg-white border-b border-slate-100 py-10 sm:py-14">
-      <div class="max-w-4xl mx-auto px-5 sm:px-8 space-y-5">
+    <section class="bg-white border-b border-slate-100 py-12 sm:py-16">
+      <div class="editorial-container px-5 sm:px-8 space-y-5">
         <!-- Breadcrumb -->
         <nav aria-label="Breadcrumb" class="flex flex-wrap items-center gap-2 text-xs font-semibold text-slate-500">
           <a href="/" class="hover:text-teal-700 transition">홈</a>
@@ -446,7 +764,7 @@
     </section>
 
     <!-- ==================== ARTICLE BODY ==================== -->
-    <div class="max-w-4xl mx-auto px-5 sm:px-8 mt-8 sm:mt-12 space-y-10">
+    <div class="editorial-container px-5 sm:px-8 mt-8 sm:mt-12 space-y-10">
       <article class="bg-white rounded-3xl p-6 sm:p-12 border border-slate-100 shadow-soft">
         <div class="column-content">
           {{CONTENT_HTML}}

@@ -994,7 +994,7 @@
               <button id="tabNewsBtn" onclick="switchMediaTab('news')"
                 class="px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 bg-white text-toss-black shadow-soft-sm flex items-center gap-2">
                 <i data-lucide="newspaper" class="w-4 h-4 text-teal-700"></i>
-                <span>언론보도 & 칼럼 (11)</span>
+                <span>언론보도 & 칼럼 (12)</span>
               </button>
               <button id="tabYoutubeBtn" onclick="switchMediaTab('youtube')"
                 class="px-4 sm:px-5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-2">
@@ -1046,7 +1046,7 @@
           <div class="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl bg-white border border-slate-200/80 shadow-soft-sm">
             <div class="text-xs sm:text-sm text-slate-500 font-medium flex items-center gap-2">
               <i data-lucide="file-text" class="w-4 h-4 text-teal-700"></i>
-              <span>총 <strong class="text-teal-800 font-extrabold">11편</strong>의 언론 칼럼 중 <strong id="newsRangeText" class="text-toss-black font-extrabold">1~6편</strong> 표시</span>
+              <span>총 <strong class="text-teal-800 font-extrabold">12편</strong>의 언론 칼럼 중 <strong id="newsRangeText" class="text-toss-black font-extrabold">1~6편</strong> 표시</span>
             </div>
 
             <!-- Center: Pagination (1 / 2) Buttons -->
@@ -1056,7 +1056,7 @@
                 <span>1</span>
               </button>
               <button id="newsPage2Btn" onclick="setNewsPage(2)"
-                class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1" title="2페이지 보기 (7~11번 칼럼)">
+                class="px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all duration-200 text-slate-600 hover:text-toss-black flex items-center gap-1" title="2페이지 보기 (7~12번 칼럼)">
                 <span>2</span>
               </button>
               <span class="text-slate-300 text-xs mx-1">|</span>
@@ -1067,7 +1067,7 @@
             <div>
               <button id="newsToggleMoreBtn" onclick="toggleNewsShowAll()"
                 class="px-4 py-2.5 rounded-xl bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold text-xs transition border border-teal-200/80 flex items-center gap-1.5 shadow-soft-sm">
-                <span id="newsToggleMoreText">칼럼 5개 더 보기</span>
+                <span id="newsToggleMoreText">칼럼 6개 더 보기</span>
                 <i id="newsToggleMoreIcon" data-lucide="chevron-down" class="w-4 h-4 text-teal-700"></i>
               </button>
             </div>
@@ -2402,10 +2402,21 @@
       document.body.style.overflow = 'auto';
     }
 
-    // 7. 신문기사 및 언론 칼럼 데이터 (11선)
+    // 7. 신문기사 및 언론 칼럼 데이터 (12선)
     const NEWS_ARTICLES = [
       {
         id: 1,
+        title: "'틱장애' 동반된 불면증·자율신경실조증 증상까지 치료해야",
+        press: "보건뉴스",
+        badge: "언론보도",
+        category: "틱장애 · 불면 · 자율신경",
+        date: "2026.10",
+        summary: "아이의 눈 깜빡임·헛기침 등 틱장애와 함께 불면증, 두근거림, 어지럼증 같은 자율신경실조증 증상이 동반된다면 수면과 스트레스·신경계 균형까지 함께 살펴 원인별 맞춤 치료를 진행해야 합니다.",
+        url: "https://www.bokuennews.com/news/article.html?no=285985",
+        image: "https://www.bokuennews.com/data/photos/cdn/20261043/art_1792720051.png"
+      },
+      {
+        id: 2,
         title: "어지럼증·두근거림… 공황장애와 미주신경성실신 증상, 자율신경계 검사와 치료 중요",
         press: "베이비뉴스",
         badge: "유종민 원장 칼럼",
@@ -2416,7 +2427,7 @@
         image: "https://www.ibabynews.com/img/1200/news/photo/202609/154631_122104_2246_jpg.webp"
       },
       {
-        id: 2,
+        id: 3,
         title: "불면증과 어지럼증 증상 반복되면, 수면장애 원인 찾아 치료로 극복해야",
         press: "월간암(癌)",
         badge: "언론보도",
@@ -2427,7 +2438,7 @@
         image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&w=640&q=80"
       },
       {
-        id: 3,
+        id: 4,
         title: "땀 많은 체질 다한증, 손·얼굴 땀 유발한 자율신경기능이상 함께 치료해야",
         press: "메디컬투데이",
         badge: "언론보도",
@@ -2438,7 +2449,7 @@
         image: "https://cdn.mdtoday.co.kr/news/photo/202607/605386_305822_5949.png"
       },
       {
-        id: 4,
+        id: 5,
         title: "불면증과 동반된 어지럼증 두통 증상, 자율신경계 이상까지 치료로 극복해야",
         press: "메디컬투데이",
         badge: "언론보도",
@@ -2449,7 +2460,7 @@
         image: "https://cdn.mdtoday.co.kr/news/photo/202606/601650_301384_5349.png"
       },
       {
-        id: 5,
+        id: 6,
         title: "틱장애 증상, ADHD·불안장애 동반 등 원인별 치료 방법과 사회적 지지가 필요하다",
         press: "베이비뉴스",
         badge: "유종민 원장 칼럼",
@@ -2460,7 +2471,7 @@
         image: "https://www.ibabynews.com/news/photo/202605/151604_113804_4623.png"
       },
       {
-        id: 6,
+        id: 7,
         title: "불면증과 불안장애 증상 함께 나타나기 쉬워…악화 전 병행 치료로 극복해야",
         press: "미디어파인",
         badge: "유종민 원장 칼럼",
@@ -2471,7 +2482,7 @@
         image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=640&q=80"
       },
       {
-        id: 7,
+        id: 8,
         title: "틱 증상 치료, 눈꺼풀떨림·눈떨림 원인부터 살펴야 하는 이유",
         press: "베이비뉴스",
         badge: "유종민 원장 칼럼",
@@ -2482,7 +2493,7 @@
         image: "https://www.ibabynews.com/news/photo/202603/149769_108988_3611.jpg"
       },
       {
-        id: 8,
+        id: 9,
         title: "땀많은 체질의 다한증… 얼굴·손의 땀, 자율신경계와의 연관성도 살펴야",
         press: "E동아 (동아일보)",
         badge: "언론보도",
@@ -2493,7 +2504,7 @@
         image: "https://cdn.edu.donga.com/news/photo/202608/110727_175091_2541.png"
       },
       {
-        id: 9,
+        id: 10,
         title: "얼굴·손에 땀이 멈추지 않는 다한증, 자율신경계 검사로 원인 찾아 치료해야",
         press: "메디컬투데이",
         badge: "언론보도",
@@ -2504,7 +2515,7 @@
         image: "https://cdn.mdtoday.co.kr/news/photo/202605/529492_1_3841.png"
       },
       {
-        id: 10,
+        id: 11,
         title: "갑작스러운 어지럼증·두근거림…공황장애와 미주신경성실신, 자율신경계 검사와 치료 중요",
         press: "메디컬투데이",
         badge: "언론보도",
@@ -2515,7 +2526,7 @@
         image: "https://cdn.mdtoday.co.kr/news/photo/202604/528110_1_4236.png"
       },
       {
-        id: 11,
+        id: 12,
         title: "틱장애 증상 있다면 동반된 ADHD도 함께 치료해야",
         press: "메디컬투데이",
         badge: "언론보도",
@@ -2527,7 +2538,7 @@
       }
     ];
 
-    let currentNewsViewMode = 1; // 1: 1페이지 (1~6번), 2: 2페이지 (7~11번), 'all': 전체 11편
+    let currentNewsViewMode = 1; // 1: 1페이지 (1~6번), 2: 2페이지 (7~12번), 'all': 전체 12편
 
     function setNewsPage(page) {
       currentNewsViewMode = page;

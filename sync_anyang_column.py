@@ -3,6 +3,8 @@ import re
 import json
 import time
 import datetime
+from email.utils import format_datetime
+from xml.sax.saxutils import escape as xml_escape
 import requests
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin, urlparse, parse_qs, urlencode, urlunparse
@@ -14,10 +16,12 @@ SOURCE_URL = "https://www.healim.com/column_news"
 TARGET_BRANCH_KEYWORDS = ["안양", "안양점", "안양지점", "유종민"]
 SITE_DOMAIN = "https://hearimay.com"
 
+COLUMN_DIR = "column"
 SYNC_LOG_PATH = "column/synced_posts.json"
 TEMPLATE_PATH = "column/template.html"
 INDEX_PATH = "column/index.html"
 SITEMAP_PATH = "sitemap.xml"
+RSS_PATH = "rss.xml"
 
 # Gemini API 클라이언트 (환경변수 GEMINI_API_KEY 사용)
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
@@ -548,24 +552,153 @@ def build_column_page(data, report):
     print(f"[생성 완료] {canonical_url}")
 
 
+def generate_rss_feed(max_items: int = 20):
+    """column/ 폴더 내 개별 칼럼 HTML을 스캔해 네이버 서치어드바이저용 표준 RSS 2.0(rss.xml) 생성·갱신"""
+    kst = datetime.timezone(datetime.timedelta(hours=9))
+    excluded_files = {"index.html", "template.html"}
+    items = []
+
+    if os.path.isdir(COLUMN_DIR):
+        for filename in os.listdir(COLUMN_DIR):
+            if not filename.endswith(".html") or filename in excluded_files:
+                continue
+
+            filepath = os.path.join(COLUMN_DIR, filename)
+            if not os.path.isfile(filepath):
+                continue
+
+            with open(filepath, "r", encoding="utf-8") as f:
+                soup = BeautifulSoup(f.read(), "html.parser")
+
+            # 제목: <h1> 우선, 없으면 <title>에서 사이트 접미사 제거
+            h1_el = soup.select_one("main h1") or soup.select_one("h1")
+            if h1_el and h1_el.get_text(" ", strip=True):
+                title = h1_el.get_text(" ", strip=True)
+            elif soup.title and soup.title.get_text(" ", strip=True):
+                title = soup.title.get_text(" ", strip=True).split("|")[0].strip()
+            else:
+                title = os.path.splitext(filename)[0]
+
+            # 요약: meta description 우선, 없으면 og:description / 첫 문단
+            meta_desc = soup.find("meta", attrs={"name": "description"})
+            og_desc = soup.find("meta", attrs={"property": "og:description"})
+            if meta_desc and meta_desc.get("content"):
+                description = meta_desc["content"].strip()
+            elif og_desc and og_desc.get("content"):
+                description = og_desc["content"].strip()
+            else:
+                first_p = soup.select_one(".column-content p")
+                description = first_p.get_text(" ", strip=True)[:160] if first_p else title
+
+            # 카테고리: Breadcrumb 마지막 span 또는 tag 아이콘 부모 span
+            category = "치료칼럼"
+            breadcrumb_cat = soup.select_one('nav[aria-label="Breadcrumb"] span')
+            if breadcrumb_cat and breadcrumb_cat.get_text(" ", strip=True):
+                category = breadcrumb_cat.get_text(" ", strip=True)
+            else:
+                tag_icon = soup.select_one('i[data-lucide="tag"]')
+                if tag_icon and tag_icon.parent:
+                    cat_text = tag_icon.parent.get_text(" ", strip=True)
+                    if cat_text:
+                        category = cat_text
+
+            # 날짜: 파일명 YYYY-MM-DD 기준 (없으면 <time> 또는 파일 수정 시각)
+            date_match = re.match(r"^(\d{4})-(\d{2})-(\d{2})-", filename)
+            if date_match:
+                y, m, d = map(int, date_match.groups())
+                pub_dt = datetime.datetime(y, m, d, 9, 0, 0, tzinfo=kst)
+            else:
+                time_el = soup.select_one("time")
+                time_match = (
+                    re.search(r"(\d{4})-(\d{2})-(\d{2})", time_el.get_text(strip=True))
+                    if time_el
+                    else None
+                )
+                if time_match:
+                    y, m, d = map(int, time_match.groups())
+                    pub_dt = datetime.datetime(y, m, d, 9, 0, 0, tzinfo=kst)
+                else:
+                    pub_dt = datetime.datetime.fromtimestamp(os.path.getmtime(filepath), tz=kst)
+
+            url = f"{SITE_DOMAIN}/column/{filename}"
+            items.append(
+                {
+                    "title": title,
+                    "description": description,
+                    "category": category,
+                    "pub_dt": pub_dt,
+                    "pub_date_rfc822": format_datetime(pub_dt),
+                    "url": url,
+                    "filename": filename,
+                }
+            )
+
+    # 최신 날짜순 정렬 후 최대 max_items(20)개 선택
+    items.sort(key=lambda x: (x["pub_dt"], x["filename"]), reverse=True)
+    recent_items = items[:max_items]
+
+    last_build_date = format_datetime(datetime.datetime.now(kst))
+    rss_url = f"{SITE_DOMAIN}/rss.xml"
+    channel_link = f"{SITE_DOMAIN}/column/"
+
+    lines = [
+        '<?xml version="1.0" encoding="UTF-8"?>',
+        '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+        "  <channel>",
+        f"    <title>{xml_escape('해아림한의원 안양점 치료칼럼')}</title>",
+        f"    <link>{xml_escape(channel_link)}</link>",
+        f"    <description>{xml_escape('한방내과 전문의 · 상담심리학 박사 유종민 원장이 전하는 자율신경실조증, 공황장애, 불면증, 틱장애, ADHD 심층 의학 칼럼')}</description>",
+        "    <language>ko</language>",
+        f"    <lastBuildDate>{last_build_date}</lastBuildDate>",
+        f'    <atom:link href="{xml_escape(rss_url)}" rel="self" type="application/rss+xml" />',
+    ]
+
+    for item in recent_items:
+        lines.extend(
+            [
+                "    <item>",
+                f"      <title>{xml_escape(item['title'])}</title>",
+                f"      <link>{xml_escape(item['url'])}</link>",
+                f'      <guid isPermaLink="true">{xml_escape(item["url"])}</guid>',
+                f"      <description>{xml_escape(item['description'])}</description>",
+                f"      <category>{xml_escape(item['category'])}</category>",
+                f"      <pubDate>{item['pub_date_rfc822']}</pubDate>",
+                "    </item>",
+            ]
+        )
+
+    lines.extend(["  </channel>", "</rss>", ""])
+
+    with open(RSS_PATH, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
+
+    print(f"[RSS 갱신 완료] {RSS_PATH} (총 {len(recent_items)}개 항목 반영)")
+
+
 def main():
     synced_urls = load_synced_urls()
     new_posts = fetch_new_anyang_posts(synced_urls)
 
     if not new_posts:
         print("신규 안양지점 칼럼이 없습니다.")
+        if not os.path.exists(RSS_PATH):
+            generate_rss_feed()
         return
 
+    created_count = 0
     for post in new_posts:
         try:
             orig_content = fetch_post_content(post["url"])
             upgraded_data, report = rewrite_and_upgrade_column(post["title"], orig_content)
             build_column_page(upgraded_data, report)
             synced_urls.append(post["url"])
+            created_count += 1
         except Exception as e:
             print(f"[오류] {post['url']}: {e}")
 
     save_synced_urls(synced_urls)
+    if created_count > 0 or not os.path.exists(RSS_PATH):
+        generate_rss_feed()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>해아림한의원 안양점 치료칼럼</title>
+    <link>https://hearimay.com/column/</link>
+    <description>한방내과 전문의 · 상담심리학 박사 유종민 원장이 전하는 자율신경실조증, 공황장애, 불면증, 틱장애, ADHD 심층 의학 칼럼</description>
+    <language>ko</language>
+    <lastBuildDate>Mon, 23 Nov 2026 16:42:04 +0900</lastBuildDate>
+    <atom:link href="https://hearimay.com/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>밤마다 숨 막히는 소아 공황장애 원인과 한의학적 치료법</title>
+      <link>https://hearimay.com/column/2026-11-23-pediatric-panic-disorder-causes-treatment.html</link>
+      <guid isPermaLink="true">https://hearimay.com/column/2026-11-23-pediatric-panic-disorder-causes-treatment.html</guid>
+      <description>밤마다 구역감과 숨 막힘을 호소하는 소아 공황장애의 뇌신경·자율신경적 원인과 한의학·심리학적 통합 치료법을 해아림한의원 안양점 유종민 원장이 상세히 설명합니다.</description>
+      <category>공황·불안장애</category>
+      <pubDate>Mon, 23 Nov 2026 09:00:00 +0900</pubDate>
+    </item>
+  </channel>
+</rss>

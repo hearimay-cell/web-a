@@ -33,5 +33,5 @@ jobs:
         run: |
           git config --global user.name "Hearim-Anyang-Bot"
           git config --global user.email "bot@hearimay.com"
-          git add column/ sitemap.xml
+          git add column/ sitemap.xml rss.xml
           git diff --staged --quiet || (git commit -m "Add upgraded Anyang medical column" && git push)

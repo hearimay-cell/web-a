@@ -1,6 +1,7 @@
 import os
 import re
 import json
+import time
 import datetime
 import requests
 from bs4 import BeautifulSoup
@@ -23,6 +24,11 @@ client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 optimizer = PostOptimizer()
 _CACHED_FLASH_MODELS = None
 # ============================================
+
+# 제외할 특정 모델명
+EXCLUDED_EXACT_MODELS = {
+    "gemini-2.5-flash",
+}
 
 # 텍스트/JSON 생성에 부적합한 특수 모달리티·전용 모델 제외 키워드
 EXCLUDED_MODEL_KEYWORDS = (
@@ -78,6 +84,8 @@ def get_available_flash_models():
             continue
 
         if not short_lower.startswith("gemini-"):
+            continue
+        if short_lower in EXCLUDED_EXACT_MODELS:
             continue
         if any(ex in short_lower for ex in EXCLUDED_MODEL_KEYWORDS):
             continue
@@ -224,29 +232,32 @@ def rewrite_and_upgrade_column(orig_title, orig_content):
 {orig_content[:4000]}
 """
     candidate_models = get_available_flash_models()
-    response = None
+    data = None
+    selected_model = None
     last_error = None
-    for model_name in candidate_models:
+
+    for idx, model_name in enumerate(candidate_models):
         try:
+            print(f"[모델 호출 시도] ({idx + 1}/{len(candidate_models)}) {model_name}")
             response = client.models.generate_content(
                 model=model_name,
                 contents=prompt,
                 config={"response_mime_type": "application/json"},
             )
-            print(f"[모델 호출 성공] 사용 모델: {model_name}")
+            data = json.loads(response.text)
+            selected_model = model_name
+            print(f"[모델 호출 성공] 최종 성공 모델: {selected_model}")
             break
         except Exception as e:
             last_error = e
-            err_msg = str(e)
-            if "404" in err_msg or "NOT_FOUND" in err_msg or "not supported" in err_msg.lower():
-                print(f"[모델 건너뜀] {model_name} 사용 불가 -> 다음 후보 시도 ({e})")
-                continue
-            raise
+            if idx + 1 < len(candidate_models):
+                print(f"[모델 오류] {model_name} 실패 ({e}) -> 2초 대기 후 다음 순위 모델로 재시도합니다.")
+                time.sleep(2)
+            else:
+                print(f"[모델 오류] {model_name} 실패 ({e}) -> 더 이상 시도할 후보 모델이 없습니다.")
 
-    if response is None:
+    if data is None:
         raise RuntimeError(f"사용 가능한 모든 Gemini 모델 호출에 실패했습니다: {last_error}")
-
-    data = json.loads(response.text)
 
     # 기존 auto_post_optimizer.py로 품질 검증
     report = optimizer.analyze_post(data["title"], data["content_text"])

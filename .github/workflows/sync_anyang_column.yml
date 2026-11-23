@@ -1,0 +1,37 @@
+name: Sync Anyang Column from Healim
+
+on:
+  schedule:
+    # 매일 오전 9시(KST, UTC 00:00) 자동 체크 (새 글이 없으면 아무것도 커밋하지 않음)
+    - cron: '0 0 * * *'
+  workflow_dispatch: # 원할 때 수동 실행 가능
+
+permissions:
+  contents: write
+
+jobs:
+  sync-column:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4 google-genai
+
+      - name: Run Sync Script
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python sync_anyang_column.py
+
+      - name: Commit and Push if changed
+        run: |
+          git config --global user.name "Hearim-Anyang-Bot"
+          git config --global user.email "bot@hearimay.com"
+          git add column/ sitemap.xml
+          git diff --staged --quiet || (git commit -m "Add upgraded Anyang medical column" && git push)

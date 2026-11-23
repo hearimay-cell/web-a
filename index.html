@@ -174,10 +174,11 @@
         </a>
 
         <!-- Desktop Menu (9대 특화진료는 하단 탭으로 이동하여 제거) -->
-        <nav class="hidden md:flex items-center gap-6 lg:gap-7 text-sm font-medium text-slate-600">
+        <nav class="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-medium text-slate-600">
           <a href="#greeting" class="hover:text-toss-black transition">원장 인사말</a>
           <a href="#doctor" class="hover:text-toss-black transition">약력·치료철학</a>
           <a href="#diagnosis" class="hover:text-toss-black transition">진단·검사안내</a>
+          <a href="/column/" class="hover:text-toss-black transition font-semibold text-teal-700">치료칼럼</a>
           <a href="#media" class="hover:text-toss-black transition">칼럼·영상</a>
           <a href="#local-clinics" class="hover:text-toss-black transition">지역별 안내</a>
           <a href="#contact" class="hover:text-toss-black transition">진료시간·오시는길</a>
@@ -242,6 +243,10 @@
             <i data-lucide="moon" class="w-3.5 h-3.5 text-indigo-600 group-hover:scale-110 transition-transform"></i>
             <span>불면증</span>
           </a>
+          <a href="/column/" class="px-3.5 py-1.5 rounded-xl text-xs font-bold text-teal-800 hover:text-teal-900 hover:bg-teal-100/80 transition flex items-center gap-1.5 shrink-0 bg-teal-50/70 border border-teal-200/70 shadow-soft-sm group">
+            <i data-lucide="book-open" class="w-3.5 h-3.5 text-teal-700 group-hover:scale-110 transition-transform"></i>
+            <span>치료칼럼</span>
+          </a>
         </div>
       </div>
     </div>
@@ -286,6 +291,8 @@
           class="text-base font-semibold text-slate-800 hover:text-teal-700">9대 중점 특화 진료 과목</a>
         <a href="#diagnosis" onclick="toggleMobileMenu()"
           class="text-base font-semibold text-slate-800 hover:text-teal-700">6단계 정밀 진단·검사</a>
+        <a href="/column/"
+          class="text-base font-bold text-teal-700 hover:text-teal-800">치료칼럼</a>
         <a href="#media" onclick="toggleMobileMenu()"
           class="text-base font-semibold text-slate-800 hover:text-teal-700">미디어 & 칼럼</a>
         <a href="#local-clinics" onclick="toggleMobileMenu()"
@@ -1824,7 +1831,8 @@
                 커뮤니티
               </h4>
               <ul class="space-y-2 text-slate-600">
-                <li><a href="#media" class="hover:text-teal-700 transition block">칼럼</a></li>
+                <li><a href="/column/" class="hover:text-teal-700 transition block font-bold text-teal-700">치료칼럼</a></li>
+                <li><a href="#media" class="hover:text-teal-700 transition block">언론보도·칼럼</a></li>
                 <li><a href="https://www.youtube.com/@healimtv" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block">영상</a></li>
                 <li><a href="#media" class="hover:text-teal-700 transition block">공지사항</a></li>
                 <li><a href="https://pf.kakao.com/_FspIX" target="_blank" rel="noopener noreferrer" class="hover:text-teal-700 transition block font-bold text-amber-600">온라인 상담</a></li>
@@ -1873,6 +1881,7 @@
         </div>
 
         <div class="flex flex-wrap gap-4 sm:gap-5 text-slate-400 items-center text-xs">
+          <a href="/column/" class="hover:text-white transition font-semibold text-teal-300">치료칼럼</a>
           <a href="/dizziness/" class="hover:text-white transition">어지럼증</a>
           <a href="/panic-disorder/" class="hover:text-white transition">공황장애</a>
           <a href="/tic-disorder/" class="hover:text-white transition">틱장애</a>

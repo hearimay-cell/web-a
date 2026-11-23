@@ -21,7 +21,85 @@ SITEMAP_PATH = "sitemap.xml"
 # Gemini API 클라이언트 (환경변수 GEMINI_API_KEY 사용)
 client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
 optimizer = PostOptimizer()
+_CACHED_FLASH_MODELS = None
 # ============================================
+
+# 텍스트/JSON 생성에 부적합한 특수 모달리티·전용 모델 제외 키워드
+EXCLUDED_MODEL_KEYWORDS = (
+    "image",
+    "tts",
+    "audio",
+    "live",
+    "embedding",
+    "robotics",
+    "computer-use",
+    "customtools",
+    "vision",
+)
+
+
+def _flash_model_rank(model_name: str):
+    """최신 안정 Flash 모델이 가장 높은 우선순위를 갖도록 정렬 키 생성"""
+    short = model_name.removeprefix("models/").lower()
+    m = re.search(r"gemini-(\d+)(?:\.(\d+))?", short)
+    major = int(m.group(1)) if m else 0
+    minor = int(m.group(2)) if (m and m.group(2)) else 0
+
+    is_latest_alias = 1 if short == "gemini-flash-latest" else 0
+    not_lite = 0 if "lite" in short else 1
+    if "exp" in short:
+        stability = 0
+    elif "preview" in short:
+        stability = 1
+    else:
+        stability = 2
+    is_canonical = 0 if re.search(r"-\d{2,4}", short) else 1
+
+    return (major, minor, not_lite, stability, is_canonical, is_latest_alias, short)
+
+
+def get_available_flash_models():
+    """현재 API 키로 generateContent가 가능한 최신 Flash 모델 후보 목록을 조회 및 우선순위 정렬"""
+    global _CACHED_FLASH_MODELS
+    if _CACHED_FLASH_MODELS is not None:
+        return _CACHED_FLASH_MODELS
+
+    flash_candidates = []
+    fallback_candidates = []
+
+    for model in client.models.list():
+        raw_name = getattr(model, "name", "") or ""
+        short = raw_name.removeprefix("models/")
+        short_lower = short.lower()
+
+        # generateContent 지원 여부 확인 (google-genai SDK: supported_actions)
+        actions = getattr(model, "supported_actions", None) or []
+        if actions and "generateContent" not in actions:
+            continue
+
+        if not short_lower.startswith("gemini-"):
+            continue
+        if any(ex in short_lower for ex in EXCLUDED_MODEL_KEYWORDS):
+            continue
+
+        if "flash" in short_lower:
+            flash_candidates.append(short)
+        else:
+            fallback_candidates.append(short)
+
+    candidates = sorted(set(flash_candidates), key=_flash_model_rank, reverse=True)
+    if not candidates:
+        candidates = sorted(set(fallback_candidates), key=_flash_model_rank, reverse=True)
+
+    if not candidates:
+        raise RuntimeError(
+            "현재 GEMINI_API_KEY로 generateContent를 지원하는 Gemini 모델을 찾을 수 없습니다."
+        )
+
+    print(f"[모델 자동 조회] 사용 가능한 Flash 후보: {candidates}")
+    print(f"[모델 자동 선택] 1순위 모델: {candidates[0]}")
+    _CACHED_FLASH_MODELS = candidates
+    return _CACHED_FLASH_MODELS
 
 
 def load_synced_urls():
@@ -145,11 +223,29 @@ def rewrite_and_upgrade_column(orig_title, orig_content):
 [원문 내용]:
 {orig_content[:4000]}
 """
-    response = client.models.generate_content(
-        model="gemini-3.0-flash",
-        contents=prompt,
-        config={"response_mime_type": "application/json"},
-    )
+    candidate_models = get_available_flash_models()
+    response = None
+    last_error = None
+    for model_name in candidate_models:
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config={"response_mime_type": "application/json"},
+            )
+            print(f"[모델 호출 성공] 사용 모델: {model_name}")
+            break
+        except Exception as e:
+            last_error = e
+            err_msg = str(e)
+            if "404" in err_msg or "NOT_FOUND" in err_msg or "not supported" in err_msg.lower():
+                print(f"[모델 건너뜀] {model_name} 사용 불가 -> 다음 후보 시도 ({e})")
+                continue
+            raise
+
+    if response is None:
+        raise RuntimeError(f"사용 가능한 모든 Gemini 모델 호출에 실패했습니다: {last_error}")
+
     data = json.loads(response.text)
 
     # 기존 auto_post_optimizer.py로 품질 검증

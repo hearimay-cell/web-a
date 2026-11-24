@@ -48,12 +48,34 @@ EXCLUDED_MODEL_KEYWORDS = (
     "vision",
 )
 
-# 의료법 준수 금지 표현 및 필수 에디토리얼 HTML 컴포넌트
+# 의료법 제56조(의료광고 심의) 준수 금지 표현 및 고위험 정규식 패턴
 FORBIDDEN_MEDICAL_TERMS = (
     "한방신경정신과 전문의",
+    "상담심리사 1급",
     "완치",
     "100% 치료",
     "100% 완치",
+)
+
+HIGH_RISK_MEDICAL_PATTERNS = (
+    (r"부작용\s*없", "부작용 없음 단정 표현 금지"),
+    (r"근본적(으로)?\s*(회복|해결|되찾|치료)", "근본적 회복/해결/치료 보장 표현 금지"),
+    (r"(수면제|약물)\s*(감량|중단|없이|단약)", "수면제·약물 감량/중단/단약 유도 표현 금지"),
+    (r"(편도체|기저핵)\s*안정", "특정 뇌 부위 기능 회복 단정 표현 금지"),
+    (r"전두엽\s*활성", "전두엽 활성화 단정 표현 금지"),
+    (r"밸런스\s*복원", "자율신경 밸런스 복원 보장 표현 금지"),
+    (r"수면\s*스위치", "비의학적 과장 비유('수면 스위치') 금지"),
+    (r"단일한?\s*병리", "의학적 과도한 단순화('단일 병리') 금지"),
+    (r"직결된?다", "인과관계 단정 표현('직결된다') 금지"),
+    (r"신경계\s*탈진", "비의학적 단정 표현('신경계 탈진') 금지"),
+    (r"(확실히|확실한|충분히)\s*회복", "치료 결과 단정·보장 표현 금지"),
+)
+
+CHECKLIST_DISCLAIMER_HTML = (
+    '<p class="checklist-disclaimer">'
+    "※ 본 항목은 현재 상태를 살펴보기 위한 참고 사항이며, 질환을 진단하기 위한 검사가 아닙니다. "
+    "증상이 지속되거나 일상생활에 지장이 있다면 의료진의 평가를 받아보시기 바랍니다."
+    "</p>"
 )
 
 REQUIRED_EDITORIAL_COMPONENTS = (
@@ -188,26 +210,60 @@ def call_gemini_json(prompt: str, step_label: str, max_output_tokens: int = DEFA
 
 
 def audit_editorial_quality(data: dict, report: dict) -> list:
-    """auto_post_optimizer 결과 외에 의료법 가드레일·필수 HTML 컴포넌트·분량을 추가 점검"""
+    """auto_post_optimizer 결과 외에 의료법 제56조 정적 정규식·필수 HTML 컴포넌트·면책 문구·분량을 점검"""
     extra_issues = []
-    combined_text = f"{data.get('title', '')}\n{data.get('content_text', '')}\n{data.get('content_html', '')}"
+    combined_text = f"{data.get('title', '')}\n{data.get('meta_description', '')}\n{data.get('content_text', '')}\n{data.get('content_html', '')}"
     content_html = data.get("content_html", "")
     content_text = data.get("content_text", "")
 
+    # 1) 단순 금지어 점검
     for term in FORBIDDEN_MEDICAL_TERMS:
         if term in combined_text:
             extra_issues.append(
-                f"의료법 준수 위반 표현 '{term}' 포함 -> 반드시 제거하고 전문의 표기는 '한방내과 전문의 · 상담심리학 박사'로만 작성할 것."
+                f"[의료광고법 위반] 금지 표현 '{term}' 감지 -> 반드시 제거하고 원장 약력은 '한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급'으로 정확히 표기할 것."
             )
 
+    # 2) 고위험 의료광고 정규식 패턴 점검
+    for pattern, reason in HIGH_RISK_MEDICAL_PATTERNS:
+        match = re.search(pattern, combined_text)
+        if match:
+            extra_issues.append(
+                f"[의료광고법 고위험 정규식] '{match.group(0)}' 감지 ({reason}) -> 결과를 보장하거나 단정하지 않는 객관적·설명적 표현으로 교정할 것."
+            )
+
+    # 3) 필수 에디토리얼 HTML 컴포넌트 존재 여부 점검
     missing_components = [cls for cls in REQUIRED_EDITORIAL_COMPONENTS if cls not in content_html]
     if missing_components:
         extra_issues.append(
             f"필수 에디토리얼 HTML 컴포넌트 누락: {', '.join(missing_components)}"
         )
 
-    # .doctor-note 내부 중복 헤더 점검
-    note_match = re.search(r'<div[^>]*class=["\'][^"\']*doctor-note[^"\']*["\'][^>]*>(.*?)</div>', content_html, re.S | re.I)
+    # 4) .callout-empathy 내 1인칭 환자 대사(큰따옴표) 오인 소지 점검 (HTML 속성 제외, 텍스트만 검사)
+    empathy_match = re.search(
+        r'<div[^>]*class=["\'][^"\']*callout-empathy[^"\']*["\'][^>]*>(.*?)</div>',
+        content_html,
+        re.S | re.I,
+    )
+    if empathy_match:
+        empathy_text = BeautifulSoup(empathy_match.group(1), "html.parser").get_text(" ", strip=True)
+        if any(q in empathy_text for q in ('"', "“", "”")):
+            extra_issues.append(
+                "[의료광고법 위반 소지] .callout-empathy 내부에 큰따옴표 1인칭 환자 대사 포함 -> 치료경험담·후기 오인 방지를 위해 큰따옴표를 제거하고 객관적 3인칭 임상 양상 설명으로 작성할 것."
+            )
+
+    # 5) .checklist-box 내 비진단 면책 문구(.checklist-disclaimer) 필수 포함 점검
+    if "checklist-box" in content_html:
+        if "checklist-disclaimer" not in content_html or "진단하기 위한 검사가 아닙니다" not in content_html:
+            extra_issues.append(
+                f"[의료광고법 필수 누락] .checklist-box 하단에 비진단 면책 문구({CHECKLIST_DISCLAIMER_HTML})가 누락됨 -> 반드시 추가할 것."
+            )
+
+    # 6) .doctor-note 내부 중복 헤더 점검
+    note_match = re.search(
+        r'<div[^>]*class=["\'][^"\']*doctor-note[^"\']*["\'][^>]*>(.*?)</div>',
+        content_html,
+        re.S | re.I,
+    )
     if note_match:
         note_inner = note_match.group(1)
         if re.search(r"<h[1-6]\b", note_inner, re.I) or "유종민 원장의 임상 노트" in note_inner:
@@ -215,12 +271,90 @@ def audit_editorial_quality(data: dict, report: dict) -> list:
                 ".doctor-note 내부에 중복 헤더 제목이 포함됨 -> CSS ::before가 헤더를 자동 표시하므로 내부에는 본문 <p> 내용만 넣을 것."
             )
 
+    # 7) 분량 점검
     if len(content_text.strip()) < 2600:
         extra_issues.append(
-            f"본문 분량이 부족함(현재 {len(content_text.strip())}자) -> 공백 포함 3,000~4,000자 분량으로 의학적 설명과 임상 사례를 더 충실히 보강할 것."
+            f"본문 분량이 부족함(현재 {len(content_text.strip())}자) -> 공백 포함 3,000~4,000자 분량으로 의학적 설명과 임상 안내를 더 충실히 보강할 것."
         )
 
     return extra_issues
+
+
+def review_medical_ad_compliance(data: dict) -> dict:
+    """독립된 '엄격한 의료광고 심의 검토관(의료법 제56조)' 페르소나로 title/meta_description/content_html 전체를 사전 심의 및 직접 교정"""
+    review_prompt = f"""
+당신은 대한민국 보건복지부·대한한의사협회 기준을 적용하는 '엄격한 의료광고 심의 검토관(의료법 제56조 전문 심사위원)'입니다.
+아래 제출된 한의원 칼럼 JSON(title, meta_description, content_text, content_html) 전체를 문장 단위로 감사(Audit)하고, 의료광고법 위반 소지나 과장·단정 표현이 있는 문장을 모두 안전한 의학적·설명적 문장으로 직접 교정(Rewrite)해 최종 JSON으로 반환하세요.
+
+[6대 필수 심의 감사 항목]
+1. 치료 효과 단정·보장 표현 여부:
+   - '근본적 회복/해결/치료', '확실한/충분히 회복', '완치', '100% 치료' 같은 결과 보장 표현을 모두 제거하세요.
+   - '편도체 안정', '전두엽 활성', '기저핵 안정', '교감·부교감 밸런스 복원', '수면 스위치가 켜진다' 등 특정 뇌 부위·신경의 기능 회복을 단정하는 표현을 금지하고, '증상 양상 평가 → 생리적·심리적 요인 탐색 → 한의학적 변증 → 개인별 치료 계획' 프레임의 설명적 문장으로 교정하세요.
+2. '부작용 없음' 또는 타 치료법(양약·수면제·정신과 약물) 비교·비방 뉘앙스 여부:
+   - '부작용 없이', '내성 없이' 등 안전성 단정 표현을 제거하세요.
+   - 양약·수면제·정신과 약물의 부작용을 과도하게 부각해 한방 치료가 우월하다는 인상을 주거나 '수면제/약물 감량·중단·단약'을 유도하는 표현을 모두 교정하고, 기존 복용 약물은 임의로 중단하지 않고 처방 의료진과 상의해야 함을 명시하세요.
+3. 의학적 단정·과도한 단순화 여부:
+   - '단일한 병리', '직결된다', '신경계 탈진' 같은 단정적·비의학적 표현을 '~와 밀접하게 연관될 수 있다', '~가 관여할 수 있다' 등 엄밀한 의학적 표현으로 완화하세요.
+   - HRV(심박변이도)·뇌파 검사가 단독 진단 도구처럼 서술되었다면, 문진 및 임상적 평가와 함께 해석하는 보조 검사임을 분명히 명시하세요.
+4. 치료경험담·후기 오인 소지(1인칭 환자 인용문) 여부:
+   - 특히 `.callout-empathy` 내부나 본문에 큰따옴표(" ")를 사용한 1인칭 환자 대사가 있다면 모두 제거하고, "몸은 피곤한데 잠자리에 누우면 오히려 생각이 많아지는 경우가 있습니다" 같은 객관적 3인칭 임상 양상 설명으로 교정하세요.
+5. `.checklist-box` 내 비진단 면책 문구 누락 여부:
+   - `.checklist-box` 하단에 아래 HTML 면책 문구가 정확히 포함되어 있는지 확인하고, 누락되거나 문구가 다르면 반드시 그대로 삽입하세요:
+     {CHECKLIST_DISCLAIMER_HTML}
+6. 한약·침·약침·바이오피드백 설명 방식 및 원장 약력 표기 정확성:
+   - 각 치료법이 '효과 확정'이 아니라 '개인 상태에 따라 고려할 수 있는 치료 방법 소개'로 서술되도록 교정하세요.
+   - 원장 약력은 '한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급'으로 정확히 구분 표기하고, '한방신경정신과 전문의' 또는 '상담심리사 1급' 같은 오인 표현이 있다면 즉시 교정하세요.
+   - 기존 HTML 구조(.summary-box, .callout-empathy, .mechanism-grid/.mechanism-card, .checklist-box, .doctor-note, <details class="faq-item">)와 .doctor-note 내부 중복 헤더 금지 원칙은 그대로 유지하고, content_text도 교정된 본문과 일치하도록 함께 업데이트하세요.
+
+[출력 JSON 형식 (반드시 이 키 구조로만 반환)]
+{{
+  "fixed_count": 0,
+  "modifications": [
+    {{"rule": "위반 항목 번호/유형", "before": "수정 전 표현", "after": "수정 후 안전 표현"}}
+  ],
+  "title": "심의 교정 완료된 제목",
+  "meta_description": "심의 교정 완료된 120자 이내 요약",
+  "category": "{data.get('category', '')}",
+  "slug": "{data.get('slug', '')}",
+  "content_text": "심의 교정 완료된 순수 텍스트 본문 (문단 사이 \\n\\n 구분)",
+  "content_html": "심의 교정 완료된 최종 HTML 본문"
+}}
+
+[심의 대상 원고 JSON]:
+{json.dumps(data, ensure_ascii=False, indent=2)}
+"""
+    reviewed, model_name = call_gemini_json(
+        review_prompt, step_label="Step 3: 의료광고법 사전 심의"
+    )
+
+    modifications = reviewed.get("modifications") or []
+    fixed_count = reviewed.get("fixed_count")
+    if not isinstance(fixed_count, int):
+        fixed_count = len(modifications)
+
+    print(
+        f"[의료광고 심의 완료] 위험 표현 {fixed_count}건 교정 완료 "
+        f"(심의 모델: {model_name})"
+    )
+    for i, mod in enumerate(modifications, 1):
+        if isinstance(mod, dict):
+            print(
+                f"  - 교정 {i} [{mod.get('rule', '심의')}]: "
+                f"'{mod.get('before', '')}' -> '{mod.get('after', '')}'"
+            )
+        else:
+            print(f"  - 교정 {i}: {mod}")
+
+    # 필수 키 보존
+    result = {
+        "title": reviewed.get("title") or data.get("title", ""),
+        "meta_description": reviewed.get("meta_description") or data.get("meta_description", ""),
+        "category": reviewed.get("category") or data.get("category", ""),
+        "slug": reviewed.get("slug") or data.get("slug", ""),
+        "content_text": reviewed.get("content_text") or data.get("content_text", ""),
+        "content_html": reviewed.get("content_html") or data.get("content_html", ""),
+    }
+    return result
 
 
 def load_synced_urls():
@@ -320,43 +454,45 @@ def fetch_post_content(url):
 
 
 def rewrite_and_upgrade_column(orig_title, orig_content):
-    """2단계 심층 에디토리얼 파이프라인 (Step 1 기획 -> Step 2 심층 집필 -> 검증 및 1회 자동 보완)"""
+    """2단계 심층 에디토리얼 + 의료광고법 독립 심의 + 정적 정규식 감사 및 자동 재교정 파이프라인"""
 
     # ==================== STEP 1: 기획 & 아웃라인 설계 ====================
     step1_prompt = f"""
-당신은 해아림한의원 안양점 유종민 대표원장(한방내과 전문의 · 상담심리학 박사)의 의학 매거진 편집 기획자입니다.
+당신은 해아림한의원 안양점 유종민 대표원장(한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급)의 의학 매거진 편집 기획자입니다.
 아래 참고 원문의 핵심 질환과 임상 주제만 파악하고, 원문의 문장은 절대 복사하지 않은 채 완전히 새로운 6단계 심층 의학 칼럼 기획안(아웃라인)을 JSON으로 설계해 주세요.
 
-[의료법 준수 가드레일]
-- '한방신경정신과 전문의'라는 표현은 절대 사용하지 말고, 반드시 '한방내과 전문의 · 상담심리학 박사'로만 표기하세요.
-- '완치', '100% 치료', '100% 완치' 같은 과장 표현은 절대 사용하지 마세요.
+[의료광고법(의료법 제56조) 핵심 준수 기준]
+- 치료 방향은 반드시 '증상 양상 평가 → 생리적·심리적 요인 탐색 → 한의학적 변증 → 개인별 치료 계획' 구조로 기획하고, 결과 보장형 서술('근본적 회복/해결', '완치', '부작용 없이', '수면제/약물 감량·단약', '편도체 안정', '전두엽 활성', '기저핵 안정', '밸런스 복원', '수면 스위치')은 절대 포함하지 마세요.
+- 원장 약력은 '한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급'으로만 표기하고, '한방신경정신과 전문의' 또는 '상담심리사 1급'으로 오인될 표현은 금지합니다.
+- 공감 박스는 치료경험담 오인을 막기 위해 큰따옴표 1인칭 환자 대사 대신 객관적 3인칭 임상 양상으로 기획하세요.
+- HRV·뇌파 검사는 단독 진단 도구가 아니라 문진 및 임상적 평가와 함께 해석하는 보조 검사로 기획하세요.
 
 [필수 6단계 목차 구조]
-1. patient_pain_and_misconceptions: 환자의 실제 고통과 흔한 오해 (진료실에서 환자가 자주 호소하는 생생한 표현 포함)
-2. neuro_autonomic_mechanism: 자율신경·뇌신경 생리학적 기전 (교감/부교감신경, HRV, 편도체, 전두엽, HPA축 등 의학 엔티티 반영)
-3. psychological_connection: 심리·정서적 연결고리 (상담심리학 박사 관점의 인지·정서·신체 상호작용)
-4. self_checklist_criteria: 자가점검 기준 (환자가 스스로 점검해 볼 수 있는 구체적 증상 5~6개)
-5. integrative_treatment_approach: 한의학적·통합적 치료 접근 (변증, 체질 맞춤 한약, 침·약침, 두뇌 훈련, 심리 상담의 균형적 설명)
-6. anyang_clinical_advice: 안양·평촌·범계 진료실에서의 임상 조언 (지역 환자·학부모·직장인이 공감할 현실적 회복 가이드)
+1. patient_pain_and_misconceptions: 환자의 실제 고통과 흔한 오해 (객관적 3인칭 임상 양상 설명 포함)
+2. neuro_autonomic_mechanism: 자율신경·뇌신경 생리학적 기전 (단정 표현 배제, '~와 연관될 수 있다/~가 관여할 수 있다' 완화 서술)
+3. psychological_connection: 심리·정서적 연결고리 (상담심리학 박사 · 임상심리사 1급 관점의 인지·정서·신체 상호작용)
+4. self_checklist_criteria: 자가점검 기준 (진단 도구가 아닌 참고용 점검 항목 5~6개)
+5. integrative_treatment_approach: 증상 양상 평가 → 생리적·심리적 요인 탐색 → 한의학적 변증 → 개인별 치료 계획 프레임으로 한약·침·약침·바이오피드백·심리상담 소개 (기존 복용 약물 임의 중단 금지 및 의료진 상의 안내 포함)
+6. anyang_clinical_advice: 안양·평촌·범계 진료실에서의 현실적 임상 조언
 
 [출력 JSON 형식]
 {{
-  "working_title": "25~40자 이내 핵심 질환 키워드 포함 가제목",
+  "working_title": "25~40자 이내 핵심 질환 키워드 포함 가제목 (치료 보장·단정 표현 제외)",
   "category": "자율신경실조증 / 공황·불안장애 / 불면증 / 어지럼증 / 틱장애 / ADHD 중 가장 적합한 1개",
-  "core_direct_answer": "AEO 두괄식 핵심 요약 2~3문장 ('결론적으로' 또는 '[핵심 요약]' 포함)",
+  "core_direct_answer": "AEO 두괄식 핵심 요약 2~3문장 ('결론적으로' 또는 '[핵심 요약]' 포함, 단정·과장 금지)",
   "target_entities": ["자율신경", "교감신경", "부교감신경", "HRV", "뇌파", "한의학 변증 등 6~8개"],
   "outline": {{
     "1_patient_pain_and_misconceptions": {{
       "heading": "섹션 소제목",
-      "patient_quote": "진료실에서 환자가 자주 하는 공감 인용 문장",
+      "clinical_empathy_pattern": "큰따옴표 없는 객관적 3인칭 임상 양상 설명 (예: 몸은 피곤한데 잠자리에 누우면 오히려 생각이 많아지는 경우가 있습니다.)",
       "key_points": ["핵심 포인트 1", "핵심 포인트 2", "핵심 포인트 3"]
     }},
     "2_neuro_autonomic_mechanism": {{
       "heading": "섹션 소제목",
       "mechanism_cards": [
-        {{"title": "기전 카드 1 제목", "detail": "생리학적 메커니즘 요약"}},
-        {{"title": "기전 카드 2 제목", "detail": "생리학적 메커니즘 요약"}},
-        {{"title": "기전 카드 3 제목", "detail": "심리·신경 연결 메커니즘 요약"}}
+        {{"title": "기전 카드 1 제목", "detail": "생리학적 연관 메커니즘 요약 (단정 금지)"}},
+        {{"title": "기전 카드 2 제목", "detail": "생리학적 연관 메커니즘 요약 (단정 금지)"}},
+        {{"title": "기전 카드 3 제목", "detail": "심리·신경 상호작용 요약 (단정 금지)"}}
       ],
       "key_points": ["상세 설명 포인트 1", "상세 설명 포인트 2"]
     }},
@@ -365,16 +501,20 @@ def rewrite_and_upgrade_column(orig_title, orig_content):
       "key_points": ["심리·정서 연결고리 포인트 1", "포인트 2", "포인트 3"]
     }},
     "4_self_checklist_criteria": {{
-      "heading": "자가점검 체크리스트 제목",
+      "heading": "자가점검 체크리스트 제목 (참고용)",
       "items": ["점검 항목 1", "점검 항목 2", "점검 항목 3", "점검 항목 4", "점검 항목 5"]
     }},
     "5_integrative_treatment_approach": {{
       "heading": "섹션 소제목",
-      "key_points": ["정량 검사(HRV/뇌파 등)", "한의학 변증 및 맞춤 한약·침구", "심리적 조력 및 생활 관리"]
+      "key_points": [
+        "증상 양상 평가 및 보조 검사(HRV·뇌파는 문진·임상평가와 함께 해석하는 보조 검사)",
+        "생리적·심리적 요인 탐색 및 한의학적 변증",
+        "개인별 치료 계획(한약·침·약침·바이오피드백·심리상담 소개 및 기존 복용 약물 임의 중단 금지 안내)"
+      ]
     }},
     "6_anyang_clinical_advice": {{
       "heading": "섹션 소제목",
-      "doctor_note_angle": "유종민 원장의 임상 노트에 담을 따뜻하고 깊이 있는 통찰",
+      "doctor_note_angle": "유종민 원장의 임상 노트에 담을 따뜻하고 객관적인 임상 조언",
       "key_points": ["안양·평촌·범계 지역 환자를 위한 현실적 조언 1", "조언 2"]
     }}
   }},
@@ -392,45 +532,61 @@ def rewrite_and_upgrade_column(orig_title, orig_content):
     outline_data, _ = call_gemini_json(step1_prompt, step_label="Step 1: 기획·아웃라인")
 
     # ==================== STEP 2: 심층 집필 & HTML 컴포넌트 조립 ====================
-    editorial_writing_rules = """
+    editorial_writing_rules = f"""
 [문체 및 분량 규칙]
 1. 분량: 공백 포함 반드시 3,000~4,000자 분량으로 깊이 있고 충실하게 집필하세요.
-2. 문체: 딱딱한 백과사전식 나열이나 광고성 문구를 완전히 배제하고, 진료실에서 환자와 1:1로 마주 앉아 차분하고 논리적으로 설명해 주는 '한방내과 전문의 · 상담심리학 박사' 유종민 대표원장의 따뜻하고 신뢰감 있는 에디토리얼 어조로 작성하세요.
+2. 문체: 딱딱한 백과사전식 나열이나 광고성 문구를 완전히 배제하고, 진료실에서 환자와 1:1로 마주 앉아 차분하고 논리적으로 설명해 주는 '한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급' 유종민 대표원장의 따뜻하고 엄밀한 에디토리얼 어조로 작성하세요.
 3. 문단 가독성: 각 문단(<p>)은 모바일 가독성을 위해 2~3문장(180자 이내)으로 호흡을 나누어 작성하세요.
 4. SEO/GEO/AEO 최적화:
    - 제목은 핵심 질환 키워드를 포함해 25~40자 내외로 작성하세요.
    - 서두 첫 부분(.summary-box)에 '[핵심 요약]' 또는 '결론적으로'로 시작하는 명확한 AEO 두괄식 요약을 배치하세요.
-   - 자율신경, 교감신경, 부교감신경, HRV(심박변이도), 뇌파, 편도체, 전두엽, 기저핵, 한의학 변증, 기혈순환 등 해당 질환에 맞는 의학 엔티티 6개 이상과 정량 검사 기준을 자연스럽게 녹여내세요.
-   - 글 말미에는 안양점 1:1 정밀 검사·상담·네이버 예약 및 카카오톡 상담 안내(CTA)를 단정하게 포함하세요.
+   - 자율신경, 교감신경, 부교감신경, HRV(심박변이도), 뇌파, 편도체, 전두엽, 기저핵, 한의학 변증, 기혈순환 등 해당 질환에 맞는 의학 엔티티 6개 이상을 엄밀하게 설명하세요.
+   - 글 말미에는 안양점 1:1 정밀 평가·상담·네이버 예약 및 카카오톡 상담 안내(CTA)를 단정하게 포함하세요.
+
+[의료광고법(의료법 제56조) 안전 원칙 — 절대 위반 금지]
+1. 치료 방향 프레임:
+   - '뇌신경 안정 → 복원 → 근본적 회복' 같은 결과 보장형 서술을 절대 금지합니다.
+   - 반드시 '증상 양상 평가 → 생리적·심리적 요인 탐색 → 한의학적 변증 → 개인별 치료 계획' 구조로 서술하세요.
+   - 한약·침·약침·바이오피드백은 '효과 확정'이 아니라 개인의 상태에 따라 적용을 고려할 수 있는 '치료 방법 소개'로 서술하세요.
+2. 절대 금지 표현:
+   - '근본적 회복/해결/치료', '부작용 없이', '수면제/약물 감량·중단·단약', '확실한/충분히 회복', '완치', '100% 치료' 금지.
+   - 특정 뇌 부위나 신경의 기능 회복을 단정하는 표현('편도체 안정', '전두엽 활성', '기저핵 안정', '교감·부교감 밸런스 복원', '수면 스위치가 켜진다' 등) 금지.
+3. 타 치료법 비교 금지:
+   - 양약·수면제·정신과 약물의 부작용을 과도하게 강조해 한방 치료가 더 안전하거나 우월하다는 인상을 절대 주지 마세요.
+   - 기존에 복용 중인 약물이 있다면 임의로 중단하지 않고 반드시 처방 의료진과 상의해야 함을 명시하세요.
+4. 병리·검사 설명의 엄밀성:
+   - '단일한 병리', '직결된다', '신경계 탈진' 같은 단정적·비의학적 표현을 금지하고, '~와 밀접하게 연관될 수 있다', '~가 관여할 수 있다'로 완화해 서술하세요.
+   - HRV(심박변이도)·뇌파 검사는 단독 진단 도구가 아니라 문진 및 임상적 평가와 함께 해석하는 보조 검사임을 반드시 명시하세요.
+5. 원장 약력 표기:
+   - 반드시 '한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급'으로 정확히 구분해 표기하세요.
+   - '한방신경정신과 전문의' 또는 '상담심리사 1급'으로 오인될 표현은 절대 금지합니다.
 
 [필수 HTML 컴포넌트 6종 (template.html CSS와 100% 일치하게 모두 포함)]
-1. <div class="summary-box"><p><strong>[핵심 요약]</strong> ...</p></div> (글 최상단 배치)
-2. <div class="callout-empathy"><p>"..."</p></div> (진료실 환자 공감 인용)
-3. <div class="mechanism-grid"><div class="mechanism-card"><h3>...</h3><p>...</p></div> ... </div> (2~3개 카드로 자율신경·뇌신경·심리 기전 정리)
-4. <div class="checklist-box"><h3>...</h3><ul><li>...</li>...</ul></div> (증상 자가점검 체크리스트)
+1. <div class="summary-box"><p><strong>[핵심 요약]</strong> ...</p></div> (글 최상단 배치, 결과 단정 금지)
+2. <div class="callout-empathy"><p>...</p></div>
+   ★ 중요: 실제 환자의 치료경험담·후기로 오인되지 않도록 큰따옴표(" ")를 사용한 1인칭 환자 대사 형식을 절대 금지합니다. 반드시 "몸은 피곤한데 잠자리에 누우면 오히려 생각이 많아지는 경우가 있습니다"와 같은 객관적 3인칭 임상 양상 설명으로 작성하세요.
+3. <div class="mechanism-grid"><div class="mechanism-card"><h3>...</h3><p>...</p></div> ... </div> (2~3개 카드로 자율신경·뇌신경·심리 연관 기전 정리)
+4. <div class="checklist-box"><h3>...</h3><ul><li>...</li>...</ul>{CHECKLIST_DISCLAIMER_HTML}</div>
+   ★ 중요: .checklist-box 하단에는 반드시 위 `<p class="checklist-disclaimer">...</p>` 면책 문구를 토씨 하나 바꾸지 말고 그대로 포함하세요.
 5. <div class="doctor-note"><p>...</p></div>
-   ★ 매우 중요: .doctor-note 내부에는 CSS(::before)가 '유종민 원장의 임상 노트 · 한방내과 전문의 · 상담심리학 박사' 헤더를 자동으로 그려줍니다. 따라서 .doctor-note 내부에는 절대로 <h3>, <h4> 같은 헤더 제목이나 '유종민 원장의 임상 노트' 문구를 중복 작성하지 말고, 순수 임상 노트 본문 <p> 문단만 넣으세요.
+   ★ 중요: .doctor-note 내부에는 CSS(::before)가 '유종민 원장의 임상 노트 · 한방내과 전문의 · 상담심리학 박사' 헤더를 자동으로 그려줍니다. 따라서 .doctor-note 내부에는 절대로 <h3>, <h4> 같은 헤더 제목이나 '유종민 원장의 임상 노트' 문구를 중복 작성하지 말고, 순수 임상 노트 본문 <p> 문단만 넣으세요.
 6. <details class="faq-item"><summary>Q. ...</summary><p>A. ...</p></details> (자주 묻는 질문 3개를 각각 <details class="faq-item"> 아코디언으로 작성)
 
-[의료법 준수 가드레일 (절대 위반 금지)]
-- '한방신경정신과 전문의'라는 표현은 절대 쓰지 마세요. 반드시 '한방내과 전문의 · 상담심리학 박사'로만 표기하세요.
-- '완치', '100% 치료', '100% 완치' 같은 단정적·과장 표현은 절대 쓰지 말고 '호전', '회복', '증상 완화', '조절력 회복' 등으로 정확하게 표현하세요.
-
 [출력 JSON 형식]
-{
+{{
   "title": "25~40자 이내의 핵심 질환 키워드 포함 제목",
   "meta_description": "120자 이내 검색 결과용 핵심 요약",
   "category": "자율신경실조증 / 공황·불안장애 / 불면증 / 어지럼증 / 틱장애 / ADHD 중 택1",
   "slug": "영문-소문자-하이픈-슬러그",
   "content_text": "content_html의 전체 본문을 순수 텍스트로 정리한 버전 (문단 사이 빈 줄 2개 \\n\\n 구분, AEO 요약·Q&A·CTA 포함, 공백 포함 3,000~4,000자)",
   "content_html": "위 6가지 CSS 컴포넌트와 <h2>, <h3>, <p>, <ul> 태그로 구성된 완성된 에디토리얼 HTML 본문"
-}
+}}
 """
 
     step2_prompt = f"""
-당신은 한방내과 전문의이자 상담심리학 박사인 해아림한의원 안양점 유종민 대표원장입니다.
+당신은 한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급인 해아림한의원 안양점 유종민 대표원장입니다.
 아래 Step 1 기획안(아웃라인)을 바탕으로 고급 의학 매거진(에디토리얼) 수준의 심층 칼럼을 집필해 주세요.
-참고 원문의 문장을 복사하지 말고, 기획안의 6단계 흐름을 따라 완전히 새롭게 깊이 있는 칼럼을 완성하세요.
+참고 원문의 문장을 복사하지 말고, 기획안의 6단계 흐름과 의료광고법 안전 원칙을 철저히 지켜 완성하세요.
 
 {editorial_writing_rules}
 
@@ -439,42 +595,51 @@ def rewrite_and_upgrade_column(orig_title, orig_content):
 """
     data, _ = call_gemini_json(step2_prompt, step_label="Step 2: 심층 집필·HTML 조립")
 
-    # ==================== STEP 3: 품질 검증 및 1회 자동 보완 ====================
+    # ==================== STEP 3: 독립 의료광고법(제56조) 사전 심의 게이트 ====================
+    data = review_medical_ad_compliance(data)
+
+    # ==================== STEP 4: 품질 점수 + 정적 정규식 감사 및 자동 재교정 ====================
     report = optimizer.analyze_post(data["title"], data["content_text"])
     extra_issues = audit_editorial_quality(data, report)
     all_issues = report["issues"] + extra_issues
     print(
-        f"[1차 검증 결과] {data['title']} -> {report['score']}점 / "
-        f"분량: {len(data['content_text'].strip())}자 / 이슈: {all_issues}"
+        f"[심의 후 1차 감사 결과] {data['title']} -> {report['score']}점 / "
+        f"분량: {len(data['content_text'].strip())}자 / 잔여 이슈({len(all_issues)}건): {all_issues}"
     )
 
     if report["score"] < 80 or all_issues:
-        print("[자동 보완 시작] 80점 미만 또는 보완 이슈 발견 -> 1회 자동 보완(Refine)을 실행합니다.")
+        print(
+            "[경고 및 자동 재교정 시작] 심의 후에도 80점 미만 또는 의료광고법/품질 이슈가 남아 있어 "
+            "1회 자동 재교정(Refine)을 실행합니다."
+        )
         refine_prompt = f"""
-당신은 한방내과 전문의이자 상담심리학 박사인 해아림한의원 안양점 유종민 대표원장입니다.
-아래 1차 작성된 에디토리얼 칼럼 JSON을 검토한 결과, 다음과 같은 품질 보완 사항이 발견되었습니다.
-기존 글의 훌륭한 문체와 흐름은 유지하면서, 지적된 모든 이슈와 개선 권장 사항을 빠짐없이 해결하여 완성도를 끌어올린 최종 JSON을 반환해 주세요.
+당신은 한방내과 전문의 · 상담심리학 박사 · 임상심리사 1급인 해아림한의원 안양점 유종민 대표원장이자 의료광고법(의료법 제56조) 최종 검수자입니다.
+아래 사전 심의를 거친 칼럼 JSON을 정적 정규식 및 품질 검증기로 재감사한 결과, 다음 항목들이 여전히 남아 있거나 보완이 필요합니다.
+기존 글의 차분한 진료실 문체와 HTML 구조를 유지하면서, 지적된 모든 의료광고법 위반 소지와 품질 이슈를 100% 해소한 최종 JSON을 반환해 주세요.
 
-[1차 검증 점수]: {report['score']} / {report['max_score']}점
-[반드시 해결해야 할 이슈]:
+[현재 검증 점수]: {report['score']} / {report['max_score']}점
+[반드시 해결해야 할 경고·이슈]:
 {json.dumps(all_issues, ensure_ascii=False, indent=2)}
 [개선 권장 사항]:
 {json.dumps(report['improvements'], ensure_ascii=False, indent=2)}
 
 {editorial_writing_rules}
 
-[1차 작성된 칼럼 JSON]:
+[재교정 대상 칼럼 JSON]:
 {json.dumps(data, ensure_ascii=False, indent=2)}
 """
-        refined_data, _ = call_gemini_json(refine_prompt, step_label="Step 3: 품질 자동 보완")
+        refined_data, _ = call_gemini_json(refine_prompt, step_label="Step 4: 의료법·품질 자동 재교정")
         refined_report = optimizer.analyze_post(refined_data["title"], refined_data["content_text"])
         refined_extra = audit_editorial_quality(refined_data, refined_report)
+        remaining_issues = refined_report["issues"] + refined_extra
         print(
-            f"[보완 후 최종 검증] {refined_data['title']} -> "
+            f"[재교정 후 최종 검증] {refined_data['title']} -> "
             f"{report['score']}점 -> {refined_report['score']}점 / "
             f"분량: {len(refined_data['content_text'].strip())}자 / "
-            f"잔여 이슈: {refined_report['issues'] + refined_extra}"
+            f"잔여 이슈({len(remaining_issues)}건): {remaining_issues}"
         )
+        if refined_extra:
+            print(f"[최종 경고] 재교정 후에도 정적 감사 항목이 남아 있습니다: {refined_extra}")
         data, report = refined_data, refined_report
 
     return data, report
